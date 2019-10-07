@@ -41,7 +41,7 @@ public class Usuario implements UserDetails {
 	private String senha;
 
 	@ManyToMany(fetch = FetchType.EAGER) @JsonIgnore
-	private List<Perfil> authorities = new ArrayList<>();
+	private List<Perfil> perfis = new ArrayList<>();
 	
 	public Usuario(String nome, String senha) {
 		this.nome = nome;
@@ -50,11 +50,11 @@ public class Usuario implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return authorities;
+		return perfis;
 	}
 	
 	public List<String> getPerfis() {
-		return authorities.stream().map(Perfil::getPerfil).collect(Collectors.toList());
+		return perfis.stream().map(Perfil::getPerfil).collect(Collectors.toList());
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class Usuario implements UserDetails {
 	}
 
 	public void addPerfil(Perfil.PERFIS perfil) {
-		this.authorities.add(new Perfil(perfil.asAuthority()));
+		this.perfis.add(new Perfil(perfil.asAuthority()));
 	}
 
 }
