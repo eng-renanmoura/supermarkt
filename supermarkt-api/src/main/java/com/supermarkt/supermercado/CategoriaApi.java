@@ -14,7 +14,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 class CategoriaApi {
 
-	private CategoriaDoCardapioRepository repo;
+	private CategoriaRepositorio repo;
 
 	@GetMapping("/supermercados/{idSupermercado}/categoria/{idCategoria}")
 	public CategoriaDto categoriaPorId(@PathVariable("idCategoria") Long idCategoria) {

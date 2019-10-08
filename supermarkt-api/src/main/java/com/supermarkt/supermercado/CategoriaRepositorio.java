@@ -2,6 +2,6 @@ package com.supermarkt.supermercado;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-interface CategoriaDoCardapioRepository extends JpaRepository<Categoria, Long> {
+interface CategoriaRepositorio extends JpaRepository<Categoria, Long> {
 
 }
