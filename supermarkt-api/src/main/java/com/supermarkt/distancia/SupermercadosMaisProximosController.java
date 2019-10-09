@@ -10,19 +10,19 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-class SupermercadosMaisProximosApi {
+class SupermercadosMaisProximosController {
 
-	private DistanciaServico distanciaServico;
+	private DistanciaServico distanciaService;
 
-	@GetMapping("/supermercados/mais-proximos/{cep}")
+	@GetMapping("/restaurantes/mais-proximos/{cep}")
 	public List<SupermercadoComDistanciaDto> maisProximos(@PathVariable("cep") String cep) {
-		return distanciaServico.supermercadosMaisProximosAoCep(cep);
+		return distanciaService.restaurantesMaisProximosAoCep(cep);
 	}
 
-	@GetMapping("/supermercados/{cep}/supermercado/{supermercadoId}")
+	@GetMapping("/restaurantes/{cep}/restaurante/{restauranteId}")
 	public SupermercadoComDistanciaDto comDistanciaPorId(@PathVariable("cep") String cep,
-			@PathVariable("supermercadoId") Long supermercadoId) {
-		return distanciaServico.supermercadoComDistanciaDoCep(supermercadoId, cep);
+			@PathVariable("restauranteId") Long restauranteId) {
+		return distanciaService.supermercadoComDistanciaDoCep(restauranteId, cep);
 	}
 
 }

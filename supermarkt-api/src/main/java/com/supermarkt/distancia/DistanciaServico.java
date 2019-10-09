@@ -22,26 +22,26 @@ class DistanciaServico {
 
 	private SupermercadoServico supermercados;
 
-	public List<SupermercadoComDistanciaDto> supermercadosMaisProximosAoCep(String cep) {
+	public List<SupermercadoComDistanciaDto> restaurantesMaisProximosAoCep(String cep) {
 		List<Supermercado> aprovados = supermercados.findAllByAprovado(true, LIMIT).getContent();
 		return calculaDistanciaParaOsSupermercados(aprovados, cep);
 	}
 
-	public SupermercadoComDistanciaDto supermercadoComDistanciaDoCep(Long supermercadoId, String cep) {
-		Supermercado supermercado = supermercados.findById(supermercadoId).orElseThrow(() -> new RecursoNaoEncontradoException());
-		String cepDoSupermercado = supermercado.getCep();
-		BigDecimal distancia = distanciaDoCep(cepDoSupermercado, cep);
-		return new SupermercadoComDistanciaDto(supermercadoId, distancia);
+	public SupermercadoComDistanciaDto supermercadoComDistanciaDoCep(Long restauranteId, String cep) {
+		Supermercado restaurante = supermercados.findById(restauranteId).orElseThrow(() -> new RecursoNaoEncontradoException());
+		String cepDoRestaurante = restaurante.getCep();
+		BigDecimal distancia = distanciaDoCep(cepDoRestaurante, cep);
+		return new SupermercadoComDistanciaDto(restauranteId, distancia);
 	}
 
-	private List<SupermercadoComDistanciaDto> calculaDistanciaParaOsSupermercados(List<Supermercado> supermercados, String cep) {
-		return supermercados
+	private List<SupermercadoComDistanciaDto> calculaDistanciaParaOsSupermercados(List<Supermercado> restaurantes, String cep) {
+		return restaurantes
 				.stream()
-				.map(supermercado -> {
-					String cepDoSupermercado = supermercado.getCep();
-					BigDecimal distancia = distanciaDoCep(cepDoSupermercado, cep);
-					Long supermercadoId = supermercado.getId();
-					return new SupermercadoComDistanciaDto(supermercadoId, distancia);
+				.map(restaurante -> {
+					String cepDoRestaurante = restaurante.getCep();
+					BigDecimal distancia = distanciaDoCep(cepDoRestaurante, cep);
+					Long restauranteId = restaurante.getId();
+					return new SupermercadoComDistanciaDto(restauranteId, distancia);
 				})
 				.collect(Collectors.toList());
 	}

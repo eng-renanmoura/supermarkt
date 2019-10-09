@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 class SupermercadoComDistanciaDto {
 
-	private Long supermercadoId;
+	private Long restauranteId;
 
 	private BigDecimal distancia;
 
