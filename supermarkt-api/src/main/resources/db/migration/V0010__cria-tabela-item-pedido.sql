@@ -7,4 +7,4 @@ CREATE TABLE item_do_pedido (
   PRIMARY KEY (id),
   FOREIGN KEY (item_id) REFERENCES item(id),
   FOREIGN KEY (pedido_id) REFERENCES pedido(id)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

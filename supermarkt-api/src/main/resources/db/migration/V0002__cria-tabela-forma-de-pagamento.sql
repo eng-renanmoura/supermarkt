@@ -3,4 +3,4 @@ CREATE TABLE forma_de_pagamento (
   nome varchar(100) NOT NULL,
   tipo varchar(100) NOT NULL,
   PRIMARY KEY (id)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -6,4 +6,4 @@ CREATE TABLE horario_de_funcionamento (
   supermercado_id bigint(20) DEFAULT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (supermercado_id) REFERENCES supermercado(id)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

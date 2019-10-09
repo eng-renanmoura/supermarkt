@@ -12,4 +12,4 @@ CREATE TABLE supermercado (
   usuario_id  bigint(20) DEFAULT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (usuario_id) REFERENCES usuario(id)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

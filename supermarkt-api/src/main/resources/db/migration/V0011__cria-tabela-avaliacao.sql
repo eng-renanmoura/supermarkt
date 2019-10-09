@@ -5,4 +5,4 @@ CREATE TABLE avaliacao (
   pedido_id bigint(20) NOT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (pedido_id) REFERENCES pedido(id)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -11,4 +11,4 @@ CREATE TABLE pagamento (
   PRIMARY KEY (id),
   FOREIGN KEY (forma_de_pagamento_id) REFERENCES forma_de_pagamento(id),
   FOREIGN KEY (pedido_id) REFERENCES pedido(id)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
