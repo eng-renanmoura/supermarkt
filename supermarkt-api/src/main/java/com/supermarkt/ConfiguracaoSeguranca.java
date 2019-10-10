@@ -34,7 +34,7 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/supermercados/**", "/pedidos/**", "/pagamentos/**", "/formas-de-pagamento/**").permitAll()
-			.antMatchers("/h2/**").permitAll()
+			.antMatchers("/h2/**").permitAll() //liberar o h2 console, não recomendado para produção
 			.antMatchers("/socket/**").permitAll()
 			.antMatchers("/autenticacao/**").permitAll()
 			.antMatchers("/admin/**").hasRole(Perfil.PERFIS.ADMIN.name())
@@ -42,6 +42,7 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter {
 			.antMatchers("/parceiros/supermercados/{supermercadoId}/**").access("@authorizationService.checaTargetId(authentication,#supermercadoId)")
 			.antMatchers("/parceiros/**").hasRole(Perfil.PERFIS.SUPERMERCADO.name())
 			.anyRequest().authenticated()
+			.and().headers().frameOptions().disable() //apenas para uso do h2 console, não recomendado para produção
 			.and().cors()
 			.and().csrf().disable()
 			.formLogin().disable()
@@ -49,6 +50,7 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.addFilterBefore(filtroAutenticacaoJwt, UsernamePasswordAuthenticationFilter.class)
 			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);
+		
 	}
 	
 	@Override
