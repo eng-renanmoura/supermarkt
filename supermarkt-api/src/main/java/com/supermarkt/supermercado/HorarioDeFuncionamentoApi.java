@@ -35,17 +35,17 @@ class HorarioDeFuncionamentoApi {
 		return horariosDoSupermercado.stream().map(h -> new HorarioDeFuncionamentoDto(h)).collect(Collectors.toList());
 	}
 
-	@PostMapping("/supermercados/{idSupermercado}/horarios-de-funcionamento")
+	@PostMapping("/parceiros/supermercados/{idSupermercado}/horarios-de-funcionamento")
 	public HorarioDeFuncionamento adiciona(@RequestBody HorarioDeFuncionamento horarioDeFuncionamento) {
 		return repo.save(horarioDeFuncionamento);
 	}
 
-	@PutMapping("/supermercados/{idSupermercado}/horarios-de-funcionamento/{id}")
+	@PutMapping("/parceiros/supermercados/{idSupermercado}/horarios-de-funcionamento/{id}")
 	public HorarioDeFuncionamento atualiza(@RequestBody HorarioDeFuncionamento horarioDeFuncionamento) {
 		return repo.save(horarioDeFuncionamento);
 	}
 
-	@DeleteMapping("/supermercados/{idSupermercado}/horarios-de-funcionamento/{id}")
+	@DeleteMapping("/parceiros/supermercados/{idSupermercado}/horarios-de-funcionamento/{id}")
 	public void remove(@PathVariable("id") Long id) {
 		repo.deleteById(id);
 	}

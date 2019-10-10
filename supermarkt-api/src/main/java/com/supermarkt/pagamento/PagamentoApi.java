@@ -53,7 +53,7 @@ public class PagamentoApi {
 		Pedido pedido = pedidos.porIdComItens(pedidoId);
 		pedido.setStatus(Pedido.Status.PAGO);
 		pedidos.atualizaStatus(Pedido.Status.PAGO, pedido);
-		websocket.convertAndSend("/supermercados/"+pedido.getSupermercado().getId()+"/pedidos/pendentes", new PedidoDto(pedido));
+		websocket.convertAndSend("/parceiros/supermercados/"+pedido.getSupermercado().getId()+"/pedidos/pendentes", new PedidoDto(pedido));
 		return new PagamentoDto(pagamento);
 	}
 

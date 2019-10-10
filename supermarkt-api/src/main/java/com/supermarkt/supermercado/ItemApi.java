@@ -18,23 +18,23 @@ class ItemApi {
 
 	private ItemRepositorio repo;
 
-	@PostMapping("/supermercados/{idSupermercado}/categoria/{idCategoria}/item")
+	@PostMapping("/parceiros/supermercados/{idSupermercado}/categoria/{idCategoria}/item")
 	public ItemDto adicionaItem(@RequestBody Item item) {
 		return new ItemDto(repo.save(item));
 	}
 
-	@PutMapping("/supermercados/{idSupermercado}/categoria/{idCategoria}/item/{idItem}")
+	@PutMapping("/parceiros/supermercados/{idSupermercado}/categoria/{idCategoria}/item/{idItem}")
 	public ItemDto atualizaItem(@RequestBody Item item) {
 		return new ItemDto(repo.save(item));
 	}
 
-	@GetMapping("/supermercados/{idSupermercado}/categoria/{idCategoria}/item/{idItem}")
+	@GetMapping("/parceiros/supermercados/{idSupermercado}/categoria/{idCategoria}/item/{idItem}")
 	public ItemDto itemPorId(@PathVariable("idItem") Long idItem) {
 		Item item = repo.findById(idItem).orElseThrow(() -> new RecursoNaoEncontradoException());
 		return new ItemDto(item);
 	}
 
-	@DeleteMapping("/supermercados/{idSupermercado}/categoria/{idCategoria}/item/{idItem}")
+	@DeleteMapping("/parceiros/supermercados/{idSupermercado}/categoria/{idCategoria}/item/{idItem}")
 	public void removeItem(@PathVariable("idItem") Long idItem) {
 		repo.deleteById(idItem);
 	}

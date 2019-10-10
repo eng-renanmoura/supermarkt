@@ -20,7 +20,7 @@ public class SupermercadoFormaDePagamentoApi {
 	
 	private SupermercadoFormaDePagamentoRepositorio supermercadoFormaDePagamentoRepo;
 	
-	@PostMapping("/supermercados/{idSupermercado}/formas-de-pagamento")
+	@PostMapping("/parceiros/supermercados/{idSupermercado}/formas-de-pagamento")
 	public void adiciona(@PathVariable("idSupermercado") Long idRestaurante, @RequestBody FormaDePagamento formaDePagamento) {
 		SupermercadoFormaDePagamentoId id = new SupermercadoFormaDePagamentoId(idRestaurante, formaDePagamento.getId());
 		Supermercado supermercado = new Supermercado();
@@ -30,7 +30,7 @@ public class SupermercadoFormaDePagamentoApi {
 		supermercadoFormaDePagamentoRepo.save(supermercadoFormaDePagamento);
 	}
 
-	@DeleteMapping("/supermercados/{idSupermercado}/formas-de-pagamento/{idFormaDePagamento}")
+	@DeleteMapping("/parceiros/supermercados/{idSupermercado}/formas-de-pagamento/{idFormaDePagamento}")
 	public void removeDoRestaurante(@PathVariable("idSupermercado") Long idRestaurante, @PathVariable("idFormaDePagamento") Long idFormaDePagamento) {
 		SupermercadoFormaDePagamentoId id = new SupermercadoFormaDePagamentoId(idRestaurante, idFormaDePagamento);
 		supermercadoFormaDePagamentoRepo.deleteById(id);

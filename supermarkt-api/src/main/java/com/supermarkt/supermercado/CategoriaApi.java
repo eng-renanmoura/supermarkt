@@ -22,7 +22,7 @@ class CategoriaApi {
 		return new CategoriaDto(categoria);
 	}
 
-	@PostMapping("/supermercados/{idSupermercado}/categoria/{idCategoria}")
+	@PostMapping("/parceiros/supermercados/{idSupermercado}/categoria/{idCategoria}")
 	public Categoria categoriasDoSupermercado(@PathVariable("idCategoria") Long idCardapio,
 			@RequestBody Categoria categoria) {
 		return repo.save(categoria);

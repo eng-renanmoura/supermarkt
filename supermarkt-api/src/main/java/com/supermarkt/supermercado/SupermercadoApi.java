@@ -33,15 +33,21 @@ public class SupermercadoApi {
 	public List<SupermercadoDto> detalhePorIds(@RequestParam List<Long> ids) {
 		return supermercadoRepo.findAllById(ids).stream().map(SupermercadoDto::new).collect(Collectors.toList());
 	}
+	
+	@GetMapping("/parceiros/supermercados/{id}")
+	public SupermercadoDto detalhaParceiro(@PathVariable("id") Long id) {
+		Supermercado restaurante = supermercadoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
+		return new SupermercadoDto(restaurante);
+	}
 
-	@PostMapping("/supermercados")
+	@PostMapping("/parceiros/supermercados")
 	public Supermercado adiciona(@RequestBody Supermercado supermercado) {
 		supermercado.setAprovado(false);
 		Supermercado supermercadoSalvo = supermercadoRepo.save(supermercado);
 		return supermercadoSalvo;
 	}
 
-	@PutMapping("/supermercados/{id}")
+	@PutMapping("/parceiros/supermercados/{id}")
 	public Supermercado atualiza(@RequestBody Supermercado supermercado) {
 		Supermercado doBD = supermercadoRepo.getOne(supermercado.getId());
 		supermercado.setUsuario(doBD.getUsuario());
