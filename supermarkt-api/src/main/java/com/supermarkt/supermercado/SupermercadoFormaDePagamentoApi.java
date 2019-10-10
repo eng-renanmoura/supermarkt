@@ -23,11 +23,11 @@ public class SupermercadoFormaDePagamentoApi {
 	@PostMapping("/supermercados/{idSupermercado}/formas-de-pagamento")
 	public void adiciona(@PathVariable("idSupermercado") Long idRestaurante, @RequestBody FormaDePagamento formaDePagamento) {
 		SupermercadoFormaDePagamentoId id = new SupermercadoFormaDePagamentoId(idRestaurante, formaDePagamento.getId());
-		Supermercado restaurante = new Supermercado();
-		restaurante.setId(idRestaurante);
-		SupermercadoFormaDePagamento restauranteFormaDePagamento = new SupermercadoFormaDePagamento(id, restaurante,
+		Supermercado supermercado = new Supermercado();
+		supermercado.setId(idRestaurante);
+		SupermercadoFormaDePagamento supermercadoFormaDePagamento = new SupermercadoFormaDePagamento(id, supermercado,
 				formaDePagamento);
-		supermercadoFormaDePagamentoRepo.save(restauranteFormaDePagamento);
+		supermercadoFormaDePagamentoRepo.save(supermercadoFormaDePagamento);
 	}
 
 	@DeleteMapping("/supermercados/{idSupermercado}/formas-de-pagamento/{idFormaDePagamento}")
@@ -37,11 +37,10 @@ public class SupermercadoFormaDePagamentoApi {
 	}
 
 	@GetMapping("/supermercados/{idSupermercado}/formas-de-pagamento")
-	public List<FormaDePagamento> lista(@PathVariable("idSupermercado") Long idRestaurante) {
-		Supermercado restaurante = new Supermercado();
-		restaurante.setId(idRestaurante);
-		return supermercadoFormaDePagamentoRepo.findAllBySupermercadoOrderByNomeAsc(restaurante);
+	public List<FormaDePagamento> lista(@PathVariable("idSupermercado") Long idSupermercado) {
+		Supermercado supermercado = new Supermercado();
+		supermercado.setId(idSupermercado);
+		return supermercadoFormaDePagamentoRepo.findAllBySupermercadoOrderByNomeAsc(supermercado);
 	}
 	
-
 }

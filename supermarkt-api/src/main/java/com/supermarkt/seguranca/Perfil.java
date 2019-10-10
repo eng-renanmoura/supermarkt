@@ -19,15 +19,16 @@ public class Perfil implements GrantedAuthority {
 
 	public static enum PERFIS {
 		ADMIN, SUPERMERCADO;
-		public String asAuthority() {
+		public String asPerfil() {
 			return "PERFIL_" + name();
 		}
 	}
 
 	@Id
-	private String authority;
+	private String autoridade;
 
-	public String getPerfil() {
-		return authority.replace("PERFIL_", "");
+	public String getAuthority() {
+		return autoridade.replace("PERFIL_", "");
 	}
+
 }

@@ -39,7 +39,7 @@ public class SupermercadoFormaDePagamento {
 	public static class SupermercadoFormaDePagamentoId implements Serializable {
 		private static final long serialVersionUID = 1L;
 
-		@Column(name = "restaurante_id")
+		@Column(name = "supermercado_id")
 		private Long supermercadoId;
 
 		@Column(name = "forma_de_pagamento_id")

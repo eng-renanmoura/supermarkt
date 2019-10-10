@@ -34,6 +34,7 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 			.antMatchers("/supermercados/**", "/pedidos/**", "/pagamentos/**", "/formas-de-pagamento/**").permitAll()
+			.antMatchers("/h2/**").permitAll()
 			.antMatchers("/socket/**").permitAll()
 			.antMatchers("/autenticacao/**").permitAll()
 			.antMatchers("/admin/**").hasRole(Perfil.PERFIS.ADMIN.name())

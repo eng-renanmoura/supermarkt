@@ -7,13 +7,13 @@ CREATE TABLE usuario (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE perfil (
-  authority varchar(255) NOT NULL,
-  PRIMARY KEY (authority)
+  autoridade varchar(255) NOT NULL,
+  PRIMARY KEY (autoridade)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE user_authorities (
+CREATE TABLE usuario_perfis (
   usuario_id bigint(20) NOT NULL,
-  authorities_authority varchar(255) NOT NULL,
+  perfis_autoridade varchar(255) NOT NULL,
   FOREIGN KEY (usuario_id) REFERENCES usuario(id),
-  FOREIGN KEY (authorities_authority) REFERENCES perfil(authority)
+  FOREIGN KEY (perfis_autoridade) REFERENCES perfil(autoridade)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

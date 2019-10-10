@@ -84,5 +84,5 @@ INSERT INTO estoque (id, supermercado_id, quantidade, item_id) values (26, 3, 80
 INSERT INTO estoque (id, supermercado_id, quantidade, item_id) values (27, 3, 50, 17);
 INSERT INTO estoque (id, supermercado_id, quantidade, item_id) values (28, 3, 30, 18);
 INSERT INTO estoque (id, supermercado_id, quantidade, item_id) values (29, 3, 500, 5);
-INSERT INTO estoque (id, supermercado_id, quantidade, item_id) values (30, 13, 500, 20);
+INSERT INTO estoque (id, supermercado_id, quantidade, item_id) values (30, 3, 500, 20);
 

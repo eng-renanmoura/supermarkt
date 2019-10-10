@@ -54,7 +54,7 @@ public class Usuario implements UserDetails {
 	}
 	
 	public List<String> getPerfis() {
-		return perfis.stream().map(Perfil::getPerfil).collect(Collectors.toList());
+		return perfis.stream().map(Perfil::getAutoridade).collect(Collectors.toList());
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class Usuario implements UserDetails {
 	}
 
 	public void addPerfil(Perfil.PERFIS perfil) {
-		this.perfis.add(new Perfil(perfil.asAuthority()));
+		this.perfis.add(new Perfil(perfil.asPerfil()));
 	}
 
 }

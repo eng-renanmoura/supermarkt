@@ -55,8 +55,8 @@ class PedidoApi {
 	}
 
 	@GetMapping("/parceiros/supermercados/{supermercadoId}/pedidos/pendentes")
-	public List<PedidoDto> pendentes(@PathVariable("supermercadoId") Long restauranteId) {
-		return repo.doRestauranteSemOsStatus(restauranteId, Arrays.asList(Pedido.Status.REALIZADO, Pedido.Status.ENTREGUE)).stream()
+	public List<PedidoDto> pendentes(@PathVariable("supermercadoId") Long supermercadoId) {
+		return repo.doSupermercadoSemOsStatus(supermercadoId, Arrays.asList(Pedido.Status.REALIZADO, Pedido.Status.ENTREGUE)).stream()
 				.map(pedido -> new PedidoDto(pedido)).collect(Collectors.toList());
 	}
 
