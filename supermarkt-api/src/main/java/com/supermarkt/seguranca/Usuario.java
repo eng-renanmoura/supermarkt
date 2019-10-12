@@ -35,36 +35,36 @@ public class Usuario implements UserDetails {
 	private Long id;
 
 	@NotBlank @JsonIgnore
-	private String nome;
+	private String name;
 
 	@NotBlank @JsonIgnore
-	private String senha;
+	private String password;
 
 	@ManyToMany(fetch = FetchType.EAGER) @JsonIgnore
-	private List<Perfil> perfis = new ArrayList<>();
+	private List<Role> authorities = new ArrayList<>();
 	
-	public Usuario(String nome, String senha) {
-		this.nome = nome;
-		this.senha = senha;
+	public Usuario(String name, String password) {
+		this.name = name;
+		this.password = password;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return perfis;
+		return authorities;
 	}
 	
-	public List<String> getPerfis() {
-		return perfis.stream().map(Perfil::getAutoridade).collect(Collectors.toList());
+	public List<String> getRoles() {
+		return authorities.stream().map(Role::getRole).collect(Collectors.toList());
 	}
 
 	@Override
 	public String getPassword() {
-		return senha;
+		return password;
 	}
 
 	@Override
 	public String getUsername() {
-		return nome;
+		return name;
 	}
 
 	@Override
@@ -87,15 +87,12 @@ public class Usuario implements UserDetails {
 		return true;
 	}
 
-	public boolean isInPerfil(Perfil.PERFIS perfil) {
-		return getPerfis().contains(perfil.name());
+	public boolean isInRole(Role.ROLES role) {
+		return getRoles().contains(role.name());
 	}
 
-	public void addPerfil(Perfil.PERFIS perfil) {
-		this.perfis.add(new Perfil(perfil.asPerfil()));
+	public void addRole(Role.ROLES role) {
+		this.authorities.add(new Role(role.asAuthority()));
 	}
 
 }
-
-
-

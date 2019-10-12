@@ -1,0 +1,33 @@
+<div class="container">
+    <p-toast [style]="{marginTop: '50px'}"></p-toast>
+    <form autocomplete="false" [formGroup]="categoriaForm" (ngSubmit)="onSubmit(categoriaForm.value)">
+       <div class="ui-g">
+            <div class="ui-g-12 ui-fluid">
+                <h1>Cadastro de Categoria</h1>
+            </div>
+       </div>
+
+       <div class="ui-g">
+            <div class="ui-g-12 ui-fluid">
+                <p style="font-style:italic; font-size: 0.9em;">Os campos com o simbolo asterisco (*) são de preenchimento obrigatório</p>
+            </div>
+       </div>
+
+        <div class="ui-g">
+            <div class="ui-g-12 ui-lg-9 ui-md-12 ui-sm-12 ui-fluid">
+                <label>Nome *:</label>
+                <input type="text" pInputText formControlName="nome" maxlength="50" pattern="[a-zA-Z-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]*"/>
+
+                <p-message severity="error" [text]="categoriaForm.controls['nome'].errors['required'] ? 'Nome é obrigatório' : categoriaForm.controls['nome'].errors['pattern'] ? 'Só é permitido letras para esse campo' : ''"
+                        *ngIf="!categoriaForm.controls['nome'].valid&&categoriaForm.controls['nome'].dirty"></p-message>
+            </div>
+        </div>
+
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <button pButton type="submit" style="margin-right: 10px" [disabled]="formInvalid()" label="Salvar" class="ui-button-info"></button>
+                <button pButton type="button" routerLink="/categorias" label="Cancelar" class="ui-button-secondary"></button>
+            </div>
+        </div>
+    </form>
+</div>

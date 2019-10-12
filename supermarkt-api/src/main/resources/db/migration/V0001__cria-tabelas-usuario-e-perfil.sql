@@ -1,19 +1,19 @@
 CREATE TABLE usuario (
   id bigint(20) NOT NULL AUTO_INCREMENT,
-  nome varchar(255) NOT NULL,
-  senha varchar(255) NOT NULL,
+  name varchar(255) NOT NULL,
+  password varchar(255) NOT NULL,
   PRIMARY KEY (id),
-  UNIQUE(nome)
+  UNIQUE(name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE perfil (
-  autoridade varchar(255) NOT NULL,
-  PRIMARY KEY (autoridade)
+CREATE TABLE role (
+  authority varchar(255) NOT NULL,
+  PRIMARY KEY (authority)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE usuario_perfis (
+CREATE TABLE usuario_authorities (
   usuario_id bigint(20) NOT NULL,
-  perfis_autoridade varchar(255) NOT NULL,
+  authorities_authority varchar(255) NOT NULL,
   FOREIGN KEY (usuario_id) REFERENCES usuario(id),
-  FOREIGN KEY (perfis_autoridade) REFERENCES perfil(autoridade)
+  FOREIGN KEY (authorities_authority) REFERENCES role(authority)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

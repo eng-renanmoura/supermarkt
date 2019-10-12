@@ -1,6 +1,4 @@
-package com.supermarkt.supermercado;
-
-import java.math.BigDecimal;
+package com.supermarkt.admin;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,8 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
@@ -30,17 +26,7 @@ public class Item {
 
 	private String descricao;
 
-	@NotNull @Positive
-	private BigDecimal preco;
-
-	@Positive
-	private BigDecimal precoPromocional;
-
 	@ManyToOne(optional=false)
 	private Categoria categoria;
 	
-	public BigDecimal getPrecoEfetivo() {
-		return precoPromocional != null ? precoPromocional : preco;
-	}
-
 }

@@ -5,11 +5,11 @@ import lombok.Data;
 @Data
 public class UsuarioDto {
 
-	private String nome;
-	private String senha;
+	private String username;
+	private String password;
 	
 	public Usuario toUsuario() {
-		return new Usuario(nome, senha);
+		return new Usuario(username, password);
 	}
 
 }

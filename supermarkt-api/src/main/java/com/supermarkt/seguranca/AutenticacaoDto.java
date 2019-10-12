@@ -9,13 +9,13 @@ import lombok.Data;
 @AllArgsConstructor
 public class AutenticacaoDto {
 	
-	private String usuario;
-	private List<String> perfis;
+	private String username;
+	private List<String> roles;
 	private String token;
 	private Long targetId;
-	
+
 	public AutenticacaoDto(Usuario usuario, String jwtToken, Long targetId) {
-		this(usuario.getNome(), usuario.getPerfis(), jwtToken, targetId);
+		this(usuario.getName(), usuario.getRoles(), jwtToken, targetId);
 	}
 
 }

@@ -19,7 +19,7 @@ public class UsuarioServico implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Usuario> usuario = usuarioRepositorio.findByNome(username);
+		Optional<Usuario> usuario = usuarioRepositorio.findByName(username);
 		return usuario.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado: " + username));
 	}
 	
@@ -29,7 +29,7 @@ public class UsuarioServico implements UserDetailsService {
 	}
 	
 	public Usuario salvar(Usuario usuario) {
-		usuario.setSenha(codificador.encode(usuario.getSenha()));
+		usuario.setPassword(codificador.encode(usuario.getPassword()));
 		return usuarioRepositorio.save(usuario);
 	}
 

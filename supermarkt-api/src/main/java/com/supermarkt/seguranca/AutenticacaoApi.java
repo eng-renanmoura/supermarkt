@@ -27,7 +27,7 @@ public class AutenticacaoApi {
 	@PostMapping
 	public ResponseEntity<AutenticacaoDto> authenticate(@RequestBody UsuarioDto login) {
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-				login.getNome(), login.getSenha());
+				login.getUsername(), login.getPassword());
 
 		try {
 			Authentication authentication = authManager.authenticate(authenticationToken);
@@ -45,7 +45,7 @@ public class AutenticacaoApi {
 	@PostMapping("/supermercado")
 	public Long register(@RequestBody UsuarioDto usuarioDto) {
 		Usuario usuario = usuarioDto.toUsuario();
-		usuario.addPerfil(Perfil.PERFIS.SUPERMERCADO);
+		usuario.addRole(Role.ROLES.SUPERMERCADO);
 		Usuario salvo = usuarioServico.salvar(usuario);
 		return salvo.getId();
 	}

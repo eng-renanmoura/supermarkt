@@ -1,4 +1,4 @@
-package com.supermarkt.supermercado;
+package com.supermarkt.admin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-class Categoria {
+public class Categoria {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

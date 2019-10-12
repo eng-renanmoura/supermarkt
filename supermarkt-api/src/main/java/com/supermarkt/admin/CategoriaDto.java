@@ -1,4 +1,4 @@
-package com.supermarkt.supermercado;
+package com.supermarkt.admin;
 
 import java.util.ArrayList;
 import java.util.List;

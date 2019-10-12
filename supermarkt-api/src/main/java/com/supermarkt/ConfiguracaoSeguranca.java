@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.supermarkt.seguranca.FiltroAutenticacaoJwt;
 import com.supermarkt.seguranca.JwtAuthenticationEntryPoint;
-import com.supermarkt.seguranca.Perfil;
+import com.supermarkt.seguranca.Role;
 import com.supermarkt.seguranca.UsuarioServico;
 
 import lombok.AllArgsConstructor;
@@ -37,10 +37,10 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter {
 			.antMatchers("/h2/**").permitAll() //liberar o h2 console, não recomendado para produção
 			.antMatchers("/socket/**").permitAll()
 			.antMatchers("/autenticacao/**").permitAll()
-			.antMatchers("/admin/**").hasRole(Perfil.PERFIS.ADMIN.name())
+			.antMatchers("/admin/**").hasRole(Role.ROLES.ADMIN.name())
 			.antMatchers(HttpMethod.POST, "/parceiros/supermercados").permitAll()
 			.antMatchers("/parceiros/supermercados/{supermercadoId}/**").access("@authorizationService.checaTargetId(authentication,#supermercadoId)")
-			.antMatchers("/parceiros/**").hasRole(Perfil.PERFIS.SUPERMERCADO.name())
+			.antMatchers("/parceiros/**").hasRole(Role.ROLES.SUPERMERCADO.name())
 			.anyRequest().authenticated()
 			.and().headers().frameOptions().disable() //apenas para uso do h2 console, não recomendado para produção
 			.and().cors()

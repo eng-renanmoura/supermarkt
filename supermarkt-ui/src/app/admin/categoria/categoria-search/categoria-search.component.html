@@ -1,0 +1,27 @@
+<div class="container">
+    <p-confirmDialog [style]="{width: '425px'}"></p-confirmDialog>
+    <p-toast [style]="{marginTop: '50px'}"></p-toast>
+    <div class="ui-g">
+        <div class="ui-g-12 ui-fluid">
+            <h1>Pesquisa de Categorias</h1>
+        </div>
+    </div>
+
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <button pButton type="button" label="Nova categoria" routerLink="/categorias/novo"></button>
+        </div>
+    </div>
+
+    <div class="ui-g">
+        <div class="ui-g-12 ui-fluid">
+            <input type="text" [ngModel]="inputSearch" (ngModelChange)="getCategoriasByName($event)" pInputText placeholder="Buscar categorias..."/>
+        </div>
+    </div>
+
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <app-categoria-grid (delete)="dialogDelete($event)" [categorias]="categorias"></app-categoria-grid>
+        </div>
+    </div>
+</div>

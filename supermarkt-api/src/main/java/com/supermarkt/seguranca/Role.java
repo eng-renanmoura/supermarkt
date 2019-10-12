@@ -13,22 +13,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Perfil implements GrantedAuthority {
+public class Role implements GrantedAuthority {
 
 	private static final long serialVersionUID = 1L;
 
-	public static enum PERFIS {
+	public static enum ROLES {
 		ADMIN, SUPERMERCADO;
-		public String asPerfil() {
-			return "PERFIL_" + name();
+		public String asAuthority() {
+			return "ROLE_" + name();
 		}
 	}
 
 	@Id
-	private String autoridade;
+	private String authority;
 
-	public String getAuthority() {
-		return autoridade.replace("PERFIL_", "");
+	public String getRole() {
+		return authority.replace("ROLE_", "");
 	}
-
 }

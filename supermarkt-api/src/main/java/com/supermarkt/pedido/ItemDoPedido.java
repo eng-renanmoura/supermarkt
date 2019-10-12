@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
-import com.supermarkt.supermercado.Item;
+import com.supermarkt.supermercado.Estoque;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,6 +32,6 @@ class ItemDoPedido {
 	private Pedido pedido;
 
 	@ManyToOne(optional=false)
-	private Item item;
+	private Estoque estoque;
 
 }

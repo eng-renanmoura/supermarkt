@@ -1,4 +1,4 @@
-package com.supermarkt.supermercado;
+package com.supermarkt.admin;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
