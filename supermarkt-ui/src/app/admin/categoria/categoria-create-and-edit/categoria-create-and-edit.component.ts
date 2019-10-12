@@ -30,7 +30,6 @@ export class CategoriaCreateAndEditComponent implements OnInit {
     if (this.idCategoria) {
         this.categoriaService.getCategoriaById(this.idCategoria)
             .subscribe( categoria => {
-                console.log(categoria.nome);
                 this.updateItemForm(categoria);
             },
             erro => {

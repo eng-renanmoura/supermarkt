@@ -9,7 +9,7 @@
     <ng-template pTemplate="body" let-categoria>
         <tr>
             <td class="col-content-btns">
-                <p-button class="btn-editar" icon="pi pi-pencil" pTooltip="Editar" [routerLink]="['/categorias', categoria.id]" tooltipPosition="bottom"></p-button>
+                <p-button class="btn-editar" icon="pi pi-pencil" pTooltip="Editar" [routerLink]="['/admin/categorias', categoria.id]" tooltipPosition="bottom"></p-button>
                 <p-button icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="bottom" (onClick)="handleDelete(categoria)"></p-button>
             </td>
             <td class="col-content-id">{{categoria.id}}</td>
