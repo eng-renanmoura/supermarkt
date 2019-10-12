@@ -26,7 +26,7 @@ export class CategoriaCreateAndEditComponent implements OnInit {
       private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.idCategoria = this.route.snapshot.params['idCategoria'];
+    this.idCategoria = this.route.snapshot.params.idCategoria;
     if (this.idCategoria) {
         this.categoriaService.getCategoriaById(this.idCategoria)
             .subscribe( categoria => {
@@ -40,8 +40,8 @@ export class CategoriaCreateAndEditComponent implements OnInit {
     }
 
     this.categoriaForm = this.fb.group({
-      'id': null,
-      'nome': new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      id: null,
+      nome: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
     });
   }
 

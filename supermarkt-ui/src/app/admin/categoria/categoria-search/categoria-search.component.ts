@@ -65,7 +65,7 @@ export class CategoriaSearchComponent implements OnInit {
   }
 
   private deleteCategoria(categoria) {
-    this.categoriaService.remove(categoria.id)
+    this.categoriaService.remove(categoria)
       .subscribe(
         () => {
           this.loadCategorias();

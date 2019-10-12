@@ -24,7 +24,7 @@ export class CategoriaService {
     return this.http.post(`${this.API}/admin/categorias`, categoria);
   }
 
-  remove(categoria: any) {
+  remove(categoria: any): Observable<any> {
     return this.http.delete(`${this.API}/admin/categorias/${categoria.id}`);
   }
 
