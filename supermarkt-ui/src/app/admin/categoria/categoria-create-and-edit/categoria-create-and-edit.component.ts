@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
-import {SelectItem} from 'primeng/api';
-import {MessageService} from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 import { CategoriaService } from '../categoria.service';
 
@@ -23,7 +22,8 @@ export class CategoriaCreateAndEditComponent implements OnInit {
       private fb: FormBuilder,
       private messageService: MessageService,
       private categoriaService: CategoriaService,
-      private route: ActivatedRoute) { }
+      private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
     this.idCategoria = this.route.snapshot.params.idCategoria;

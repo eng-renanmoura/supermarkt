@@ -1,28 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoriaService } from '../categoria.service';
+import { SupermercadoService } from '../supermercado.service';
 import { ConfirmationService } from 'primeng/api';
 
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-categoria-search',
-  templateUrl: './categoria-search.component.html',
-  styleUrls: ['./categoria-search.component.scss'],
+  selector: 'app-supermercado-search',
+  templateUrl: './supermercado-search.component.html',
+  styleUrls: ['./supermercado-search.component.scss'],
   providers: [MessageService]
 })
-export class CategoriaSearchComponent implements OnInit {
+export class SupermercadoSearchComponent implements OnInit {
 
-  categorias = [];
+  supermercados = [];
   inputSearch;
 
   constructor(
-    private categoriaService: CategoriaService,
+    private supermercadoService: SupermercadoService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService
   ) { }
 
   ngOnInit() {
-    this.loadCategorias();
+    this.loadSupermercados();
   }
 
   dialogDelete(item) {
@@ -33,18 +33,18 @@ export class CategoriaSearchComponent implements OnInit {
         header: 'Confirmação',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.deleteCategoria(item);
+            this.deleteSupermercado(item);
         },
         reject: () => {
         }
     });
   }
 
-  getCategoriasByName(value) {
-    this.categoriaService.getByName(value)
+  getSupermercadosByName(value) {
+    this.supermercadoService.getByName(value)
       .subscribe(
-        categorias => {
-          this.categorias = categorias;
+        supermercados => {
+          this.supermercados = supermercados;
         },
         error => {
           this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
@@ -52,11 +52,11 @@ export class CategoriaSearchComponent implements OnInit {
       );
   }
 
-  private loadCategorias() {
-    this.categoriaService.getCategorias()
+  private loadSupermercados() {
+    this.supermercadoService.getSupermercados()
         .subscribe(
-          categorias => {
-            this.categorias = categorias;
+          supermercados => {
+            this.supermercados = supermercados;
           },
           error => {
             this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
@@ -64,11 +64,11 @@ export class CategoriaSearchComponent implements OnInit {
         );
   }
 
-  private deleteCategoria(categoria) {
-    this.categoriaService.remove(categoria)
+  private deleteSupermercado(supermercado) {
+    this.supermercadoService.remove(supermercado)
       .subscribe(
         () => {
-          this.loadCategorias();
+          this.loadSupermercados();
           this.messageService.add({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
         },
         error => {

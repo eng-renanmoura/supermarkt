@@ -24,6 +24,7 @@ import { appRoutes } from './app.routes';
 import { TemplateModule } from './template/template.module';
 
 import { CategoriaModule } from './admin/categoria/categoria.module';
+import { SupermercadoModule } from './admin/supermercado/supermercado.module';
 
 registerLocaleData(localeFr, 'pt');
 
@@ -41,7 +42,8 @@ registerLocaleData(localeFr, 'pt');
     appRoutes,
     ToastrModule.forRoot(),
     TemplateModule,
-    CategoriaModule
+    CategoriaModule,
+    SupermercadoModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
