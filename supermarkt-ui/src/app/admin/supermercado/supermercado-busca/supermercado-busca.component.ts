@@ -5,12 +5,12 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-supermercado-search',
-  templateUrl: './supermercado-search.component.html',
-  styleUrls: ['./supermercado-search.component.scss'],
+  selector: 'app-supermercado-busca',
+  templateUrl: './supermercado-busca.component.html',
+  styleUrls: ['./supermercado-busca.component.scss'],
   providers: [MessageService]
 })
-export class SupermercadoSearchComponent implements OnInit {
+export class SupermercadoBuscaComponent implements OnInit {
 
   supermercados = [];
   inputSearch;

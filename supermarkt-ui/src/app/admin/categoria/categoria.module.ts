@@ -20,16 +20,16 @@ import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
-import { CategoriaCreateAndEditComponent } from './categoria-create-and-edit/categoria-create-and-edit.component';
-import { CategoriaGridComponent } from './categoria-grid/categoria-grid.component';
-import { CategoriaSearchComponent } from './categoria-search/categoria-search.component';
+import { CategoriaFormularioComponent } from './categoria-formulario/categoria-formulario.component';
+import { CategoriaGradeComponent } from './categoria-grade/categoria-grade.component';
+import { CategoriaBuscaComponent } from './categoria-busca/categoria-busca.component';
 import { CategoriaService } from './categoria.service';
 
 @NgModule({
   declarations: [
-    CategoriaCreateAndEditComponent,
-    CategoriaGridComponent,
-    CategoriaSearchComponent
+    CategoriaFormularioComponent,
+    CategoriaGradeComponent,
+    CategoriaBuscaComponent
   ],
   imports: [
     BrowserModule,
@@ -52,8 +52,8 @@ import { CategoriaService } from './categoria.service';
     ToastModule,
   ],
   exports: [
-    CategoriaCreateAndEditComponent,
-    CategoriaSearchComponent,
+    CategoriaFormularioComponent,
+    CategoriaBuscaComponent,
   ],
   providers: [CategoriaService, ConfirmationService]
 })

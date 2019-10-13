@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-categoria-grid',
-  templateUrl: './categoria-grid.component.html',
-  styleUrls: ['./categoria-grid.component.scss']
+  selector: 'app-categoria-grade',
+  templateUrl: './categoria-grade.component.html',
+  styleUrls: ['./categoria-grade.component.scss']
 })
-export class CategoriaGridComponent implements OnInit {
+export class CategoriaGradeComponent implements OnInit {
 
   @Input() categorias = [];
 

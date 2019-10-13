@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-supermercado-grid',
-  templateUrl: './supermercado-grid.component.html',
-  styleUrls: ['./supermercado-grid.component.scss']
+  selector: 'app-supermercado-grade',
+  templateUrl: './supermercado-grade.component.html',
+  styleUrls: ['./supermercado-grade.component.scss']
 })
-export class SupermercadoGridComponent implements OnInit {
+export class SupermercadoGradeComponent implements OnInit {
 
   @Input() supermercados = [];
 

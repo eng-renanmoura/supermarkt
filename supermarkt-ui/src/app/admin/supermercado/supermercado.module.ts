@@ -20,18 +20,18 @@ import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
-import { SupermercadoCreateAndEditComponent } from './supermercado-create-and-edit/supermercado-create-and-edit.component';
-import { SupermercadoGridComponent } from './supermercado-grid/supermercado-grid.component';
-import { SupermercadoSearchComponent } from './supermercado-search/supermercado-search.component';
+import { SupermercadoFormularioComponent } from './supermercado-formulario/supermercado-formulario.component';
+import { SupermercadoGradeComponent } from './supermercado-grade/supermercado-grade.component';
+import { SupermercadoBuscaComponent } from './supermercado-busca/supermercado-busca.component';
 
 import { SupermercadoService } from './supermercado.service';
 
 
 @NgModule({
   declarations: [
-    SupermercadoCreateAndEditComponent,
-    SupermercadoGridComponent,
-    SupermercadoSearchComponent
+    SupermercadoFormularioComponent,
+    SupermercadoGradeComponent,
+    SupermercadoBuscaComponent
   ],
   imports: [
     BrowserModule,
@@ -54,8 +54,8 @@ import { SupermercadoService } from './supermercado.service';
     ToastModule,
   ],
   exports: [
-    SupermercadoCreateAndEditComponent,
-    SupermercadoSearchComponent,
+    SupermercadoFormularioComponent,
+    SupermercadoBuscaComponent,
   ],
   providers: [SupermercadoService, ConfirmationService]
 })

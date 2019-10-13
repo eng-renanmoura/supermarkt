@@ -7,12 +7,12 @@ import { MessageService } from 'primeng/api';
 import { SupermercadoService } from '../supermercado.service';
 
 @Component({
-  selector: 'app-supermercado-create-and-edit',
-  templateUrl: './supermercado-create-and-edit.component.html',
-  styleUrls: ['./supermercado-create-and-edit.component.scss'],
+  selector: 'app-supermercado-formulario',
+  templateUrl: './supermercado-formulario.component.html',
+  styleUrls: ['./supermercado-formulario.component.scss'],
   providers: [MessageService]
 })
-export class SupermercadoCreateAndEditComponent implements OnInit {
+export class SupermercadoFormularioComponent implements OnInit {
 
   supermercadoForm: FormGroup;
   idSupermercado = '';

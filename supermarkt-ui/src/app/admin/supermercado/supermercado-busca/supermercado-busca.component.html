@@ -3,25 +3,25 @@
     <p-toast [style]="{marginTop: '50px'}"></p-toast>
     <div class="ui-g">
         <div class="ui-g-12 ui-fluid">
-            <h1>Pesquisa de Categorias</h1>
+            <h1>Pesquisa de Supermercados</h1>
         </div>
     </div>
 
     <div class="ui-g">
         <div class="ui-g-12">
-            <button pButton type="button" label="Nova categoria" routerLink="/admin/categorias/novo"></button>
+            <button pButton type="button" label="Novo supermercado" routerLink="/admin/supermercados/novo"></button>
         </div>
     </div>
 
     <div class="ui-g">
         <div class="ui-g-12 ui-fluid">
-            <input type="text" [ngModel]="inputSearch" (ngModelChange)="getCategoriasByName($event)" pInputText placeholder="Buscar categorias..."/>
+            <input type="text" [ngModel]="inputSearch" (ngModelChange)="getSupermercadosByName($event)" pInputText placeholder="Buscar supermercados..."/>
         </div>
     </div>
 
     <div class="ui-g">
         <div class="ui-g-12">
-            <app-categoria-grid (delete)="dialogDelete($event)" [categorias]="categorias"></app-categoria-grid>
+            <app-supermercado-grade (delete)="dialogDelete($event)" [supermercados]="supermercados"></app-supermercado-grade>
         </div>
     </div>
 </div>

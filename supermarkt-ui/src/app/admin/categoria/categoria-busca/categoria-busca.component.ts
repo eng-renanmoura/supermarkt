@@ -5,12 +5,12 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-categoria-search',
-  templateUrl: './categoria-search.component.html',
-  styleUrls: ['./categoria-search.component.scss'],
+  selector: 'app-categoria-busca',
+  templateUrl: './categoria-busca.component.html',
+  styleUrls: ['./categoria-busca.component.scss'],
   providers: [MessageService]
 })
-export class CategoriaSearchComponent implements OnInit {
+export class CategoriaBuscaComponent implements OnInit {
 
   categorias = [];
   inputSearch;

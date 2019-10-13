@@ -7,12 +7,11 @@ import { MessageService } from 'primeng/api';
 import { CategoriaService } from '../categoria.service';
 
 @Component({
-  selector: 'app-categoria-create-and-edit',
-  templateUrl: './categoria-create-and-edit.component.html',
-  styleUrls: ['./categoria-create-and-edit.component.scss'],
+  selector: 'app-categoria-formulario',
+  templateUrl: './categoria-formulario.component.html',
   providers: [MessageService]
 })
-export class CategoriaCreateAndEditComponent implements OnInit {
+export class CategoriaFormularioComponent implements OnInit {
 
   categoriaForm: FormGroup;
   idCategoria = '';

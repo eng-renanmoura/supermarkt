@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ItemNovoEEditarComponent } from './item-novo-e-editar/item-novo-e-editar.component';
+import { ItemFormularioComponent } from './item-formulario/item-formulario.component';
 import { ItemGradeComponent } from './item-grade/item-grade.component';
 import { ItemBuscaComponent } from './item-busca/item-busca.component';
 
 
 
 @NgModule({
-  declarations: [ItemNovoEEditarComponent, ItemGradeComponent, ItemBuscaComponent],
+  declarations: [ItemFormularioComponent, ItemGradeComponent, ItemBuscaComponent],
   imports: [
     CommonModule
   ]
