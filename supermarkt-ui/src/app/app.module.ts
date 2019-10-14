@@ -18,9 +18,6 @@ import { LoginComponent } from './login/login.component';
 import { ErrorHandlingInterceptor } from './interceptors/error-handling-interceptor';
 import { JwtInterceptor } from './interceptors/jwt-interceptor';
 
-import { appRoutes } from './app.routes';
-
-
 import { TemplateModule } from './template/template.module';
 
 import { CategoriaModule } from './admin/categoria/categoria.module';
@@ -39,7 +36,6 @@ registerLocaleData(localeFr, 'pt');
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    appRoutes,
     ToastrModule.forRoot(),
     TemplateModule,
     CategoriaModule,

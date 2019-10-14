@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { ConfirmationService } from 'primeng/api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { TableModule } from 'primeng/table';
@@ -25,6 +23,8 @@ import { CategoriaGradeComponent } from './categoria-grade/categoria-grade.compo
 import { CategoriaBuscaComponent } from './categoria-busca/categoria-busca.component';
 import { CategoriaService } from './categoria.service';
 
+import { CategoriaRoutingModule } from './categoria-routing.module';
+
 @NgModule({
   declarations: [
     CategoriaFormularioComponent,
@@ -32,8 +32,6 @@ import { CategoriaService } from './categoria.service';
     CategoriaBuscaComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
     MessagesModule,
     MessageModule,
     RadioButtonModule,
@@ -50,10 +48,7 @@ import { CategoriaService } from './categoria.service';
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
-  ],
-  exports: [
-    CategoriaFormularioComponent,
-    CategoriaBuscaComponent,
+    CategoriaRoutingModule
   ],
   providers: [CategoriaService, ConfirmationService]
 })
