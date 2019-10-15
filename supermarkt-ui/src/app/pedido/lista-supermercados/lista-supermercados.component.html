@@ -1,1 +1,23 @@
-<p>lista-supermercados works!</p>
+<div class="container">
+    <div class="ui-g">
+        <div class="ui-g-12 ui-fluid">
+            <h1>Escolha o Supermercado para suas compras!</h1>
+        </div>
+    </div>
+
+    <div  *ngFor="let supermercadoComAvaliacao of supermercadosComAvaliacao">
+        <p-card header="{{supermercadoComAvaliacao.supermercado.nome}}" 
+                subheader="★ {{ supermercadoComAvaliacao.mediaDasAvaliacoes | number:'1.1-1' }} - {{supermercadoComAvaliacao.supermercado.descricao}}"
+                [style]="{width: '360px'}" styleClass="ui-card-shadow">
+            <!--p-header>
+                <img src="Card" src="assets/showcase/images/usercard.png">
+            </p-header-->
+            <span *ngIf="supermercadoComAvaliacao.supermercado.tempoDeEntregaMinimoEmMinutos"> Entrega: {{supermercadoComAvaliacao.supermercado.tempoDeEntregaMinimoEmMinutos}} min</span>
+            <span *ngIf="supermercadoComAvaliacao.supermercado.tempoDeEntregaMaximoEmMinutos"> - {{supermercadoComAvaliacao.supermercado.tempoDeEntregaMaximoEmMinutos}} min</span>
+            <p>Taxa: {{ supermercadoComAvaliacao.supermercado.taxaDeEntregaEmReais | currency:'BRL' }}</p>
+            <p-footer>
+                <button pButton type="button" label="Escolher" icon="pi pi-check" style="margin-right: .25em"></button>
+            </p-footer>
+        </p-card>
+    </div>
+</div>

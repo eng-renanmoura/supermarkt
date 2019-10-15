@@ -1,6 +1,7 @@
 package com.supermarkt.pedido;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.supermarkt.excecao.RecursoNaoEncontradoException;
+import com.supermarkt.supermercado.SupermercadoDto;
+import com.supermarkt.supermercado.SupermercadoRepositorio;
 
 import lombok.AllArgsConstructor;
 
@@ -22,14 +25,16 @@ import lombok.AllArgsConstructor;
 class PedidoApi {
 
 	private PedidoRepositorio repo;
+	private AvaliacaoRepositorio avaliacaoRepo;
+	private SupermercadoRepositorio supermercadoRepo;
 	private SimpMessagingTemplate websocket;
 
+	
 	@GetMapping("/pedidos")
 	public List<PedidoDto> lista() {
 		return repo.findAll().stream()
 				.map(pedido -> new PedidoDto(pedido)).collect(Collectors.toList());
 	}
-
 
 	@GetMapping("/pedidos/{id}")
 	public PedidoDto porId(@PathVariable("id") Long id) {
@@ -58,6 +63,18 @@ class PedidoApi {
 	public List<PedidoDto> pendentes(@PathVariable("supermercadoId") Long supermercadoId) {
 		return repo.doSupermercadoSemOsStatus(supermercadoId, Arrays.asList(Pedido.Status.REALIZADO, Pedido.Status.ENTREGUE)).stream()
 				.map(pedido -> new PedidoDto(pedido)).collect(Collectors.toList());
+	}
+	
+	@GetMapping("/pedidos/supermercados-avaliados")
+	public List<SupermercadoComAvaliacaoDto> listaSupermercadosAvaliados(){
+		List<SupermercadoDto> supermercados = supermercadoRepo.findAll().stream().map(supermercado -> new SupermercadoDto(supermercado)).collect(Collectors.toList());
+		List<SupermercadoComAvaliacaoDto> supermercadosComAvaliacaoDto = new ArrayList<SupermercadoComAvaliacaoDto>();
+		for (SupermercadoDto supermercado : supermercados) {
+			Double media = avaliacaoRepo.mediaDoSupermercadoPeloId(supermercado.getId());
+			SupermercadoComAvaliacaoDto superComAvaliacao = new SupermercadoComAvaliacaoDto(supermercado, media);
+			supermercadosComAvaliacaoDto.add(superComAvaliacao);
+		}
+		return supermercadosComAvaliacaoDto;
 	}
 
 }
