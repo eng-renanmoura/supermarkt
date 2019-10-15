@@ -35,4 +35,8 @@ export class SupermercadoService {
   getSupermercadoById(id): Observable<any> {
     return this.http.get(`${this.API}/admin/supermercados/${id}`);
   }
+
+  parceiroPorId(id): Observable<any> {
+    return this.http.get(`${this.API}/parceiros/supermercados/${id}`);
+  }
 }

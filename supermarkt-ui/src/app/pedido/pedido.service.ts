@@ -17,4 +17,8 @@ export class PedidoService {
     return this.http.get(`${this.API}/pedidos/supermercados-avaliados`);
   }
 
+  getSupermercadoComAvaliacaoPorId(supermercadoId: string): Observable<any> {
+    return this.http.get(`${this.API}/pedidos/supermercado-avaliado/${supermercadoId}`);
+  }
+
 }

@@ -1,1 +1,54 @@
-<p>supermercado works!</p>
+<div class="container">
+    <div *ngIf="supermercadoComAvaliacao">
+            <div class="ui-g">
+               <div class="ui-g-12 ui-fluid">
+                 
+            
+                <h2>{{supermercadoComAvaliacao.supermercado.nome}}</h2>
+                <p>{{ supermercadoComAvaliacao.supermercado.descricao }}</p>
+                <p-rating [ngModel]="supermercadoComAvaliacao.mediaDasAvaliacoes" readonly="true" stars="5" [cancel]="false"></p-rating>
+                <p>
+                    <span *ngIf="supermercadoComAvaliacao.supermercado.tempoDeEntregaMinimoEmMinutos"> Entrega: {{supermercadoComAvaliacao.supermercado.tempoDeEntregaMinimoEmMinutos}} min</span>
+                    <span *ngIf="supermercadoComAvaliacao.supermercado.tempoDeEntregaMaximoEmMinutos"> - {{supermercadoComAvaliacao.supermercado.tempoDeEntregaMaximoEmMinutos}} min</span>
+                </p>
+                <p>Taxa: {{ supermercadoComAvaliacao.supermercado.taxaDeEntregaEmReais | currency:'BRL' }}</p>
+            </div>
+        </div>
+
+        <p-tabView>
+            <p-tabPanel header="Produtos">
+
+                <div  *ngFor="let produto of estoque" >
+                    <div class="ui-g-12 ui-md-6 ui-lg-4">
+                        <p-card header="{{produto.item.nome | uppercase }}" 
+                                subheader="{{produto.item.descricao }}"
+                                [style]="{width: '360px', height: '180px'}" styleClass="ui-card-shadow">
+                            <!--p-header>
+                                <img src="Card" src="assets/showcase/images/usercard.png">
+                            </p-header-->
+                            <p *ngIf="!produto.precoPromocional"> {{produto.preco | currency:'BRL'  }}</p>
+                            <p *ngIf="produto.precoPromocional"> De: <del> {{produto.preco | currency:'BRL'  }} </del></p>
+                            <p *ngIf="produto.precoPromocional"> Por: {{produto.precoPromocional | currency:'BRL'  }}</p>
+                            
+                            <p-footer>
+                                <button pButton 
+                                (click)="escolheItemDoCardapio(itemDoPedidoEscolhidoModal, itemCardapio)"
+                                type="button" label="Escolher" icon="pi pi-check" style="margin-right: .25em"></button>
+                            </p-footer>
+                        </p-card>
+                    </div>
+                </div>
+
+            </p-tabPanel>
+
+            <p-tabPanel header="Avaliações" rightIcon="pi pi-star">
+                        <p-rating [ngModel]="supermercadoComAvaliacao.mediaDasAvaliacoes" readonly="true" stars="5" [cancel]="false"></p-rating>
+                        <p>{{supermercadoComAvaliacao.mediaAvaliacoes | number:'1.1-1' }} de {{avaliacoes.length}} {{avaliacoes.length > 1 ? 'avaliações' : 'avaliação'}}</p>
+                        <div *ngFor="let avaliacao of avaliacoes">
+                            <p>{{ avaliacao.nota }} • {{ avaliacao.comentario }}</p>
+                        </div>
+
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>

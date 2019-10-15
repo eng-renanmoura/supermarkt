@@ -76,5 +76,15 @@ class PedidoApi {
 		}
 		return supermercadosComAvaliacaoDto;
 	}
+	
+	@GetMapping("/pedidos/supermercado-avaliado/{supermercadoId}")
+	public SupermercadoComAvaliacaoDto supermercadosAvaliados(@PathVariable("supermercadoId") Long supermercadoId){
+		SupermercadoDto supermercado =  new SupermercadoDto(supermercadoRepo.findById(supermercadoId).get());
+		Double media = avaliacaoRepo.mediaDoSupermercadoPeloId(supermercado.getId());
+		SupermercadoComAvaliacaoDto superComAvaliacao = new SupermercadoComAvaliacaoDto(supermercado, media);
+		superComAvaliacao.setSupermercado(supermercado);
+		superComAvaliacao.setMediaDasAvaliacoes(media);
+		return superComAvaliacao;
+	}
 
 }
