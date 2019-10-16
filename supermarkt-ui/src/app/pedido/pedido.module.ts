@@ -12,6 +12,7 @@ import {TabViewModule} from 'primeng/tabview';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { RatingModule } from 'primeng/rating';
+import { DialogModule } from 'primeng/dialog';
 import { PedidoRoutingModule } from './pedido-routing.module';
 import { PedidoService } from './pedido.service';
 
@@ -29,7 +30,8 @@ import { PedidoService } from './pedido.service';
     CardModule,
     ButtonModule,
     RatingModule,
-    TabViewModule
+    TabViewModule,
+    DialogModule
   ],
   providers: [
     PedidoService

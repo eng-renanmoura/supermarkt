@@ -21,7 +21,9 @@ export class SupermercadoComponent implements OnInit {
   };
   itemDoPedidoEscolhido: any;
   adicionandoItemAoPedido = false;
+  cep: string;
 
+  display = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -49,5 +51,60 @@ export class SupermercadoComponent implements OnInit {
       });
   }
 
+  escolheItem(item) {
+    const indice = this.pedido.itens.findIndex(i => i.item.id === item.id);
+    if (indice < 0) {
+      this.itemDoPedidoEscolhido = { item, quantidade: 1 };
+      this.adicionandoItemAoPedido = true;
+    } else {
+      this.itemDoPedidoEscolhido = Object.assign({}, this.pedido.itens[indice]);
+    }
+    this.showHideDialog();
+  }
+
+
+  editaItemDoPedido(itemPedido) {
+    this.itemDoPedidoEscolhido = Object.assign({}, itemPedido);
+  }
+
+  removeItemDoPedido(itemPedido) {
+    this.pedido.itens = this.pedido.itens.filter(i => i.item.id !== itemPedido.item.id);
+    this.itemDoPedidoEscolhido = null;
+    this.adicionandoItemAoPedido = false;
+  }
+
+  fazPedido() {
+    this.pedido.supermercado = this.supermercadoComAvaliacao.supermercado;
+    this.pedido.entrega = { cep: this.cep, cliente: {} };
+  }
+
+  salvaItemNoPedido() {
+    if (this.adicionandoItemAoPedido) {
+      this.pedido.itens.push(this.itemDoPedidoEscolhido);
+    } else if (this.itemDoPedidoEscolhido) {
+      const indice = this.pedido.itens.findIndex(i => i.item.id === this.itemDoPedidoEscolhido.item.id);
+      this.pedido.itens[indice] = this.itemDoPedidoEscolhido;
+    }
+    this.itemDoPedidoEscolhido = null;
+    this.adicionandoItemAoPedido = false;
+  }
+
+  calculaSubTotal(itemPedido) {
+    const item = itemPedido.item;
+    const preco = item.precoPromocional || item.preco;
+    return itemPedido.quantidade * preco;
+  }
+
+  totalDoPedido() {
+    let total = this.supermercadoComAvaliacao.supermercado.taxaDeEntregaEmReais || 0;
+    this.pedido.itens.forEach(item => {
+      total += this.calculaSubTotal(item);
+    });
+    return total;
+  }
+
+  showHideDialog() {
+    this.display = this.display ? false : true;
+  }
 
 }
