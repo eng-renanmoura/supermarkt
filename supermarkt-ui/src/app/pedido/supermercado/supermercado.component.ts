@@ -21,9 +21,10 @@ export class SupermercadoComponent implements OnInit {
   };
   itemDoPedidoEscolhido: any;
   adicionandoItemAoPedido = false;
-  cep: string;
 
-  display = false;
+  displayModalPedido = false;
+
+  displayModalEntrega = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +39,8 @@ export class SupermercadoComponent implements OnInit {
     this.pedidoService.getSupermercadoComAvaliacaoPorId(supermercadoId)
       .subscribe(supermercado => {
         this.supermercadoComAvaliacao = supermercado;
+        this.pedido.supermercado = this.supermercadoComAvaliacao.supermercado;
+        this.pedido.entrega = { cep: '', cliente: {} };
       });
 
     this.avaliacoesService.porIdDoRestaurante(supermercadoId)
@@ -59,7 +62,7 @@ export class SupermercadoComponent implements OnInit {
     } else {
       this.itemDoPedidoEscolhido = Object.assign({}, this.pedido.itens[indice]);
     }
-    this.showHideDialog();
+    this.showHideDialogPedido();
   }
 
 
@@ -75,7 +78,8 @@ export class SupermercadoComponent implements OnInit {
 
   fazPedido() {
     this.pedido.supermercado = this.supermercadoComAvaliacao.supermercado;
-    this.pedido.entrega = { cep: this.cep, cliente: {} };
+    this.pedido.entrega = { cep: '', cliente: {} };
+    this.showHideDialogEntrega();
   }
 
   salvaItemNoPedido() {
@@ -103,8 +107,12 @@ export class SupermercadoComponent implements OnInit {
     return total;
   }
 
-  showHideDialog() {
-    this.display = this.display ? false : true;
+  showHideDialogPedido() {
+    this.displayModalPedido = (this.displayModalPedido === true ? false : true);
+  }
+
+  showHideDialogEntrega() {
+    this.displayModalEntrega = (this.displayModalEntrega === true ? false : true);
   }
 
 }

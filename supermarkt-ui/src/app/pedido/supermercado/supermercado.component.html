@@ -81,7 +81,7 @@
 </div>
 
 <div *ngIf="itemDoPedidoEscolhido">
-    <p-dialog header="{{ itemDoPedidoEscolhido.item.nome }}" [(visible)]="display" [modal]="true" 
+    <p-dialog header="{{ itemDoPedidoEscolhido.item.nome }}" [(visible)]="displayModalPedido" [modal]="true" 
         [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70">
             <form #itemDoPedidoEscolhidoForm="ngForm" (ngSubmit)="salvaItemNoPedido()">
                 <div class="form-group">
@@ -100,8 +100,57 @@
                     label="{{adicionandoItemAoPedido ? 'Adicionar':'Atualizar'}}"></button>
 
                 <button pButton type="button" style="margin-right: .25em" 
-                (click)="showHideDialog()" label="Cancelar"></button>
+                (click)="showHideDialogPedido()" label="Cancelar"></button>
             </form>
         
     </p-dialog>
 </div>
+
+<p-dialog header="Dados da Entrega" [(visible)]="displayModalEntrega" [modal]="true" 
+    [responsive]="true" >
+        <form #entregaForm="ngForm" (ngSubmit)="registraEntrega()">
+          <fieldset>
+            <legend>Dados pessoais</legend>
+            <div class="form-group">
+              <label for="nome">Nome:</label>
+              <input class="form-control" required id="nome" name="nome" maxlength="100"
+                [(ngModel)]="pedido.entrega.cliente.nome" placeholder="digite seu nome">
+            </div>
+            <div class="form-group">
+              <label for="cpf">CPF:</label>
+              <input class="form-control" required id="cpf" name="cpf" maxlength="15"
+                [(ngModel)]="pedido.entrega.cliente.cpf" placeholder="000.000.000-00" [textMask]="{mask: cpfMask}">
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input class="form-control" required type="email" id="email" name="email" maxlength="100"
+                [(ngModel)]="pedido.entrega.cliente.email" placeholder="email@exemplo.com">
+            </div>
+            <div class="form-group">
+              <label for="telefone">Telefone:</label>
+              <input class="form-control" required id="telefone" name="telefone" maxlength="16"
+                [(ngModel)]="pedido.entrega.cliente.telefone" [textMask]="{mask: telefoneMask}"  placeholder="(00) 0000-0000">
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Local de entrega</legend>
+            <div class="form-group">
+              <label for="cep">CEP:</label>
+              <input class="form-control" required id="cep" name="cep" maxlength="10"
+                [(ngModel)]="pedido.entrega.cep" [textMask]="{mask: cepMask}">
+            </div>
+            <div class="form-group">
+              <label for="endereco">Endereço:</label>
+              <textarea class="form-control" required id="endereco" name="endereco"
+                [(ngModel)]="pedido.entrega.endereco" placeholder="rua, número, bloco, bairro, ..."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="complemento">Complemento:</label>
+              <textarea class="form-control" id="complemento" name="complemento"
+                [(ngModel)]="pedido.entrega.complemento"></textarea>
+            </div>
+          </fieldset>
+          <button pButton type="submit" [disabled]="!entregaForm.form.valid" label="Confirmar"></button>
+          <button pButton type="button" (click)="showHideDialogEntrega()" label="Cancelar"></button>
+        </form>
+</p-dialog>
