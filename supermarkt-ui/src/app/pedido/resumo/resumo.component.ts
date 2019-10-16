@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-resumo',
   templateUrl: './resumo.component.html',
   styleUrls: ['./resumo.component.scss']
 })
-export class ResumoComponent implements OnInit {
+export class ResumoComponent {
+
+  @Input() pedido;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

@@ -27,6 +27,7 @@ export class SupermercadoComponent implements OnInit {
   displayModalEntrega = false;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private supermercadoService: SupermercadoService,
     private avaliacoesService: AvaliacoesService,
@@ -68,6 +69,7 @@ export class SupermercadoComponent implements OnInit {
 
   editaItemDoPedido(itemPedido) {
     this.itemDoPedidoEscolhido = Object.assign({}, itemPedido);
+    this.showHideDialogPedido();
   }
 
   removeItemDoPedido(itemPedido) {
@@ -105,6 +107,15 @@ export class SupermercadoComponent implements OnInit {
       total += this.calculaSubTotal(item);
     });
     return total;
+  }
+
+  registraEntrega() {
+    this.pedidoService.adiciona(this.pedido)
+    .subscribe(pedido => {
+      this.router.navigateByUrl(`pedidos/${pedido.id}/pagamento`);
+      this.showHideDialogEntrega();
+    });
+
   }
 
   showHideDialogPedido() {

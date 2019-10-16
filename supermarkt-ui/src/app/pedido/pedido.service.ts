@@ -21,4 +21,12 @@ export class PedidoService {
     return this.http.get(`${this.API}/pedidos/supermercado-avaliado/${supermercadoId}`);
   }
 
+  adiciona(pedido): Observable<any> {
+    return this.http.post(`${this.API}/pedidos`, pedido);
+  }
+
+  porId(pedidoId) {
+    return this.http.get(`${this.API}/pedidos/${pedidoId}`);
+  }
+
 }
