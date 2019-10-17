@@ -16,6 +16,7 @@ import { RatingModule } from 'primeng/rating';
 import { DialogModule } from 'primeng/dialog';
 import { PedidoRoutingModule } from './pedido-routing.module';
 import { PedidoService } from './pedido.service';
+import { PipesModule } from './pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PedidoService } from './pedido.service';
     RatingModule,
     TabViewModule,
     DialogModule,
-    TextMaskModule
+    TextMaskModule,
+    PipesModule
   ],
   providers: [
     PedidoService
