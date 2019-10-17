@@ -3,7 +3,7 @@
       <app-resumo [pedido]="pedido"></app-resumo>
     </div>
     <div class="col-sm-8 mb-5">
-      <form *ngIf="pagamento.status !== 'CRIADO'" class="mb-5" #pagamentoForm="ngForm" (ngSubmit)="criaPagamento()">
+      <form *ngIf="pagamento.situacao !== 'CRIADO'" class="mb-5" #pagamentoForm="ngForm" (ngSubmit)="criaPagamento()">
         <h3>Dados do pagamento</h3>
         <div class="form-group">
           <label for="formaDePagamento">Forma de pagamento</label>
@@ -18,7 +18,7 @@
         <div class="form-group">
           <label for="numero">Número do cartão</label>
           <input class="form-control" required id="numero" name="numero" [(ngModel)]="pagamento.numero"
-            placeholder="0000 0000 0000 0000" [textMask]="{mask: numeroCartaoMask}">
+            placeholder="0000 0000 0000 0000" >
         </div>
         <div class="form-group">
           <label for="expiracao">Data de expiração</label>
@@ -27,11 +27,11 @@
         <div class="form-group">
           <label for="codigo">Código de Segurança</label>
           <input class="form-control" required id="codigo" name="codigo" [(ngModel)]="pagamento.codigo"
-            placeholder="000" [textMask]="{mask: codigoCartaoMask}">
+            placeholder="000" >
         </div>
-        <button *ngIf="!pagamento.status" class="btn btn-primary" type="submit" [disabled]="!pagamentoForm.form.valid">Criar pagamento</button>
+        <button *ngIf="!pagamento.situacao" class="btn btn-primary" type="submit" >Criar pagamento</button>
       </form>
-      <div *ngIf="pagamento.status === 'CRIADO'">
+      <div *ngIf="pagamento.situacao === 'CRIADO'">
         <dl>
           <dt>Cartão</dt>
           <dd>{{ pagamento.numero.substring(0, 5) }} XXXX XXXX XXXX</dd>

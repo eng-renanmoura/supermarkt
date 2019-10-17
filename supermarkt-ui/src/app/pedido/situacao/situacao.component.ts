@@ -34,9 +34,9 @@ export class SituacaoComponent implements OnInit, OnDestroy {
     this.pedidoService.porId(pedidoId)
       .subscribe(pedido => this.pedido = pedido);
 
-    this.topicSubscription = this.rxStompService.watch(`/pedidos/${pedidoId}/status`).subscribe((message: Message) => {
+    this.topicSubscription = this.rxStompService.watch(`/pedidos/${pedidoId}/situacao`).subscribe((message: Message) => {
       const pedido = JSON.parse(message.body);
-      this.pedido.status = pedido.status;
+      this.pedido.situacao = pedido.situacao;
     });
   }
 

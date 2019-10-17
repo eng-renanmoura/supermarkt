@@ -41,26 +41,26 @@ export class PedidoPendenteComponent implements OnInit, OnDestroy {
   }
 
   confirma(pedido) {
-    pedido.status = 'CONFIRMADO';
-    this.pedidosService.atualizaStatus(pedido)
+    pedido.situacao = 'CONFIRMADO';
+    this.pedidosService.atualizaSituacao(pedido)
       .subscribe();
   }
 
   avisaPronto(pedido) {
-    pedido.status = 'PRONTO';
-    this.pedidosService.atualizaStatus(pedido)
+    pedido.situacao = 'PRONTO';
+    this.pedidosService.atualizaSituacao(pedido)
       .subscribe();
   }
 
   avisaSaiu(pedido) {
-    pedido.status = 'SAIU_PARA_ENTREGA';
-    this.pedidosService.atualizaStatus(pedido)
+    pedido.situacao = 'SAIU_PARA_ENTREGA';
+    this.pedidosService.atualizaSituacao(pedido)
       .subscribe();
   }
 
   avisaEntregue(pedido) {
-    pedido.status = 'ENTREGUE';
-    this.pedidosService.atualizaStatus(pedido)
+    pedido.situacao = 'ENTREGUE';
+    this.pedidosService.atualizaSituacao(pedido)
       .subscribe();
   }
 

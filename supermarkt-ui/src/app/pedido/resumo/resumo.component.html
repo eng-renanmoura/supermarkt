@@ -2,8 +2,8 @@
     <h3>Resumo do pedido</h3>
     <div *ngFor="let itemPedido of pedido.itens">
       <hr>
-      <p>{{ itemPedido.quantidade }}x {{ itemPedido.item.nome }}
-        <span>{{ itemPedido.quantidade * itemPedido.item.preco | currency:'BRL' }}</span><br>
+      <p>{{ itemPedido.quantidade }}x {{ itemPedido.estoque.item.nome }}
+        <span>{{ itemPedido.quantidade * itemPedido.estoque.preco | currency:'BRL' }}</span><br>
         <span class="text-muted"><small>{{ itemPedido.observacao }}</small></span></p>
     </div>
     <hr>

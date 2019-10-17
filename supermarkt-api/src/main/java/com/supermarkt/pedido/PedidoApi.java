@@ -45,23 +45,23 @@ class PedidoApi {
 	@PostMapping("/pedidos")
 	public PedidoDto adiciona(@RequestBody Pedido pedido) {
 		pedido.setDataHora(LocalDateTime.now());
-		pedido.setStatus(Pedido.Status.REALIZADO);
+		pedido.setSituacao(Pedido.Situacao.REALIZADO);
 		pedido.getItens().forEach(item -> item.setPedido(pedido));
 		pedido.getEntrega().setPedido(pedido);
 		Pedido salvo = repo.save(pedido);
 		return new PedidoDto(salvo);
 	}
 
-	@PutMapping("/pedidos/{id}/status")
+	@PutMapping("/pedidos/{id}/situacao")
 	public PedidoDto atualizaStatus(@RequestBody Pedido pedido) {
-		repo.atualizaStatus(pedido.getStatus(), pedido);
-		websocket.convertAndSend("/pedidos/"+pedido.getId()+"/status", pedido);
+		repo.atualizaStatus(pedido.getSituacao(), pedido);
+		websocket.convertAndSend("/pedidos/"+pedido.getId()+"/situacao", pedido);
 		return new PedidoDto(pedido);
 	}
 
 	@GetMapping("/parceiros/supermercados/{supermercadoId}/pedidos/pendentes")
 	public List<PedidoDto> pendentes(@PathVariable("supermercadoId") Long supermercadoId) {
-		return repo.doSupermercadoSemOsStatus(supermercadoId, Arrays.asList(Pedido.Status.REALIZADO, Pedido.Status.ENTREGUE)).stream()
+		return repo.doSupermercadoSemSituacao(supermercadoId, Arrays.asList(Pedido.Situacao.REALIZADO, Pedido.Situacao.ENTREGUE)).stream()
 				.map(pedido -> new PedidoDto(pedido)).collect(Collectors.toList());
 	}
 	

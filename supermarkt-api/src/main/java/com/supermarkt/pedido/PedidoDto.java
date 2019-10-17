@@ -17,13 +17,13 @@ public class PedidoDto {
 
 	private Long id;
 	private LocalDateTime dataHora;
-	private Pedido.Status status;
+	private Pedido.Situacao situacao;
 	private Supermercado supermercado;
 	private EntregaDto entrega;
 	private List<ItemDoPedidoDto> itens = new ArrayList<>();
 	
 	public PedidoDto(Pedido pedido) {
-		this(pedido.getId(), pedido.getDataHora(), pedido.getStatus(), pedido.getSupermercado(), new EntregaDto(pedido.getEntrega()), trataItens(pedido.getItens()));
+		this(pedido.getId(), pedido.getDataHora(), pedido.getSituacao(), pedido.getSupermercado(), new EntregaDto(pedido.getEntrega()), trataItens(pedido.getItens()));
 	}
 
 	private static List<ItemDoPedidoDto> trataItens(List<ItemDoPedido> itens) {

@@ -18,6 +18,10 @@ import { PedidoRoutingModule } from './pedido-routing.module';
 import { PedidoService } from './pedido.service';
 import { PipesModule } from './pipes/pipes.module';
 
+import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
+
+import { rxStompConfig } from 'src/app/rx-stomp.config';
+
 @NgModule({
   declarations: [
     ListaSupermercadosComponent,
@@ -38,7 +42,16 @@ import { PipesModule } from './pipes/pipes.module';
     PipesModule
   ],
   providers: [
-    PedidoService
+    PedidoService,
+    {
+      provide: InjectableRxStompConfig,
+      useValue: rxStompConfig
+    },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+      deps: [InjectableRxStompConfig]
+    }
   ]
 })
 export class PedidoModule { }

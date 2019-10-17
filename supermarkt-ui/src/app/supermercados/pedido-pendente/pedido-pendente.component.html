@@ -1,7 +1,7 @@
 <div class="card-columns mb-5" *ngIf="pendentes?.length">
     <div class="card" *ngFor="let pedido of pendentes">
         <div class="card-body">
-        <h5 class="card-title">{{ pedido.status | statusDoPedido }}</h5>
+        <h5 class="card-title">{{ pedido.situacao | situacaoDoPedido }}</h5>
 
             <p><strong>Cliente:</strong> {{ pedido.entrega.cliente.nome }}</p>
             <p><strong>Tel:</strong> <a href="tel:{{ pedido.entrega.cliente.telefone }}">{{ pedido.entrega.cliente.telefone }}</a></p>
@@ -12,10 +12,10 @@
                 <p><small>{{ itemPedido.observacao }}</small></p>
             </div>
 
-            <button class="btn btn-primary" *ngIf="pedido.status == 'PAGO'" (click)="confirma(pedido)">Confirmar</button>
-            <button class="btn btn-primary" *ngIf="pedido.status == 'CONFIRMADO'" (click)="avisaPronto(pedido)">Está pronto</button>
-            <button class="btn btn-primary" *ngIf="pedido.status == 'PRONTO'" (click)="avisaSaiu(pedido)">Saiu para entrega</button>
-            <button class="btn btn-primary" *ngIf="pedido.status == 'SAIU_PARA_ENTREGA'" (click)="avisaEntregue(pedido)">Entregue</button>
+            <button class="btn btn-primary" *ngIf="pedido.situacao == 'PAGO'" (click)="confirma(pedido)">Confirmar</button>
+            <button class="btn btn-primary" *ngIf="pedido.situacao == 'CONFIRMADO'" (click)="avisaPronto(pedido)">Está pronto</button>
+            <button class="btn btn-primary" *ngIf="pedido.situacao == 'PRONTO'" (click)="avisaSaiu(pedido)">Saiu para entrega</button>
+            <button class="btn btn-primary" *ngIf="pedido.situacao == 'SAIU_PARA_ENTREGA'" (click)="avisaEntregue(pedido)">Entregue</button>
 
         </div>
     </div>

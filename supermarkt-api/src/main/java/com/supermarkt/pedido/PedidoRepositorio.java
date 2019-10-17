@@ -12,11 +12,11 @@ interface PedidoRepositorio extends JpaRepository<Pedido, Long> {
 
 	@Transactional
 	@Modifying(clearAutomatically = true)
-	@Query("update Pedido p set p.status = :status where p = :pedido")
-	void atualizaStatus(Pedido.Status status, Pedido pedido);
+	@Query("update Pedido p set p.situacao = :situacao where p = :pedido")
+	void atualizaStatus(Pedido.Situacao situacao, Pedido pedido);
 
-	@Query("select p from Pedido p where p.supermercado.id = :supermercadoId and p.status not in :listaDeStatus")
-	List<Pedido> doSupermercadoSemOsStatus(Long supermercadoId, List<Pedido.Status> listaDeStatus);
+	@Query("select p from Pedido p where p.supermercado.id = :supermercadoId and p.situacao not in :listaDeSituacao")
+	List<Pedido> doSupermercadoSemSituacao(Long supermercadoId, List<Pedido.Situacao> listaDeSituacao);
 
 	@Query(value = "SELECT p from Pedido p LEFT JOIN FETCH p.itens where p.id = :id") 
 	Pedido porIdComItens(Long id);

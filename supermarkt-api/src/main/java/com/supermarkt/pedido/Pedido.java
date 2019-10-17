@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Pedido {
 	
-	public static enum Status {
+	public static enum Situacao {
 		REALIZADO,
 		PAGO,
 		CONFIRMADO,
@@ -44,7 +44,7 @@ public class Pedido {
 	private LocalDateTime dataHora;
 
 	@NotNull @Enumerated(EnumType.STRING)
-	private Status status;
+	private Situacao situacao;
 	
 	@ManyToOne(optional=false)
 	private Supermercado supermercado;
