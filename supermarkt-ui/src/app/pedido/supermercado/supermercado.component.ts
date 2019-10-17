@@ -15,7 +15,7 @@ export class SupermercadoComponent implements OnInit {
 
   supermercadoComAvaliacao: any;
   avaliacoes: Array<any> = [];
-  estoque: Array<any> = [];
+  estoqueProdutos: Array<any> = [];
   pedido: any = {
     itens: []
   };
@@ -50,15 +50,16 @@ export class SupermercadoComponent implements OnInit {
     });
 
     this.estoqueService.estoqueDoSupermercado(supermercadoId)
-      .subscribe(estoque => {
-        this.estoque = estoque;
+      .subscribe(estoqueProdutos => {
+        this.estoqueProdutos = estoqueProdutos;
       });
   }
 
-  escolheItem(item) {
+  escolheItem(produto) {
+    let item = produto.item;
     const indice = this.pedido.itens.findIndex(i => i.item.id === item.id);
     if (indice < 0) {
-      this.itemDoPedidoEscolhido = { item, quantidade: 1 };
+      this.itemDoPedidoEscolhido = { item, quantidade: 1, estoque: produto };
       this.adicionandoItemAoPedido = true;
     } else {
       this.itemDoPedidoEscolhido = Object.assign({}, this.pedido.itens[indice]);
@@ -80,7 +81,7 @@ export class SupermercadoComponent implements OnInit {
 
   fazPedido() {
     this.pedido.supermercado = this.supermercadoComAvaliacao.supermercado;
-    this.pedido.entrega = { cep: '', cliente: {} };
+    this.pedido.entrega = { cliente: {} };
     this.showHideDialogEntrega();
   }
 
