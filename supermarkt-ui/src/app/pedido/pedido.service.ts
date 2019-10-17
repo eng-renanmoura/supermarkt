@@ -29,4 +29,12 @@ export class PedidoService {
     return this.http.get(`${this.API}/pedidos/${pedidoId}`);
   }
 
+  pendentes(supermercadoId): Observable<any> {
+    return this.http.get(`${this.API}/parceiros/supermercados/${supermercadoId}/pedidos/pendentes`);
+  }
+
+  atualizaStatus(pedido): Observable<any> {
+    return this.http.put(`${this.API}/pedidos/${pedido.id}/status`, pedido);
+  }
+
 }
