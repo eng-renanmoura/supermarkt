@@ -17,6 +17,9 @@ export class SupermercadoComponent implements OnInit {
   avaliacoes: Array<any> = [];
   estoqueProdutos: Array<any> = [];
   pedido: any = {
+    entrega: {
+      cliente: {}
+    },
     itens: []
   };
   itemDoPedidoEscolhido: any;

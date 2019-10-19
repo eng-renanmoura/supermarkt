@@ -1,16 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormaDePagamentoComponent } from './forma-de-pagamento/forma-de-pagamento.component';
-import { HorarioDeFuncionamentoComponent } from './horario-de-funcionamento/horario-de-funcionamento.component';
 import { PedidoPendenteComponent } from './pedido-pendente/pedido-pendente.component';
-import { EstoqueComponent } from './estoque/estoque.component';
-
+import { SupermercadosRoutingModule } from './supermercados-routing.module';
+import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
+import { rxStompConfig } from 'src/app/rx-stomp.config';
 
 
 @NgModule({
-  declarations: [FormaDePagamentoComponent, HorarioDeFuncionamentoComponent, PedidoPendenteComponent, EstoqueComponent],
+  declarations: [
+    PedidoPendenteComponent,
+    ],
   imports: [
-    CommonModule
+    CommonModule,
+    SupermercadosRoutingModule
+  ],
+  providers: [
+    {
+      provide: InjectableRxStompConfig,
+      useValue: rxStompConfig
+    },
+    {
+      provide: RxStompService,
+      useFactory: rxStompServiceFactory,
+      deps: [InjectableRxStompConfig]
+    }
   ]
 })
 export class SupermercadosModule { }

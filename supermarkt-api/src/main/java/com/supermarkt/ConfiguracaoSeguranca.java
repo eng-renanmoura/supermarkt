@@ -39,7 +39,7 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter {
 			.antMatchers("/autenticacao/**").permitAll()
 			.antMatchers("/admin/**").hasRole(Role.ROLES.ADMIN.name())
 			.antMatchers(HttpMethod.POST, "/parceiros/supermercados").permitAll()
-			.antMatchers("/parceiros/supermercados/{supermercadoId}/**").access("@authorizationService.checaTargetId(authentication,#supermercadoId)")
+			.antMatchers("/parceiros/supermercados/{supermercadoId}/**").access("@autorizacaoServico.checarTargetId(authentication,#supermercadoId)")
 			.antMatchers("/parceiros/**").hasRole(Role.ROLES.SUPERMERCADO.name())
 			.anyRequest().authenticated()
 			.and().headers().frameOptions().disable() //apenas para uso do h2 console, não recomendado para produção

@@ -1,9 +1,15 @@
 package com.supermarkt.supermercado;
 
+import org.springframework.stereotype.Service;
+
 import com.supermarkt.seguranca.AutorizacaoTargetServico;
 import com.supermarkt.seguranca.Role;
 import com.supermarkt.seguranca.Usuario;
 
+import lombok.AllArgsConstructor;
+
+@Service
+@AllArgsConstructor
 public class SupermercadoAuthorizationTargetService implements AutorizacaoTargetServico {
 	
 	private SupermercadoRepositorio supermercadoRepo;

@@ -4,13 +4,13 @@
     </div>
     <div class="col-sm-8 mb-5">
       <h2>Acompanhe o Pedido</h2>
-      <h1><span class="badge badge-info">{{ pedido.situacao | situacao }}</span></h1>
+      <h1><span class="badge badge-info">{{ pedido.situacao }}</span></h1>
   
       <div class="mt-5" *ngIf="pedido.situacao == 'ENTREGUE' && !avaliacao.id">
         <h3>Avalie o pedido</h3>
         <form class="mb-5" #avaliacaoForm="ngForm" (ngSubmit)="salvaAvaliacao()">
           <div class="form-group">
-            <p-rating [ngModel]="avaliacao.nota" readonly="true" stars="5" [cancel]="false"></p-rating>
+            <p-rating [(ngModel)]="avaliacao.nota" stars="5" [cancel]="false" id="nota" name="nota"></p-rating>
           </div>
           <div class="form-group">
             <textarea class="form-control" [(ngModel)]="avaliacao.comentario" id="comentario" name="comentario"></textarea>

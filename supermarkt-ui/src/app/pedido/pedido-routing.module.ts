@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AutorizacaoGuard } from '../guards/autorizacao.guard';
 import { ListaSupermercadosComponent } from './lista-supermercados/lista-supermercados.component';
 
 import { SupermercadoComponent } from './supermercado/supermercado.component';
@@ -14,10 +13,6 @@ const routes: Routes = [
   },
   {
     path: 'supermercado/:supermercadoId',
-    component: SupermercadoComponent
-  },
-  {
-    path: ':cep/restaurante/:restauranteId',
     component: SupermercadoComponent
   },
   {

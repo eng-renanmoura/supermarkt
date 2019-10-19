@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Pagamento {
 
-	public static enum Status {
+	public static enum Situacao {
 		CRIADO,
 		CONFIRMADO,
 		CANCELADO;
@@ -54,7 +54,7 @@ public class Pagamento {
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
-	private Status status;
+	private Situacao situacao;
 
 	@ManyToOne(optional=false)
 	private Pedido pedido;

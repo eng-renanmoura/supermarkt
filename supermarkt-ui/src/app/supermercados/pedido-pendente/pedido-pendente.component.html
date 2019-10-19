@@ -1,14 +1,14 @@
 <div class="card-columns mb-5" *ngIf="pendentes?.length">
     <div class="card" *ngFor="let pedido of pendentes">
         <div class="card-body">
-        <h5 class="card-title">{{ pedido.situacao | situacaoDoPedido }}</h5>
+        <h5 class="card-title">{{ pedido.situacao }}</h5>
 
             <p><strong>Cliente:</strong> {{ pedido.entrega.cliente.nome }}</p>
             <p><strong>Tel:</strong> <a href="tel:{{ pedido.entrega.cliente.telefone }}">{{ pedido.entrega.cliente.telefone }}</a></p>
             <p><strong>Endereço:</strong> {{ pedido.entrega.endereco }} {{ pedido.entrega.complemento }}</p>
 
             <div *ngFor="let itemPedido of pedido.itens">
-            <p>{{ itemPedido.quantidade }}x {{ itemPedido.itemDoCardapio.nome }}
+            <p>{{ itemPedido.quantidade }}x {{ itemPedido.estoque.item.nome }}
                 <p><small>{{ itemPedido.observacao }}</small></p>
             </div>
 

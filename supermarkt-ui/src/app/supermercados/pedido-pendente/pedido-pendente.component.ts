@@ -25,11 +25,10 @@ export class PedidoPendenteComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    const restauranteId = this.route.snapshot.params.restauranteId;
-    this.pedidosService.pendentes(restauranteId)
+    const supermercadoId = this.route.snapshot.params.supermercadoId;
+    this.pedidosService.pendentes(supermercadoId)
       .subscribe(pedidosPendentes => this.pendentes = pedidosPendentes);
-
-    this.topicSubscription = this.rxStompService.watch(`/parceiros/restaurantes/${restauranteId}/pedidos/pendentes`)
+    this.topicSubscription = this.rxStompService.watch(`/parceiros/supermercados/${supermercadoId}/pedidos/pendentes`)
       .subscribe((message: Message) => {
         const pedido = JSON.parse(message.body);
         this.pendentes.push(pedido);
