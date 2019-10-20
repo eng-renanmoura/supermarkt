@@ -8,14 +8,6 @@ INSERT INTO supermercado_forma_de_pagamento (supermercado_id, forma_de_pagamento
 INSERT INTO supermercado_forma_de_pagamento (supermercado_id, forma_de_pagamento_id) values (1, 4);
 INSERT INTO supermercado_forma_de_pagamento (supermercado_id, forma_de_pagamento_id) values (1, 5);
 
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('SUNDAY', '11:00:00', '23:00:00', 1);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('MONDAY', '11:00:00', '23:00:00', 1);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('TUESDAY', '11:00:00', '23:00:00', 1);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('WEDNESDAY', '11:00:00', '23:00:00', 1);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('THURSDAY', '11:00:00', '23:00:00', 1);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('FRIDAY', '11:00:00', '23:00:00', 1);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('SATURDAY', '11:00:00', '23:00:00', 1);
-
 INSERT INTO estoque (id, supermercado_id, quantidade, item_id, preco, preco_promocional) values (1, 1, 50, 1, 3.5, 2.5);
 INSERT INTO estoque (id, supermercado_id, quantidade, item_id, preco, preco_promocional) values (2, 1, 100, 2, 3.5, 2.5);
 INSERT INTO estoque (id, supermercado_id, quantidade, item_id, preco, preco_promocional) values (3, 1, 90, 3, 3.5, 2.5);
@@ -38,14 +30,6 @@ INSERT INTO supermercado_forma_de_pagamento (supermercado_id, forma_de_pagamento
 INSERT INTO supermercado_forma_de_pagamento (supermercado_id, forma_de_pagamento_id) values (2, 4);
 INSERT INTO supermercado_forma_de_pagamento (supermercado_id, forma_de_pagamento_id) values (2, 5);
 
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('SUNDAY', '10:00:00', '22:00:00', 1);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('MONDAY', '10:00:00', '22:00:00', 1);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('TUESDAY', '10:00:00', '22:00:00', 1);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('WEDNESDAY', '10:00:00', '22:00:00', 1);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('THURSDAY', '10:00:00', '22:00:00', 1);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('FRIDAY', '10:00:00', '22:00:00', 1);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('SATURDAY', '10:00:00', '22:00:00', 1);
-
 INSERT INTO estoque (id, supermercado_id, quantidade, item_id, preco, preco_promocional) values (11, 2, 50, 4, 3.5, 2.5);
 INSERT INTO estoque (id, supermercado_id, quantidade, item_id, preco, preco_promocional) values (12, 2, 100, 7, 3.5, 2.5);
 INSERT INTO estoque (id, supermercado_id, quantidade, item_id, preco, preco_promocional) values (13, 2, 90, 8, 3.5, 2.5);
@@ -66,14 +50,6 @@ INSERT INTO supermercado_forma_de_pagamento (supermercado_id, forma_de_pagamento
 INSERT INTO supermercado_forma_de_pagamento (supermercado_id, forma_de_pagamento_id) values (3, 3);
 INSERT INTO supermercado_forma_de_pagamento (supermercado_id, forma_de_pagamento_id) values (3, 4);
 INSERT INTO supermercado_forma_de_pagamento (supermercado_id, forma_de_pagamento_id) values (3, 5);
-
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('SUNDAY', '08:00:00', '22:00:00', 3);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('MONDAY', '08:00:00', '22:00:00', 3);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('TUESDAY', '08:00:00', '22:00:00', 3);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('WEDNESDAY', '08:00:00', '22:00:00', 3);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('THURSDAY', '08:00:00', '22:00:00', 3);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('FRIDAY', '08:00:00', '22:00:00', 3);
-INSERT INTO horario_de_funcionamento (dia_da_semana, horario_de_abertura, horario_de_fechamento, supermercado_id) values ('SATURDAY', '08:00:00', '22:00:00', 3);
 
 INSERT INTO estoque (id, supermercado_id, quantidade, item_id, preco, preco_promocional) values (21, 3, 50, 11, 3.5, 2.5);
 INSERT INTO estoque (id, supermercado_id, quantidade, item_id, preco, preco_promocional) values (22, 3, 100, 12, 3.5, 2.5);

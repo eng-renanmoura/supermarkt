@@ -15,7 +15,7 @@
             <p-rating [(ngModel)]="avaliacao.nota" stars="5" [cancel]="false" id="nota" name="nota"></p-rating>
           </div>
           <div>
-            <textarea class="form-control" [(ngModel)]="avaliacao.comentario" id="comentario" name="comentario"></textarea>
+            <textarea [(ngModel)]="avaliacao.comentario" id="comentario" name="comentario"></textarea>
           </div>
           <button pButton type="submit" [disabled]="!avaliacaoForm.form.valid" label="Avaliar"></button>
         </form>

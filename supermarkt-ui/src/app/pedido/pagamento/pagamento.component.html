@@ -10,52 +10,46 @@
           <h3>Dados do pagamento</h3>
           <div class="p-grid">
             
-            <div class="p-col-12">
+            <div class="p-col-11">
               <label for="formaDePagamento">Forma de pagamento</label>
-            </div>
             <!--div class="p-col-12" style="margin: -5px 1px">
               <p-dropdown required id="formaDePagamento" name="formaDePagamento"
                   [options]="formasDePagamento" [(ngModel)]="pagamento.formaDePagamento"></p-dropdown>
             </div-->
-              <select class="p-col-12" class="form-control" required id="formaDePagamento" name="formaDePagamento" [(ngModel)]="pagamento.formaDePagamento">
-                <option *ngFor="let forma of formasDePagamento" [ngValue]="forma">{{ forma.nome }}</option>
-              </select>
+              <div class="p-col-4" >
+                <select required id="formaDePagamento" name="formaDePagamento" [(ngModel)]="pagamento.formaDePagamento">
+                  <option *ngFor="let forma of formasDePagamento" [ngValue]="forma">{{ forma.nome }}</option>
+                </select>
+              </div>
+            </div>
 
             <div class="p-col-12">
               <label for="nome">Nome no cartão</label>
-            </div>
-            <div class="p-col-12" style="margin: -5px 1px">
-              <input pInputText class="form-control" pInputText required id="nome" name="nome" 
-                [(ngModel)]="pagamento.nome" placeholder="nome como impresso no cartão">
+              <input pInputText type="text" required id="nome" name="nome" 
+                [(ngModel)]="pagamento.nome" placeholder="Nome como impresso no cartão" size="10">
             </div>
 
-            <div class="p-col-12">
+            <div class="p-col-5">
               <label for="numero">Número do cartão</label>
-            </div>
-            <div class="p-col" style="margin: -5px 1px">
-              <input pInputText class="form-control" required id="numero" name="numero" 
+              <input pInputText type="text" required id="numero" name="numero" 
                 [(ngModel)]="pagamento.numero"
-                placeholder="0000 0000 0000 0000" >
+                placeholder="0000 0000 0000 0000" size="50">
             </div>
 
-            <div class="p-col-12">
+            <div class="p-col-4">
               <label for="expiracao">Data de expiração</label>
+              <input pInputText type="month" required id="expiracao" name="expiracao" 
+                [(ngModel)]="pagamento.expiracao" size="50">
             </div>
-            <div class="p-col-12" style="margin: -5px 1px">
-              <input pInputText class="form-control" type="month" required id="expiracao" name="expiracao" 
-                [(ngModel)]="pagamento.expiracao">
+
+            <div class="p-col-3">
+              <label for="codigo">Código de Segurança</label>
+              <input pInputText type="text" required id="codigo" name="codigo" 
+                [(ngModel)]="pagamento.codigo"
+                placeholder="000" size="24">
             </div>
 
             <div class="p-col-12">
-              <label for="codigo">Código de Segurança</label>
-            </div>
-            <div class="p-col-12" style="margin: -5px 1px">
-              <input pInputText class="form-control" required id="codigo" name="codigo" 
-                [(ngModel)]="pagamento.codigo"
-                placeholder="000" >
-            </div>
-
-            <div class="p-grid p-col-12" style="margin: 10px -1px">
               <button pButton *ngIf="!pagamento.situacao" type="submit" 
                 label="Criar pagamento"></button>
             </div>

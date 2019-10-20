@@ -9,6 +9,7 @@ import { CategoriaService } from '../categoria.service';
 @Component({
   selector: 'app-categoria-formulario',
   templateUrl: './categoria-formulario.component.html',
+  styleUrls: ['./categoria-formulario.component.scss'],
   providers: [MessageService]
 })
 export class CategoriaFormularioComponent implements OnInit {

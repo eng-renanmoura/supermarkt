@@ -92,14 +92,14 @@
                 <div class="p-grid" style="margin: 5px">
                     <div class="p-col-12" style="margin: 5px">
                         <span class="ui-float-label">
-                                <input class="form-control" type="number" id="quantidade" name="quantidade"
+                                <input type="number" id="quantidade" name="quantidade"
                                 [(ngModel)]="itemDoPedidoEscolhido.quantidade" pInputText>
                             <label for="quantidade">Quantidade</label>
                         </span>
                     </div>
                     <div class="p-col-12" style="margin: 5px">
                         <span class="ui-float-label">
-                            <textarea class="form-control" id="observacao" name="observacao"
+                            <textarea id="observacao" name="observacao"
                             [(ngModel)]="itemDoPedidoEscolhido.observacao" pInputTextarea></textarea>
                             <label for="observacao" >Observação</label>
                         </span>
@@ -127,7 +127,7 @@
             <div class="p-grid" style="margin: 5px">
                 <div class="p-col-12" style="margin: 5px">
                     <span class="ui-float-label">
-                            <input class="form-control" required id="nome" name="nome" maxlength="100"
+                            <input required id="nome" name="nome" maxlength="100"
                             [(ngModel)]="pedido.entrega.cliente.nome" pInputText>
                             <label for="nome">Nome</label>
                     </span>
@@ -135,7 +135,7 @@
 
                 <div class="p-col-12" style="margin: 5px">
                     <span class="ui-float-label">
-                        <input class="form-control" required id="cpf" name="cpf" maxlength="15"
+                        <input required id="cpf" name="cpf" maxlength="15"
                             [(ngModel)]="pedido.entrega.cliente.cpf" pInputText>
                         <label for="cpf">CPF</label>
                     </span>
@@ -143,7 +143,7 @@
                 
                 <div class="p-col-12" style="margin: 5px">
                     <span class="ui-float-label">
-                        <input class="form-control" required type="email" id="email" name="email" maxlength="100"
+                        <input required type="email" id="email" name="email" maxlength="100"
                             [(ngModel)]="pedido.entrega.cliente.email" pInputText>
                         <label for="email">Email</label>
                     </span>
@@ -151,7 +151,7 @@
 
                 <div class="p-col-12" style="margin: 5px">
                     <span class="ui-float-label">
-                        <input class="form-control" required id="telefone" name="telefone" maxlength="16"
+                        <input required id="telefone" name="telefone" maxlength="16"
                             [(ngModel)]="pedido.entrega.cliente.telefone" pInputText>
                         <label for="telefone">Telefone</label>
                     </span>
@@ -163,7 +163,7 @@
             <div class="p-grid" style="margin: 5px">
                 <div class="p-col-12" style="margin: 5px">
                     <span class="ui-float-label">
-                        <input class="form-control" required id="cep" name="cep" maxlength="10"
+                        <input required id="cep" name="cep" maxlength="10"
                             [(ngModel)]="pedido.entrega.cep" pInputText>
                         <label for="cep">CEP</label>
                     </span>
@@ -171,7 +171,7 @@
 
                 <div class="p-col-12" style="margin: 5px">
                     <span class="ui-float-label">
-                        <textarea class="form-control" required id="endereco" name="endereco"
+                        <textarea required id="endereco" name="endereco"
                             [(ngModel)]="pedido.entrega.endereco" pInputTextarea></textarea>
                         <label for="endereco">Endereço</label>
                     </span>
@@ -179,7 +179,7 @@
 
                 <div class="p-col-12" style="margin: 5px">
                     <span class="ui-float-label">
-                        <textarea class="form-control" id="complemento" name="complemento"
+                        <textarea id="complemento" name="complemento"
                             [(ngModel)]="pedido.entrega.complemento" pInputTextarea></textarea>
                         <label for="complemento">Complemento</label>
                     </span>
