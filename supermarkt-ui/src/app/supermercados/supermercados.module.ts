@@ -4,7 +4,7 @@ import { PedidoPendenteComponent } from './pedido-pendente/pedido-pendente.compo
 import { SupermercadosRoutingModule } from './supermercados-routing.module';
 import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
 import { rxStompConfig } from 'src/app/rx-stomp.config';
-
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,8 @@ import { rxStompConfig } from 'src/app/rx-stomp.config';
     ],
   imports: [
     CommonModule,
-    SupermercadosRoutingModule
+    SupermercadosRoutingModule,
+    ButtonModule
   ],
   providers: [
     {

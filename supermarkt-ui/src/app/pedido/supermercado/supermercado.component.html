@@ -3,7 +3,7 @@
 
         <div class="p-col-10">
             <div *ngIf="supermercadoComAvaliacao">
-                <div >
+                <div>
                     <div>
                         <h2>{{supermercadoComAvaliacao.supermercado.nome}}</h2>
                         <p>{{ supermercadoComAvaliacao.supermercado.descricao }}</p>
@@ -63,11 +63,16 @@
                         {{ calculaSubTotal(itemPedido) | currency:'BRL' }}<br>
                         <span class="text-muted"><small>{{ itemPedido.observacao }}</small></span>
                     </p>
-                    <button pButton
-                        (click)="editaItemDoPedido(itemPedido)"
-                        label="Editar" class="ui-button-secondary"></button>
-                        <button pButton (click)="removeItemDoPedido(itemPedido)"
-                        label="Remover" class="ui-button-secondary"></button>
+                    <div class="p-grid">
+                        <div class="p-col">
+                            <button pButton style="margin-right: 10px"
+                            (click)="editaItemDoPedido(itemPedido)"
+                            label="Editar" class="ui-button-secondary"></button>
+                            
+                            <button pButton (click)="removeItemDoPedido(itemPedido)"
+                            label="Remover" class="ui-button-secondary"></button>
+                        </div>
+                    </div>
                 </div>
                 <hr>
                 <p>Taxa de entrega:
@@ -84,73 +89,110 @@
     <p-dialog header="{{ itemDoPedidoEscolhido.item.nome }}" [(visible)]="displayModalPedido" [modal]="true" 
         [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70">
             <form #itemDoPedidoEscolhidoForm="ngForm" (ngSubmit)="salvaItemNoPedido()">
-                <div class="form-group">
-                    <label for="quantidade">Quantidade</label>
-                    <input class="form-control" type="number" min="1" id="quantidade" name="quantidade"
-                    [(ngModel)]="itemDoPedidoEscolhido.quantidade">
-                </div>
-                <div class="form-group">
-                    <label for="observacao">Observação</label>
-                    <textarea class="form-control" id="observacao" name="observacao"
-                    [(ngModel)]="itemDoPedidoEscolhido.observacao"></textarea>
-                </div>
-                
-                <button pButton type="submit" style="margin-right: .25em"
-                    [disabled]="!itemDoPedidoEscolhidoForm.form.valid"
-                    label="{{adicionandoItemAoPedido ? 'Adicionar':'Atualizar'}}"></button>
+                <div class="p-grid" style="margin: 5px">
+                    <div class="p-col-12" style="margin: 5px">
+                        <span class="ui-float-label">
+                                <input class="form-control" type="number" id="quantidade" name="quantidade"
+                                [(ngModel)]="itemDoPedidoEscolhido.quantidade" pInputText>
+                            <label for="quantidade">Quantidade</label>
+                        </span>
+                    </div>
+                    <div class="p-col-12" style="margin: 5px">
+                        <span class="ui-float-label">
+                            <textarea class="form-control" id="observacao" name="observacao"
+                            [(ngModel)]="itemDoPedidoEscolhido.observacao" pInputTextarea></textarea>
+                            <label for="observacao" >Observação</label>
+                        </span>
+                    </div>
 
-                <button pButton type="button" style="margin-right: .25em" 
-                (click)="showHideDialogPedido()" label="Cancelar"></button>
+                    <div class="p-col-12" style="margin: 5px">
+                        <button pButton type="submit" style="margin-right: 10px"
+                            [disabled]="!itemDoPedidoEscolhidoForm.form.valid"
+                            label="{{adicionandoItemAoPedido ? 'Adicionar':'Atualizar'}}"></button>
+                        <button pButton type="button" 
+                        (click)="showHideDialogPedido()" label="Cancelar"></button>
+                    </div>
+                    
+                </div>
             </form>
         
     </p-dialog>
 </div>
 
 <p-dialog header="Dados da Entrega" [(visible)]="displayModalEntrega" [modal]="true" 
-    [responsive]="true" >
-        <form #entregaForm="ngForm" (ngSubmit)="registraEntrega()">
+    [responsive]="true">
+        <form #entregaForm="ngForm" (ngSubmit)="registraEntrega()" style="width: 250px">
           <fieldset>
             <legend>Dados pessoais</legend>
-            <div class="form-group">
-              <label for="nome">Nome:</label>
-              <input class="form-control" required id="nome" name="nome" maxlength="100"
-                [(ngModel)]="pedido.entrega.cliente.nome" placeholder="digite seu nome">
-            </div>
-            <div class="form-group">
-              <label for="cpf">CPF:</label>
-              <input class="form-control" required id="cpf" name="cpf" maxlength="15"
-                [(ngModel)]="pedido.entrega.cliente.cpf" placeholder="000.000.000-00" >
-            </div>
-            <div class="form-group">
-              <label for="email">Email:</label>
-              <input class="form-control" required type="email" id="email" name="email" maxlength="100"
-                [(ngModel)]="pedido.entrega.cliente.email" placeholder="email@exemplo.com">
-            </div>
-            <div class="form-group">
-              <label for="telefone">Telefone:</label>
-              <input class="form-control" required id="telefone" name="telefone" maxlength="16"
-                [(ngModel)]="pedido.entrega.cliente.telefone"   placeholder="(00) 0000-0000">
+            <div class="p-grid" style="margin: 5px">
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                            <input class="form-control" required id="nome" name="nome" maxlength="100"
+                            [(ngModel)]="pedido.entrega.cliente.nome" pInputText>
+                            <label for="nome">Nome</label>
+                    </span>
+                </div>
+
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                        <input class="form-control" required id="cpf" name="cpf" maxlength="15"
+                            [(ngModel)]="pedido.entrega.cliente.cpf" pInputText>
+                        <label for="cpf">CPF</label>
+                    </span>
+                </div>
+                
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                        <input class="form-control" required type="email" id="email" name="email" maxlength="100"
+                            [(ngModel)]="pedido.entrega.cliente.email" pInputText>
+                        <label for="email">Email</label>
+                    </span>
+                </div>
+
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                        <input class="form-control" required id="telefone" name="telefone" maxlength="16"
+                            [(ngModel)]="pedido.entrega.cliente.telefone" pInputText>
+                        <label for="telefone">Telefone</label>
+                    </span>
+                </div>
             </div>
           </fieldset>
           <fieldset>
             <legend>Local de entrega</legend>
-            <div class="form-group">
-              <label for="cep">CEP:</label>
-              <input class="form-control" required id="cep" name="cep" maxlength="10"
-                [(ngModel)]="pedido.entrega.cep" >
-            </div>
-            <div class="form-group">
-              <label for="endereco">Endereço:</label>
-              <textarea class="form-control" required id="endereco" name="endereco"
-                [(ngModel)]="pedido.entrega.endereco" placeholder="rua, número, bloco, bairro, ..."></textarea>
-            </div>
-            <div class="form-group">
-              <label for="complemento">Complemento:</label>
-              <textarea class="form-control" id="complemento" name="complemento"
-                [(ngModel)]="pedido.entrega.complemento"></textarea>
+            <div class="p-grid" style="margin: 5px">
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                        <input class="form-control" required id="cep" name="cep" maxlength="10"
+                            [(ngModel)]="pedido.entrega.cep" pInputText>
+                        <label for="cep">CEP</label>
+                    </span>
+                </div>
+
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                        <textarea class="form-control" required id="endereco" name="endereco"
+                            [(ngModel)]="pedido.entrega.endereco" pInputTextarea></textarea>
+                        <label for="endereco">Endereço</label>
+                    </span>
+                </div>
+
+                <div class="p-col-12" style="margin: 5px">
+                    <span class="ui-float-label">
+                        <textarea class="form-control" id="complemento" name="complemento"
+                            [(ngModel)]="pedido.entrega.complemento" pInputTextarea></textarea>
+                        <label for="complemento">Complemento</label>
+                    </span>
+                </div>
             </div>
           </fieldset>
-          <button pButton type="submit"  label="Confirmar"></button>
-          <button pButton type="button" (click)="showHideDialogEntrega()" label="Cancelar"></button>
+          
+            <div class="p-grid" style="margin: 5px">
+                <div class="p-col-12" style="margin: 5px">
+                    <button pButton type="submit" label="Confirmar" style="margin-right: 10px"></button>
+                    <button pButton type="button" (click)="showHideDialogEntrega()" label="Cancelar"></button>
+                </div>
+            </div>
+
         </form>
 </p-dialog>

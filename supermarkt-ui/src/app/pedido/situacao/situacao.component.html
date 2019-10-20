@@ -1,28 +1,32 @@
 <div class="container">
-    <div class="col-sm-4 mb-5">
+  <div class="p-grid">
+
+    <div class="p-col-2">
       <app-resumo [pedido]="pedido"></app-resumo>
     </div>
-    <div class="col-sm-8 mb-5">
+    <div class="p-col-10">
       <h2>Acompanhe o Pedido</h2>
-      <h1><span class="badge badge-info">{{ pedido.situacao }}</span></h1>
+      <h1><span>{{ pedido.situacao }}</span></h1>
   
-      <div class="mt-5" *ngIf="pedido.situacao == 'ENTREGUE' && !avaliacao.id">
+      <div *ngIf="pedido.situacao == 'ENTREGUE' && !avaliacao.id">
         <h3>Avalie o pedido</h3>
-        <form class="mb-5" #avaliacaoForm="ngForm" (ngSubmit)="salvaAvaliacao()">
-          <div class="form-group">
+        <form #avaliacaoForm="ngForm" (ngSubmit)="salvaAvaliacao()">
+          <div>
             <p-rating [(ngModel)]="avaliacao.nota" stars="5" [cancel]="false" id="nota" name="nota"></p-rating>
           </div>
-          <div class="form-group">
+          <div>
             <textarea class="form-control" [(ngModel)]="avaliacao.comentario" id="comentario" name="comentario"></textarea>
           </div>
-          <button class="btn btn-primary" type="submit" [disabled]="!avaliacaoForm.form.valid">Avaliar</button>
+          <button pButton type="submit" [disabled]="!avaliacaoForm.form.valid" label="Avaliar"></button>
         </form>
       </div>
   
-      <div class="my-5" *ngIf="pedido.situacao == 'ENTREGUE' && avaliacao.id">
-        <p class="lead text-info">Avaliação devidamente registrada. Muito obrigado!</p>
+      <div *ngIf="pedido.situacao == 'ENTREGUE' && avaliacao.id">
+        <p>Avaliação devidamente registrada. Muito obrigado!</p>
       </div>
   
     </div>
+
   </div>
+</div>
   
