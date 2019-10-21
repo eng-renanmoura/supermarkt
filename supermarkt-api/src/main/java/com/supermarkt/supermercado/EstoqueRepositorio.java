@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EstoqueRepositorio extends JpaRepository<Estoque, Long> {
+public interface EstoqueRepositorio extends JpaRepository<ItemEstoque, Long> {
 	
-	List<Estoque> findAllBySupermercado(Supermercado supermercado);
+	List<ItemEstoque> findAllBySupermercado(Supermercado supermercado);
 
 }

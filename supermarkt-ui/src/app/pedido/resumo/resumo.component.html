@@ -2,11 +2,11 @@
     <h3>Resumo do pedido</h3>
     <div *ngFor="let itemPedido of pedido.itens">
       <hr>
-      <p *ngIf="itemPedido.estoque.precoPromocional">{{ itemPedido.quantidade }}x {{ itemPedido.estoque.item.nome }}
-        <span>{{ itemPedido.quantidade * itemPedido.estoque.precoPromocional | currency:'BRL' }}</span><br>
+      <p *ngIf="itemPedido.itemEstoque.precoPromocional">{{ itemPedido.quantidade }}x {{ itemPedido.itemEstoque.nome }}
+        <span>{{ itemPedido.quantidade * itemPedido.itemEstoque.precoPromocional | currency:'BRL' }}</span><br>
         <span class="text-muted"><small>{{ itemPedido.observacao }}</small></span></p>
-      <p *ngIf="!itemPedido.estoque.precoPromocional">{{ itemPedido.quantidade }}x {{ itemPedido.estoque.item.nome }}
-          <span>{{ itemPedido.quantidade * itemPedido.estoque.preco | currency:'BRL' }}</span><br>
+      <p *ngIf="!itemPedido.itemEstoque.precoPromocional">{{ itemPedido.quantidade }}x {{ itemPedido.itemEstoque.nome }}
+          <span>{{ itemPedido.quantidade * itemPedido.itemEstoque.preco | currency:'BRL' }}</span><br>
           <span class="text-muted"><small>{{ itemPedido.observacao }}</small></span></p>
     </div>
     <hr>

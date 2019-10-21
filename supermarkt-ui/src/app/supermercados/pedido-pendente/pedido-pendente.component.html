@@ -9,7 +9,7 @@
             <p><strong>Endereço:</strong> {{ pedido.entrega.endereco }} {{ pedido.entrega.complemento }}</p>
 
             <div *ngFor="let itemPedido of pedido.itens">
-            <p>{{ itemPedido.quantidade }}x {{ itemPedido.estoque.item.nome }}
+            <p>{{ itemPedido.quantidade }}x {{ itemPedido.itemEstoque.nome }}
                 <p><small>{{ itemPedido.observacao }}</small></p>
             </div>
 

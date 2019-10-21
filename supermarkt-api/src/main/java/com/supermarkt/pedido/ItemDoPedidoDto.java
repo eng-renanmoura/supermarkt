@@ -1,6 +1,6 @@
 package com.supermarkt.pedido;
 
-import com.supermarkt.supermercado.EstoqueDto;
+import com.supermarkt.supermercado.ItemEstoqueDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,10 +12,10 @@ class ItemDoPedidoDto {
 	private Long id;
 	private Integer quantidade;
 	private String observacao;
-	private EstoqueDto estoque;
+	private ItemEstoqueDto itemEstoque;
 
 	public ItemDoPedidoDto(ItemDoPedido item) {
-		this(item.getId(), item.getQuantidade(), item.getObservacao(), new EstoqueDto(item.getEstoque()));
+		this(item.getId(), item.getQuantidade(), item.getObservacao(), new ItemEstoqueDto(item.getItemEstoque()));
 	}
 
 }

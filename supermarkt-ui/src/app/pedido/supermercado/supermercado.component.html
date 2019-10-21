@@ -20,10 +20,10 @@
                     <p-tabPanel header="Produtos">
                         <div class="p-grid">
                             <div *ngFor="let produto of estoqueProdutos" >
-                                <div class="p-col" >  
-                                    <p-card header="{{produto.item.nome | uppercase }}" 
-                                            subheader="{{produto.item.descricao }}"
-                                            [style]="{width: '360px', height: '180px'}" styleClass="ui-card-shadow">
+                                <div class="p-col-3" >  
+                                    <p-card header="{{produto.nome | uppercase }}" 
+                                            subheader="{{produto.descricao }}"
+                                            [style]="{width: '260px'}" styleClass="ui-card-shadow">
                                         <!--p-header>
                                             <img src="Card" src="assets/showcase/images/usercard.png">
                                         </p-header-->
@@ -59,7 +59,7 @@
                 <h3>Pedido</h3>
                 <div *ngFor="let itemPedido of pedido.itens">
                     <hr>
-                    <p>{{ itemPedido.quantidade }}x {{ itemPedido.item.nome }}
+                    <p>{{ itemPedido.quantidade }}x {{ itemPedido.itemEstoque.nome }}
                         {{ calculaSubTotal(itemPedido) | currency:'BRL' }}<br>
                         <span class="text-muted"><small>{{ itemPedido.observacao }}</small></span>
                     </p>
@@ -86,7 +86,7 @@
 </div>
 
 <div *ngIf="itemDoPedidoEscolhido">
-    <p-dialog header="{{ itemDoPedidoEscolhido.item.nome }}" [(visible)]="displayModalPedido" [modal]="true" 
+    <p-dialog header="{{ itemDoPedidoEscolhido.itemEstoque.nome }}" [(visible)]="displayModalPedido" [modal]="true" 
         [responsive]="true" [style]="{width: '350px', minWidth: '200px'}" [minY]="70">
             <form #itemDoPedidoEscolhidoForm="ngForm" (ngSubmit)="salvaItemNoPedido()">
                 <div class="p-grid" style="margin: 5px">

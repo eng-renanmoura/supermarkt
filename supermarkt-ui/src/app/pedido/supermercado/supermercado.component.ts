@@ -58,11 +58,10 @@ export class SupermercadoComponent implements OnInit {
       });
   }
 
-  escolheItem(produto) {
-    let item = produto.item;
-    const indice = this.pedido.itens.findIndex(i => i.item.id === item.id);
+  escolheItem(itemEstoque) {
+    const indice = this.pedido.itens.findIndex(i => i.item.id === itemEstoque.id);
     if (indice < 0) {
-      this.itemDoPedidoEscolhido = { item, quantidade: 1, estoque: produto };
+      this.itemDoPedidoEscolhido = { itemEstoque, quantidade: 1 };
       this.adicionandoItemAoPedido = true;
     } else {
       this.itemDoPedidoEscolhido = Object.assign({}, this.pedido.itens[indice]);
@@ -92,7 +91,7 @@ export class SupermercadoComponent implements OnInit {
     if (this.adicionandoItemAoPedido) {
       this.pedido.itens.push(this.itemDoPedidoEscolhido);
     } else if (this.itemDoPedidoEscolhido) {
-      const indice = this.pedido.itens.findIndex(i => i.item.id === this.itemDoPedidoEscolhido.item.id);
+      const indice = this.pedido.itens.findIndex(i => i.itemEstoque.id === this.itemDoPedidoEscolhido.itemEstoque.id);
       this.pedido.itens[indice] = this.itemDoPedidoEscolhido;
     }
     this.itemDoPedidoEscolhido = null;
@@ -100,7 +99,7 @@ export class SupermercadoComponent implements OnInit {
   }
 
   calculaSubTotal(itemPedido) {
-    const item = itemPedido.item;
+    const item = itemPedido.itemEstoque;
     const preco = item.precoPromocional || item.preco;
     return itemPedido.quantidade * preco;
   }
@@ -114,6 +113,7 @@ export class SupermercadoComponent implements OnInit {
   }
 
   registraEntrega() {
+    console.table(this.pedido);
     this.pedidoService.adiciona(this.pedido)
     .subscribe(pedido => {
       this.router.navigateByUrl(`pedidos/${pedido.id}/pagamento`);

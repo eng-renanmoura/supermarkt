@@ -7,10 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-
-import com.supermarkt.admin.Item;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,14 +20,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Estoque {
+public class ItemEstoque {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+
+	@NotBlank @Size(max=150)
+	private String nome;
+
+	private String descricao;
 	
 	@NotNull @Positive
 	private Integer quantidade;
-	
+
 	@NotNull @Positive
 	private BigDecimal preco;
 
@@ -37,9 +42,6 @@ public class Estoque {
 	@ManyToOne(optional=false)
 	private Supermercado supermercado;
 
-	@ManyToOne(optional=false)
-	private Item item;
-	
 	public BigDecimal getPrecoEfetivo() {
 		return precoPromocional != null ? precoPromocional : preco;
 	}
