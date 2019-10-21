@@ -23,8 +23,8 @@ class TipoPagamentoApi {
 	private TipoPagamentoRepositorio tipoPagamentoRepo;
 
 	@GetMapping("/tipo-pagamento")
-	public List<TipoPagamento> lista() {
-		return tipoPagamentoRepo.findAllByOrderByNomeAsc();
+	public List<TipoPagamentoDto> lista() {
+		return tipoPagamentoRepo.findAllByOrderByNomeAsc().stream().map(TipoPagamentoDto::new).collect(Collectors.toList());
 	}
 
 	@GetMapping("/admin/tipo-pagamento/formas")
@@ -34,13 +34,13 @@ class TipoPagamentoApi {
 	}
 
 	@PostMapping("/admin/tipo-pagamento")
-	public TipoPagamento adiciona(@RequestBody TipoPagamento tipoDeCozinha) {
-		return tipoPagamentoRepo.save(tipoDeCozinha);
+	public TipoPagamentoDto adiciona(@RequestBody TipoPagamento tipoPagamento) {
+		return new TipoPagamentoDto(tipoPagamentoRepo.save(tipoPagamento));
 	}
 
 	@PutMapping("/admin/tipo-pagamento/{id}")
-	public TipoPagamento atualiza(@RequestBody TipoPagamento tipoDeCozinha) {
-		return tipoPagamentoRepo.save(tipoDeCozinha);
+	public TipoPagamentoDto atualiza(@RequestBody TipoPagamento tipoPagamento) {
+		return new TipoPagamentoDto(tipoPagamentoRepo.save(tipoPagamento));
 	}
 
 	@DeleteMapping("/admin/tipo-pagamento/{id}")
@@ -49,13 +49,13 @@ class TipoPagamentoApi {
 	}
 	
 	@GetMapping("/admin/tipo-pagamento/{id}")
-	public TipoPagamento tipoPorId(@PathVariable("id") Long id) {
-		TipoPagamento categoria = tipoPagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
-		return categoria; 
+	public TipoPagamentoDto tipoPorId(@PathVariable("id") Long id) {
+		TipoPagamento tipoPagamento = tipoPagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
+		return new TipoPagamentoDto(tipoPagamento); 
 	}
 	
 	@GetMapping("/tipo-pagamento/{nome}")
-	public List<TipoPagamento> buscarPorNome(@PathVariable("nome") String nome) {
-		return tipoPagamentoRepo.findByNomeContainingIgnoreCase(nome);
+	public List<TipoPagamentoDto> buscarPorNome(@PathVariable("nome") String nome) {
+		return tipoPagamentoRepo.findByNomeContainingIgnoreCase(nome).stream().map(TipoPagamentoDto::new).collect(Collectors.toList());
 	}
 }
