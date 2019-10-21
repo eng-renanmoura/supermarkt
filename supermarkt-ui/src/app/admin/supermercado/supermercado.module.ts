@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { ConfirmationService } from 'primeng/api';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
 import { TableModule } from 'primeng/table';
@@ -25,6 +23,7 @@ import { SupermercadoGradeComponent } from './supermercado-grade/supermercado-gr
 import { SupermercadoBuscaComponent } from './supermercado-busca/supermercado-busca.component';
 
 import { SupermercadoService } from './supermercado.service';
+import { SupermercadoRoutingModule } from './supermercado-routing.module';
 
 
 @NgModule({
@@ -34,9 +33,8 @@ import { SupermercadoService } from './supermercado.service';
     SupermercadoBuscaComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
     MessagesModule,
+    SupermercadoRoutingModule,
     MessageModule,
     RadioButtonModule,
     RouterModule,
@@ -52,10 +50,6 @@ import { SupermercadoService } from './supermercado.service';
     FormsModule,
     ReactiveFormsModule,
     ToastModule,
-  ],
-  exports: [
-    SupermercadoFormularioComponent,
-    SupermercadoBuscaComponent,
   ],
   providers: [SupermercadoService, ConfirmationService]
 })

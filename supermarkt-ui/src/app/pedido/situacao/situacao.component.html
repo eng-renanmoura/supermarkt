@@ -6,7 +6,7 @@
     </div>
     <div class="p-col-10">
       <h2>Acompanhe o Pedido</h2>
-      <h1><span>{{ pedido.situacao }}</span></h1>
+      <h1><span>{{ pedido.situacao | situacaoPedido }}</span></h1>
   
       <div *ngIf="pedido.situacao == 'ENTREGUE' && !avaliacao.id">
         <h3>Avalie o pedido</h3>

@@ -29,8 +29,8 @@ export class SupermercadoFormularioComponent implements OnInit {
     this.idSupermercado = this.route.snapshot.params.idSupermercado;
     if (this.idSupermercado) {
         this.supermercadoService.getSupermercadoById(this.idSupermercado)
-            .subscribe( categoria => {
-                this.updateItemForm(categoria);
+            .subscribe( supermercado => {
+                this.updateItemForm(supermercado);
             },
             erro => {
               this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível efetuar a operação. Tente novamente'});

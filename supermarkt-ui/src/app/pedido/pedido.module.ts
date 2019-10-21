@@ -18,9 +18,11 @@ import { PedidoRoutingModule } from './pedido-routing.module';
 import { PedidoService } from './pedido.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import {DropdownModule} from 'primeng/dropdown';
+import { DropdownModule } from 'primeng/dropdown';
 
 import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
+
+import { PipesModule } from '../pipes/pipes.module';
 
 import { rxStompConfig } from 'src/app/rx-stomp.config';
 
@@ -43,7 +45,8 @@ import { rxStompConfig } from 'src/app/rx-stomp.config';
     TabViewModule,
     DialogModule,
     TextMaskModule,
-    DropdownModule
+    DropdownModule,
+    PipesModule
   ],
   providers: [
     PedidoService,

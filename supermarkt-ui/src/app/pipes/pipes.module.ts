@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormaPagamentoPipe } from './forma-pagamento.pipe';
 import { SituacaoPedidoPipe } from './situacao-pedido.pipe';
 
-
-
 @NgModule({
   declarations: [
     FormaPagamentoPipe,
@@ -14,7 +12,8 @@ import { SituacaoPedidoPipe } from './situacao-pedido.pipe';
     CommonModule
   ],
   exports: [
-    FormaPagamentoPipe
+    FormaPagamentoPipe,
+    SituacaoPedidoPipe
   ]
 })
 export class PipesModule { }

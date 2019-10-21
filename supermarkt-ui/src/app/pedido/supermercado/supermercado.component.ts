@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { SupermercadoService } from 'src/app/admin/supermercado/supermercado.service';
 import { AvaliacoesService } from 'src/app/services/avaliacoes.service';
 import { PedidoService } from 'src/app/pedido/pedido.service';
-import { EstoqueService } from 'src/app/supermercados/estoque/estoque.service';
+import { EstoqueService } from 'src/app/services/estoque.service';
 
 @Component({
   selector: 'app-supermercado',
@@ -32,7 +31,6 @@ export class SupermercadoComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private supermercadoService: SupermercadoService,
     private avaliacoesService: AvaliacoesService,
     private pedidoService: PedidoService,
     private estoqueService: EstoqueService

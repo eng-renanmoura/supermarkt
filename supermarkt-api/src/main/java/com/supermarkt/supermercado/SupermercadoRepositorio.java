@@ -22,4 +22,8 @@ public interface SupermercadoRepositorio extends JpaRepository<Supermercado, Lon
 	@Modifying(clearAutomatically = true)
 	@Query("update Supermercado s set s.aprovado = true where s.id = :id")
 	void aprovaPorId(@Param("id") Long id);
+
+	List<Supermercado> findAllByOrderByNomeAsc();
+	
+	List<Supermercado> findByNomeContainingIgnoreCase(@Param("nome") String nome);
 }

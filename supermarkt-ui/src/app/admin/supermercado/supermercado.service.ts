@@ -14,7 +14,11 @@ export class SupermercadoService {
   constructor(private http: HttpClient) { }
 
   getSupermercados(): Observable<any> {
-    return this.http.get(`${this.API}/supermercados`);
+    return this.http.get(`${this.API}/admin/supermercados`);
+  }
+
+  getByName(nome: any): Observable<any> {
+    return this.http.get(`${this.API}/admin/supermercados/${nome}`);
   }
 
   salva(categoria: any): Observable<any> {
@@ -28,12 +32,8 @@ export class SupermercadoService {
     return this.http.delete(`${this.API}/admin/supermercados/${categoria.id}`);
   }
 
-  getByName(nome: any): Observable<any> {
-    return this.http.get(`${this.API}/supermercados/${nome}`);
-  }
-
   getSupermercadoById(id): Observable<any> {
-    return this.http.get(`${this.API}/admin/supermercados/${id}`);
+    return this.http.get(`${this.API}/supermercados/${id}`);
   }
 
   parceiroPorId(id): Observable<any> {
