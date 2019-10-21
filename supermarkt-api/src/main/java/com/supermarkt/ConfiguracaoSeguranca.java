@@ -33,7 +33,7 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers("/supermercados/**", "/pedidos/**", "/pagamentos/**", "/formas-de-pagamento/**").permitAll()
+			.antMatchers("/supermercados/**", "/pedidos/**", "/pagamentos/**", "/tipo-pagamento/**").permitAll()
 			.antMatchers("/h2/**").permitAll() //liberar o h2 console, não recomendado para produção
 			.antMatchers("/socket/**").permitAll()
 			.antMatchers("/autenticacao/**").permitAll()

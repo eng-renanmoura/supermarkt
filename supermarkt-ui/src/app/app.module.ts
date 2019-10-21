@@ -20,7 +20,6 @@ import { JwtInterceptor } from './interceptors/jwt-interceptor';
 
 import { TemplateModule } from './template/template.module';
 
-import { CategoriaModule } from './admin/categoria/categoria.module';
 import { SupermercadoModule } from './admin/supermercado/supermercado.module';
 
 registerLocaleData(localeFr, 'pt');
@@ -38,7 +37,6 @@ registerLocaleData(localeFr, 'pt');
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     TemplateModule,
-    CategoriaModule,
     SupermercadoModule
   ],
   providers: [

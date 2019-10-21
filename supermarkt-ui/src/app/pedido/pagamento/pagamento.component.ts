@@ -13,7 +13,7 @@ import { PedidoService } from 'src/app/pedido/pedido.service';
 export class PagamentoComponent implements OnInit {
 
   pedido: any;
-  formasDePagamento: Array<any>;
+  tiposPagamento: Array<any>;
   pagamento: any = {};
 
   constructor(
@@ -31,8 +31,8 @@ export class PagamentoComponent implements OnInit {
         this.pedido = pedido;
         console.log(this.pedido);
         this.pagamento = { pedido, valor: pedido.total };
-        this.supermercadoService.formasDePagamento(pedido.supermercado)
-          .subscribe(formasDePagamento => this.formasDePagamento = formasDePagamento);
+        this.supermercadoService.tiposPagamento(pedido.supermercado)
+          .subscribe(tiposPagamento => this.tiposPagamento = tiposPagamento);
       });
   }
 

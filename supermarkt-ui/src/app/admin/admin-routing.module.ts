@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-    { path: 'categorias', loadChildren: () => import(`./categoria/categoria.module`).then(m => m.CategoriaModule) },
+    { path: 'tipos-pagamentos', loadChildren: () => import(`./tipo-pagamento/tipo-pagamento.module`).then(m => m.TipoPagamentoModule) },
 ];
 
 @NgModule({

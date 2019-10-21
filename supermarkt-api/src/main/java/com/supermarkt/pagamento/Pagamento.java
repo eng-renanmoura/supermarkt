@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-import com.supermarkt.admin.FormaDePagamento;
+import com.supermarkt.admin.TipoPagamento;
 import com.supermarkt.pedido.Pedido;
 
 import lombok.AllArgsConstructor;
@@ -60,6 +60,6 @@ public class Pagamento {
 	private Pedido pedido;
 
 	@ManyToOne(optional=false)
-	private FormaDePagamento formaDePagamento;
+	private TipoPagamento tipoPagamento;
 
 }

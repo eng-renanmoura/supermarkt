@@ -6,9 +6,9 @@ CREATE TABLE pagamento (
   expiracao varchar(7) NOT NULL,
   codigo varchar(3) DEFAULT NULL,
   situacao varchar(255) NOT NULL,
-  forma_de_pagamento_id bigint(20) NOT NULL,
+  tipo_pagamento_id bigint(20) NOT NULL,
   pedido_id bigint(20) NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (forma_de_pagamento_id) REFERENCES forma_de_pagamento(id),
+  FOREIGN KEY (tipo_pagamento_id) REFERENCES tipo_pagamento(id),
   FOREIGN KEY (pedido_id) REFERENCES pedido(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

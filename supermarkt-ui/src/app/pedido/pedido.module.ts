@@ -16,7 +16,6 @@ import { RatingModule } from 'primeng/rating';
 import { DialogModule } from 'primeng/dialog';
 import { PedidoRoutingModule } from './pedido-routing.module';
 import { PedidoService } from './pedido.service';
-import { PipesModule } from './pipes/pipes.module';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {DropdownModule} from 'primeng/dropdown';
@@ -44,7 +43,6 @@ import { rxStompConfig } from 'src/app/rx-stomp.config';
     TabViewModule,
     DialogModule,
     TextMaskModule,
-    PipesModule,
     DropdownModule
   ],
   providers: [

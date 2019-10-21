@@ -11,14 +11,14 @@
           <div class="p-grid">
             
             <div class="p-col-11">
-              <label for="formaDePagamento">Forma de pagamento</label>
+              <label for="tipoPagamento">Tipo de pagamento</label>
             <!--div class="p-col-12" style="margin: -5px 1px">
               <p-dropdown required id="formaDePagamento" name="formaDePagamento"
                   [options]="formasDePagamento" [(ngModel)]="pagamento.formaDePagamento"></p-dropdown>
             </div-->
               <div class="p-col-4" >
-                <select required id="formaDePagamento" name="formaDePagamento" [(ngModel)]="pagamento.formaDePagamento">
-                  <option *ngFor="let forma of formasDePagamento" [ngValue]="forma">{{ forma.nome }}</option>
+                <select required id="tipoPagamento" name="tipoPagamento" [(ngModel)]="pagamento.tipoPagamento">
+                  <option *ngFor="let tipo of tiposPagamento" [ngValue]="tipo">{{ tipo.nome }}</option>
                 </select>
               </div>
             </div>
