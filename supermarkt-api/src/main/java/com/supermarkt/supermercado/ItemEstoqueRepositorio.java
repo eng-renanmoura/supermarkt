@@ -8,4 +8,6 @@ public interface ItemEstoqueRepositorio extends JpaRepository<ItemEstoque, Long>
 	
 	List<ItemEstoque> findAllBySupermercado(Supermercado supermercado);
 
+	List<ItemEstoque> findByNomeContainingIgnoreCase(String nome);
+
 }
