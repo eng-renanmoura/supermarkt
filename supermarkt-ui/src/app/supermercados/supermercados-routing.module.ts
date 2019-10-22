@@ -10,7 +10,8 @@ const routes: Routes = [
     component: PedidoPendenteComponent,
     canActivate: [AutorizacaoGuard],
     data: { role: 'SUPERMERCADO'}
-  }
+  },
+  { path: ':supermercadoId/estoque', loadChildren: () => import(`./estoque/estoque.module`).then(m => m.EstoqueModule) },
 ];
 
 @NgModule({

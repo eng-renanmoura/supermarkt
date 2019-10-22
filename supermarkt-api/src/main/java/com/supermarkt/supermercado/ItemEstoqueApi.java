@@ -13,9 +13,9 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-public class EstoqueApi {
+public class ItemEstoqueApi {
 	
-	private EstoqueRepositorio repo;
+	private ItemEstoqueRepositorio repo;
 	
 	@GetMapping("/supermercados/{idSupermercado}/estoque")
 	public List<ItemEstoqueDto> estoqueDoSupermercado(@PathVariable("idSupermercado") Long idSupermercado) {
