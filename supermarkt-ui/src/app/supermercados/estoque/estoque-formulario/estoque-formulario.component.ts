@@ -44,13 +44,10 @@ export class EstoqueFormularioComponent implements OnInit {
     this.estoqueForm = this.fb.group({
       id: null,
       nome: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      cnpj: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
       descricao: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      cep: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      endereco: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      taxaDeEntregaEmReais: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      tempoDeEntregaMinimoEmMinutos: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      tempoDeEntregaMaximoEmMinutos: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      quantidade: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      preco: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      precoPromocional: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
     });
   }
 
@@ -71,14 +68,14 @@ export class EstoqueFormularioComponent implements OnInit {
     return !this.estoqueForm.valid;
   }
 
-  private updateItemForm(supermercado) {
+  private updateItemForm(estoque) {
     this.estoqueForm.patchValue({
-        precoPromocional: supermercado.precoPromocional,
-        preco: supermercado.preco,
-        quantidade: supermercado.quantidade,
-        descricao: supermercado.descricao,
-        nome: supermercado.nome,
-        id: supermercado.id
+        precoPromocional: estoque.precoPromocional,
+        preco: estoque.preco,
+        quantidade: estoque.quantidade,
+        descricao: estoque.descricao,
+        nome: estoque.nome,
+        id: estoque.id
     });
   }
 
