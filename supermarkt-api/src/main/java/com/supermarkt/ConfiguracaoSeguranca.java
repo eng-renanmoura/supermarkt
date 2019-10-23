@@ -32,8 +32,6 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests()
-		.antMatchers("/parceiros/supermercados/{supermercadoId}/estoque/**").hasRole(Role.ROLES.ADMIN.name());
 		
 		http.authorizeRequests()
 			.antMatchers("/supermercados/**", "/pedidos/**", "/pagamentos/**", "/tipo-pagamento/**").permitAll()
@@ -42,7 +40,8 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter {
 			.antMatchers("/autenticacao/**").permitAll()
 			.antMatchers("/admin/**").hasRole(Role.ROLES.ADMIN.name())
 			.antMatchers(HttpMethod.POST, "/parceiros/supermercados").permitAll()
-			.antMatchers("/parceiros/supermercados/{supermercadoId}/estoque/**").access("@autorizacaoServico.checarTargetId(authentication,#supermercadoId)")
+			.antMatchers("/parceiros/supermercados/{supermercadoId}/estoque/**")
+						.access("@autorizacaoServico.checarTargetId(authentication,#supermercadoId) or hasRole('ADMIN')")
 			.antMatchers("/parceiros/supermercados/{supermercadoId}/**").access("@autorizacaoServico.checarTargetId(authentication,#supermercadoId)")
 			.antMatchers("/parceiros/**").hasRole(Role.ROLES.SUPERMERCADO.name())
 			.anyRequest().authenticated()
