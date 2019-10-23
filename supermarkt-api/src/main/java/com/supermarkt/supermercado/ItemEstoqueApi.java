@@ -21,7 +21,7 @@ public class ItemEstoqueApi {
 	
 	private ItemEstoqueRepositorio repo;
 	
-	@GetMapping("/supermercados/{idSupermercado}/estoque")
+	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque")
 	public List<ItemEstoqueDto> estoqueDoSupermercado(@PathVariable("idSupermercado") Long idSupermercado) {
 		Supermercado supermercado = new Supermercado();
 		supermercado.setId(idSupermercado);
@@ -29,18 +29,18 @@ public class ItemEstoqueApi {
 				.collect(Collectors.toList());
 	}
 	
-	@GetMapping("/supermercados/{idSupermercado}/estoque/{idEstoque}")
+	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque/{idEstoque}")
 	public ItemEstoqueDto porId(@PathVariable("idEstoque") Long idEstoque) {
 		ItemEstoque estoque = repo.findById(idEstoque).orElseThrow(() -> new RecursoNaoEncontradoException());
 		return new ItemEstoqueDto(estoque);
 	}
 	
-	@PostMapping("/supermercados/{idSupermercado}/estoque/")
+	@PostMapping("/parceiros/supermercados/{idSupermercado}/estoque/")
 	public ItemEstoqueDto adiciona(@RequestBody ItemEstoque itemEstoque) {
 		return new ItemEstoqueDto(repo.save(itemEstoque));
 	}
 
-	@PutMapping("/supermercados/{idSupermercado}/estoque//{id}")
+	@PutMapping("/parceiros/supermercados/{idSupermercado}/estoque//{id}")
 	public ItemEstoqueDto atualiza(@RequestBody ItemEstoque itemEstoque) {
 		return new ItemEstoqueDto(repo.save(itemEstoque));
 	}
@@ -50,13 +50,13 @@ public class ItemEstoqueApi {
 		repo.deleteById(id);
 	}
 	
-	@GetMapping("/supermercados/{idSupermercado}/estoque//{id}")
+	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque//{id}")
 	public ItemEstoqueDto itemEstoquePorId(@PathVariable("id") Long id) {
 		ItemEstoque itemEstoque = repo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
 		return new ItemEstoqueDto(itemEstoque); 
 	}
 	
-	@GetMapping("/supermercados/{idSupermercado}/estoque/{nome}")
+	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque/{nome}")
 	public List<ItemEstoqueDto> buscarPorNome(@PathVariable("nome") String nome) {
 		return repo.findByNomeContainingIgnoreCase(nome).stream().map(ItemEstoqueDto::new).collect(Collectors.toList());
 	}

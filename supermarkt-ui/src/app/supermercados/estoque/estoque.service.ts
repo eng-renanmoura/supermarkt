@@ -32,8 +32,8 @@ export class EstoqueService {
     return this.http.get(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque/${idItemEstoque}`);
   }
 
-  estoquePorSupermercadoId(idSupermercado): Observable<any> {
-    return this.http.get(`${this.API}/parceiros/supermercado/${idSupermercado}/estoque`);
+  estoquePorSupermercadoId(supermercadoId): Observable<any> {
+    return this.http.get(`${this.API}/parceiros/supermercados/${supermercadoId}/estoque`);
   }
 
 }

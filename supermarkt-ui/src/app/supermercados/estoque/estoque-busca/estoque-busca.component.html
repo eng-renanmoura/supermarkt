@@ -3,11 +3,11 @@
         <p-toast [style]="{marginTop: '50px'}"></p-toast>
         <div class="p-grid">
             <div class="p-col-12">
-                <h1>Pesquisa de Estoque do Supermercado</h1>
+                <h1>Pesquisa de Estoque do Supermercado {{supermercado.nome}}</h1>
             </div>
     
             <div class="p-col-12">
-                <button pButton type="button" label="Novo supermercado" routerLink="/admin/supermercados/novo"></button>
+                <button pButton type="button" label="Novo item" routerLink="/admin/supermercados/novo"></button>
             </div>
     
             <div class="p-col-6">
@@ -15,7 +15,7 @@
             </div>
     
             <div class="p-col-12">
-                <app-estoque-grade (delete)="dialogDelete($event)" [supermercados]="itensEstoque"></app-estoque-grade>
+                <app-estoque-grade (delete)="dialogDelete($event)" [itensEstoque]="itensEstoque"></app-estoque-grade>
             </div>
         </div>
     </div>

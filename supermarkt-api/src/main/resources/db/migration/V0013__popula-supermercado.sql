@@ -36,7 +36,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (3, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 1);
+) values (3, 'Iogurte de Morango', 'Iogurte 500ml', 10, 3.5, 2.5, 1);
 
 INSERT INTO item_estoque (
   id,
@@ -46,7 +46,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (4, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 1);
+) values (4, 'Chocolate Nestlé', 'Chocolate Nestlé 400g', 10, 3.5, 2.5, 1);
 
 INSERT INTO item_estoque (
   id,
@@ -56,7 +56,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (5, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 1);
+) values (5, 'Coxa e Sobrecoxa de Frango', 'Coxa e Sobrecoxa de Frango 1Kg', 10, 3.5, 2.5, 1);
 
 INSERT INTO item_estoque (
   id,
@@ -66,7 +66,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (6, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 1);
+) values (6, 'Refrigerante Coca-Cola', 'Coca-Cola 600ml', 10, 3.5, 2.5, 1);
 
 INSERT INTO item_estoque (
   id,
@@ -76,7 +76,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (7, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 1);
+) values (7, 'Manteiga do Campo', 'Manteiga 200g', 10, 3.5, 2.5, 1);
 
 INSERT INTO item_estoque (
   id,
@@ -86,7 +86,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (8, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 1);
+) values (8, 'Queijo Minas Tirolez', 'Queijo Minas 650g', 10, 3.5, 2.5, 1);
 
 INSERT INTO item_estoque (
   id,
@@ -96,7 +96,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (9, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 1);
+) values (9, 'Sabão em Pó Omo', 'Sabão em Pó Omo', 10, 3.5, 2.5, 1);
 
 INSERT INTO item_estoque (
   id,
@@ -106,7 +106,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (10, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 1);
+) values (10, 'Detergente Ypê', 'Detergente Ypê 300ml', 10, 3.5, 2.5, 1);
 
 INSERT INTO item_estoque (
   id,
@@ -116,7 +116,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (11, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 1);
+) values (11, 'Açaí', 'Açaí raíz, nada de granola, leite em pó e banana', 10, 3.5, 2.5, 1);
 
 
 -- Formosa
@@ -137,7 +137,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (12, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 2);
+) values (12, 'Nutella', 'Nutella 200g', 10, 3.5, 2.5, 2);
 
 INSERT INTO item_estoque (
   id,
@@ -147,7 +147,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (13, 'Cerveja Bohemia', 'Cerveja Bohemia 350ml', 10, 3.5, 2.5, 2);
+) values (13, 'Sucrilhos Kellogs', 'Sucrilhos Kellogs 1Kg', 10, 3.5, 2.5, 2);
 
 INSERT INTO item_estoque (
   id,
@@ -157,7 +157,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (14, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 2);
+) values (14, 'Arroz Tio Urbano', 'Arroz Tipo 1 5Kg', 10, 3.5, 2.5, 2);
 
 INSERT INTO item_estoque (
   id,
@@ -167,7 +167,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (15, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 2);
+) values (15, 'Cartela de Ovo', 'Cartela de Ovo com 24un', 10, 3.5, 2.5, 2);
 
 INSERT INTO item_estoque (
   id,
@@ -177,7 +177,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (16, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 2);
+) values (16, 'Caneta Bic', 'Caneta Bic Azul', 10, 3.5, 2.5, 2);
 
 INSERT INTO item_estoque (
   id,
@@ -187,7 +187,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (17, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 2);
+) values (17, 'Lápis Faber-Castell', 'Caixa de lápis de cor com 12 cores', 10, 3.5, 2.5, 2);
 
 INSERT INTO item_estoque (
   id,
@@ -197,7 +197,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (18, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 2);
+) values (18, 'Caderno Tilibra', 'Caderno de 10 matérias', 10, 3.5, 2.5, 2);
 
 INSERT INTO item_estoque (
   id,
@@ -207,7 +207,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (19, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 2);
+) values (19, 'Borracha Mercur', 'Borracha escolar', 10, 3.5, 2.5, 2);
 
 INSERT INTO item_estoque (
   id,
@@ -217,7 +217,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (20, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 2);
+) values (20, 'Café Maranatá', 'Café em Pó 250g', 10, 3.5, 2.5, 2);
 
 INSERT INTO item_estoque (
   id,
@@ -227,7 +227,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (21, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 2);
+) values (21, 'Leite Ninho', 'Lei em Pó 500g', 10, 3.5, 2.5, 2);
 
 INSERT INTO item_estoque (
   id,
@@ -237,7 +237,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (22, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 2);
+) values (22, 'Biscoito Passatempo', 'Biscoito 200g', 10, 3.5, 2.5, 2);
 
 
 -- Nazaré
@@ -258,7 +258,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (23, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 3);
+) values (23, 'Redbull', 'Bebida energética', 10, 3.5, 2.5, 3);
 
 INSERT INTO item_estoque (
   id,
@@ -268,7 +268,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (24, 'Cerveja Bohemia', 'Cerveja Bohemia 350ml', 10, 3.5, 2.5, 3);
+) values (24, 'Barbeador Gillette', 'Pacote com 4 Barbeadores', 10, 3.5, 2.5, 3);
 
 INSERT INTO item_estoque (
   id,
@@ -278,7 +278,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (25, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 3);
+) values (25, 'Lã de aço Bombril', 'Lã de aço', 10, 3.5, 2.5, 3);
 
 INSERT INTO item_estoque (
   id,
@@ -288,7 +288,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (26, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 3);
+) values (26, 'Toddy em Pó', 'Toddy em Pó 500g', 10, 3.5, 2.5, 3);
 
 INSERT INTO item_estoque (
   id,
@@ -298,7 +298,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (27, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 3);
+) values (27, 'Biscoito Negresco', 'Biscoito Negresco 150g', 10, 3.5, 2.5, 3);
 
 INSERT INTO item_estoque (
   id,
@@ -308,7 +308,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (28, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 3);
+) values (28, 'Geléia de Morango', 'Geléia QueensBerry', 10, 3.5, 2.5, 3);
 
 INSERT INTO item_estoque (
   id,
@@ -318,7 +318,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (29, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 3);
+) values (29, 'Shampoo Protex', 'Shampoo anticaspa', 10, 3.5, 2.5, 3);
 
 INSERT INTO item_estoque (
   id,
@@ -328,7 +328,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (30, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 3);
+) values (30, 'Molho de Tomate Heinz', 'Molho de Tomate 340g', 10, 3.5, 2.5, 3);
 
 INSERT INTO item_estoque (
   id,
@@ -338,7 +338,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (31, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 3);
+) values (31, 'Maionese Hellmanns', 'Maionese 500g', 10, 3.5, 2.5, 3);
 
 INSERT INTO item_estoque (
   id,
@@ -348,7 +348,7 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (32, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 3);
+) values (32, 'Óleo de Soja Liza', 'Óleo de Soja Liza 900ml', 10, 3.5, 2.5, 3);
 
 INSERT INTO item_estoque (
   id,
@@ -358,5 +358,5 @@ INSERT INTO item_estoque (
   preco,
   preco_promocional,
   supermercado_id
-) values (33, 'Cerveja Heineken', 'Cerveja Heineken 600ml', 10, 3.5, 2.5, 3);
+) values (33, 'Pasta de Dente Colgate', 'Pasta de Dente 100g', 10, 3.5, 2.5, 3);
 

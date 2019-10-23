@@ -10,7 +10,7 @@ const routes: Routes = [
       path: '',
       component: EstoqueBuscaComponent ,
       canActivate: [AutorizacaoGuard],
-      data: { role: 'ADMIN'}
+      data: { role: ['ADMIN', 'SUPERMERCADO']}
   },
   {
       path: 'novo',

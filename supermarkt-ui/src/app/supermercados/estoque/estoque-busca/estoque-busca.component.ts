@@ -3,28 +3,35 @@ import { EstoqueService } from '../estoque.service';
 import { ConfirmationService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 
+import { SupermercadoService } from '../../../admin/supermercado/supermercado.service';
+
 import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-estoque-busca',
   templateUrl: './estoque-busca.component.html',
-  styleUrls: ['./estoque-busca.component.scss']
+  styleUrls: ['./estoque-busca.component.scss'],
+  providers: [MessageService]
 })
 export class EstoqueBuscaComponent implements OnInit {
 
   itensEstoque = [];
   inputSearch;
-  idSupermercado = '';
+  supermercadoId = '';
+  supermercado;
 
   constructor(
     private estoqueService: EstoqueService,
+    private supermercadoService: SupermercadoService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.idSupermercado = this.route.snapshot.params.idSupermercado;
+    this.supermercadoId = this.route.snapshot.params.supermercadoId;
+    this.supermercadoService.getSupermercadoById(this.supermercadoId)
+        .subscribe( supermercado => this.supermercado = supermercado);
     this.loadEstoque();
   }
 
@@ -44,10 +51,10 @@ export class EstoqueBuscaComponent implements OnInit {
   }
 
   getItemEstoqueByName(value) {
-    this.estoqueService.getByName(this.idSupermercado, value)
+    this.estoqueService.getByName(this.supermercadoId, value)
       .subscribe(
-        supermercados => {
-          this.itensEstoque = supermercados;
+        itensEstoque => {
+          this.itensEstoque = itensEstoque;
         },
         error => {
           this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
@@ -56,10 +63,10 @@ export class EstoqueBuscaComponent implements OnInit {
   }
 
   private loadEstoque() {
-    this.estoqueService.estoquePorSupermercadoId(this.idSupermercado)
+    this.estoqueService.estoquePorSupermercadoId(this.supermercadoId)
         .subscribe(
-          supermercados => {
-            this.itensEstoque = supermercados;
+          itensEstoque => {
+            this.itensEstoque = itensEstoque;
           },
           error => {
             this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
@@ -68,7 +75,7 @@ export class EstoqueBuscaComponent implements OnInit {
   }
 
   private deleteItemEstoque(itemEstoque) {
-    this.estoqueService.remove(this.idSupermercado, itemEstoque)
+    this.estoqueService.remove(this.supermercadoId, itemEstoque)
       .subscribe(
         () => {
           this.loadEstoque();
