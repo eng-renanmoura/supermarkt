@@ -33,12 +33,16 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+		.antMatchers("/parceiros/supermercados/{supermercadoId}/estoque/**").hasRole(Role.ROLES.ADMIN.name());
+		
+		http.authorizeRequests()
 			.antMatchers("/supermercados/**", "/pedidos/**", "/pagamentos/**", "/tipo-pagamento/**").permitAll()
 			.antMatchers("/h2/**").permitAll() //liberar o h2 console, não recomendado para produção
 			.antMatchers("/socket/**").permitAll()
 			.antMatchers("/autenticacao/**").permitAll()
 			.antMatchers("/admin/**").hasRole(Role.ROLES.ADMIN.name())
 			.antMatchers(HttpMethod.POST, "/parceiros/supermercados").permitAll()
+			.antMatchers("/parceiros/supermercados/{supermercadoId}/estoque/**").access("@autorizacaoServico.checarTargetId(authentication,#supermercadoId)")
 			.antMatchers("/parceiros/supermercados/{supermercadoId}/**").access("@autorizacaoServico.checarTargetId(authentication,#supermercadoId)")
 			.antMatchers("/parceiros/**").hasRole(Role.ROLES.SUPERMERCADO.name())
 			.anyRequest().authenticated()
@@ -50,6 +54,7 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.addFilterBefore(filtroAutenticacaoJwt, UsernamePasswordAuthenticationFilter.class)
 			.exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint);
+		
 		
 	}
 	
