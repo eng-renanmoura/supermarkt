@@ -10,19 +10,19 @@ const routes: Routes = [
       path: '',
       component: SupermercadoBuscaComponent ,
       canActivate: [AutorizacaoGuard],
-      data: { role: 'ADMIN'}
+      data: { role: ['ADMIN']}
   },
   {
       path: 'novo',
       component: SupermercadoFormularioComponent,
       canActivate: [AutorizacaoGuard],
-      data: { role: 'ADMIN'}
+      data: { role: ['ADMIN']}
   },
   {
       path: ':idSupermercado',
       component: SupermercadoFormularioComponent,
       canActivate: [AutorizacaoGuard],
-      data: { role: 'ADMIN'}
+      data: { role: ['ADMIN']}
   },
 ];
 

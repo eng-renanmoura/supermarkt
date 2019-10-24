@@ -10,19 +10,19 @@ const routes: Routes = [
       path: '',
       component: TipoPagamentoBuscaComponent ,
       canActivate: [AutorizacaoGuard],
-      data: { role: 'ADMIN'}
+      data: { role: ['ADMIN']}
   },
   {
       path: 'novo',
       component: TipoPagamentoFormularioComponent,
       canActivate: [AutorizacaoGuard],
-      data: { role: 'ADMIN'}
+      data: { role: ['ADMIN']}
   },
   {
       path: ':idTipo',
       component: TipoPagamentoFormularioComponent,
       canActivate: [AutorizacaoGuard],
-      data: { role: 'ADMIN'}
+      data: { role: ['ADMIN']}
   },
 ];
 
