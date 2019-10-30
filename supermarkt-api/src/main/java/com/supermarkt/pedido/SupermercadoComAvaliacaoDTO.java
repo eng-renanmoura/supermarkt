@@ -1,6 +1,6 @@
 package com.supermarkt.pedido;
 
-import com.supermarkt.supermercado.SupermercadoDto;
+import com.supermarkt.supermercado.SupermercadoDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class SupermercadoComAvaliacaoDTO {
 	
-	SupermercadoDto supermercado;
+	SupermercadoDTO supermercado;
 	Double mediaDasAvaliacoes;
 
 }

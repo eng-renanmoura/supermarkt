@@ -7,11 +7,11 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface SupermercadoMapper {
 
-	Supermercado paraSupermercado(SupermercadoDto supermercadoDto);
+	Supermercado paraSupermercado(SupermercadoDTO supermercadoDto);
 	
-	SupermercadoDto paraSupermercadoDto(Supermercado supermercado);
+	SupermercadoDTO paraSupermercadoDto(Supermercado supermercado);
 	
-	List<SupermercadoDto> paraSupermercadoDto(List<Supermercado> supermercado);
+	List<SupermercadoDTO> paraSupermercadoDto(List<Supermercado> supermercado);
 	
-	List<Supermercado> paraSupermercado(List<SupermercadoDto> supermercadoDto);
+	List<Supermercado> paraSupermercado(List<SupermercadoDTO> supermercadoDto);
 }

@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class SupermercadoDto {
+public class SupermercadoDTO {
 
 	private Long id;
 

@@ -25,23 +25,23 @@ public class SupermercadoAPI {
 	private SupermercadoMapper supermercadoMapper;
 
 	@GetMapping("/admin/supermercados")
-	public List<SupermercadoDto> lista() {
+	public List<SupermercadoDTO> lista() {
 		return supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAllByOrderByNomeAsc());
 	}
 	
 	@GetMapping("/admin/supermercados/{nome}")
-	public List<SupermercadoDto> buscarPorNome(@PathVariable("nome") String nome) {
+	public List<SupermercadoDTO> buscarPorNome(@PathVariable("nome") String nome) {
 		return supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findByNomeContainingIgnoreCase(nome));
 	}
 	
 	@GetMapping("/supermercados/{id}")
-	public SupermercadoDto detalha(@PathVariable("id") Long id) {
+	public SupermercadoDTO detalha(@PathVariable("id") Long id) {
 		Supermercado supermercado = supermercadoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
 		return supermercadoMapper.paraSupermercadoDto(supermercado);
 	}
 	
 	@GetMapping("/supermercados")
-	public List<SupermercadoDto> detalhePorIds(@RequestParam List<Long> ids) {
+	public List<SupermercadoDTO> detalhePorIds(@RequestParam List<Long> ids) {
 		return supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAllById(ids));
 	}
 	
@@ -51,7 +51,7 @@ public class SupermercadoAPI {
 	}
 	
 	@GetMapping("/parceiros/supermercados/{id}")
-	public SupermercadoDto detalhaParceiro(@PathVariable("id") Long id) {
+	public SupermercadoDTO detalhaParceiro(@PathVariable("id") Long id) {
 		Supermercado supermercado = supermercadoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
 		return supermercadoMapper.paraSupermercadoDto(supermercado);
 	}
@@ -72,7 +72,7 @@ public class SupermercadoAPI {
 	}
 
 	@GetMapping("/admin/supermercados/em-aprovacao")
-	public List<SupermercadoDto> emAprovacao() {
+	public List<SupermercadoDTO> emAprovacao() {
 		return supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAllByAprovado(false));
 	}
 

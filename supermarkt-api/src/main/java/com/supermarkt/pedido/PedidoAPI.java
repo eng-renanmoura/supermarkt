@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.supermarkt.excecao.RecursoNaoEncontradoException;
-import com.supermarkt.supermercado.SupermercadoDto;
+import com.supermarkt.supermercado.SupermercadoDTO;
 import com.supermarkt.supermercado.SupermercadoMapper;
 import com.supermarkt.supermercado.SupermercadoRepositorio;
 
@@ -66,9 +66,9 @@ class PedidoAPI {
 	
 	@GetMapping("/pedidos/supermercados-avaliados")
 	public List<SupermercadoComAvaliacaoDTO> listaSupermercadosAvaliados(){
-		List<SupermercadoDto> supermercados = supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAll());
+		List<SupermercadoDTO> supermercados = supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAll());
 		List<SupermercadoComAvaliacaoDTO> supermercadosComAvaliacaoDto = new ArrayList<SupermercadoComAvaliacaoDTO>();
-		for (SupermercadoDto supermercado : supermercados) {
+		for (SupermercadoDTO supermercado : supermercados) {
 			Double media = avaliacaoRepo.mediaDoSupermercadoPeloId(supermercado.getId());
 			SupermercadoComAvaliacaoDTO superComAvaliacao = new SupermercadoComAvaliacaoDTO(supermercado, media);
 			supermercadosComAvaliacaoDto.add(superComAvaliacao);
@@ -78,7 +78,7 @@ class PedidoAPI {
 	
 	@GetMapping("/pedidos/supermercado-avaliado/{supermercadoId}")
 	public SupermercadoComAvaliacaoDTO supermercadosAvaliados(@PathVariable("supermercadoId") Long supermercadoId){
-		SupermercadoDto supermercado =  supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findById(supermercadoId).get());
+		SupermercadoDTO supermercado =  supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findById(supermercadoId).get());
 		Double media = avaliacaoRepo.mediaDoSupermercadoPeloId(supermercado.getId());
 		SupermercadoComAvaliacaoDTO superComAvaliacao = new SupermercadoComAvaliacaoDTO(supermercado, media);
 		superComAvaliacao.setSupermercado(supermercado);
