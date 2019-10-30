@@ -1,9 +1,9 @@
 package com.supermarkt.admin;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,50 +12,47 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.supermarkt.excecao.RecursoNaoEncontradoException;
+import lombok.RequiredArgsConstructor;
 
-import lombok.AllArgsConstructor;
-
+@RequiredArgsConstructor
 @RestController
-@AllArgsConstructor
-class TipoPagamentoAPI {
+public class TipoPagamentoAPI {
 
-	private TipoPagamentoRepositorio tipoPagamentoRepo;
+	private final TipoPagamentoServico tipoPagamentoServico;
 
 	@GetMapping("/tipo-pagamento")
-	public List<TipoPagamentoDTO> lista() {
-		return tipoPagamentoRepo.findAllByOrderByNomeAsc().stream().map(TipoPagamentoDTO::new).collect(Collectors.toList());
+	public ResponseEntity<List<TipoPagamentoDTO>> lista() {
+		return ResponseEntity.ok(tipoPagamentoServico.listaTodos());
 	}
 
 	@GetMapping("/admin/tipo-pagamento/formas")
-	public List<FormaPagamentoDTO> formas() {
-		return Arrays.asList(TipoPagamento.Forma.values()).stream()
-				.map(forma -> new FormaPagamentoDTO(forma)).collect(Collectors.toList());
+	public ResponseEntity<List<FormaPagamentoDTO>> formas() {
+		return ResponseEntity.ok(tipoPagamentoServico.formas());
 	}
 
 	@PostMapping("/admin/tipo-pagamento")
-	public TipoPagamentoDTO adiciona(@RequestBody TipoPagamento tipoPagamento) {
-		return new TipoPagamentoDTO(tipoPagamentoRepo.save(tipoPagamento));
+	public ResponseEntity<TipoPagamentoDTO> adiciona(@RequestBody TipoPagamento tipoPagamento) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(tipoPagamentoServico.adiciona(tipoPagamento));
 	}
 
 	@PutMapping("/admin/tipo-pagamento/{id}")
-	public TipoPagamentoDTO atualiza(@RequestBody TipoPagamento tipoPagamento) {
-		return new TipoPagamentoDTO(tipoPagamentoRepo.save(tipoPagamento));
+	public ResponseEntity<TipoPagamentoDTO> atualiza(@RequestBody TipoPagamento tipoPagamento) {
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(tipoPagamentoServico.atualiza(tipoPagamento));
 	}
 
 	@DeleteMapping("/admin/tipo-pagamento/{id}")
-	public void remove(@PathVariable("id") Long id) {
-		tipoPagamentoRepo.deleteById(id);
+	public ResponseEntity<?> remove(@PathVariable("id") Long id) {
+		tipoPagamentoServico.remove(id);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@GetMapping("/admin/tipo-pagamento/{id}")
-	public TipoPagamentoDTO tipoPorId(@PathVariable("id") Long id) {
-		TipoPagamento tipoPagamento = tipoPagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
-		return new TipoPagamentoDTO(tipoPagamento); 
+	public ResponseEntity<TipoPagamentoDTO> tipoPorId(@PathVariable("id") Long id) {
+		return ResponseEntity.ok(tipoPagamentoServico.tipoPorId(id));
 	}
 	
 	@GetMapping("/tipo-pagamento/{nome}")
-	public List<TipoPagamentoDTO> buscarPorNome(@PathVariable("nome") String nome) {
-		return tipoPagamentoRepo.findByNomeContainingIgnoreCase(nome).stream().map(TipoPagamentoDTO::new).collect(Collectors.toList());
+	public ResponseEntity<List<TipoPagamentoDTO>> buscarPorNome(@PathVariable("nome") String nome) {
+		return ResponseEntity.ok(tipoPagamentoServico.buscarPorNome(nome));
 	}
 }

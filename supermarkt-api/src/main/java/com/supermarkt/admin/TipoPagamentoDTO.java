@@ -14,8 +14,4 @@ public class TipoPagamentoDTO {
 	private String nome;
 	private String forma;
 	
-	public TipoPagamentoDTO(TipoPagamento tipoPagamento) {
-		this(tipoPagamento.getId(), tipoPagamento.getNome(), tipoPagamento.getForma().getCodigo());
-	}
-
 }
