@@ -18,29 +18,29 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-class TipoPagamentoApi {
+class TipoPagamentoAPI {
 
 	private TipoPagamentoRepositorio tipoPagamentoRepo;
 
 	@GetMapping("/tipo-pagamento")
-	public List<TipoPagamentoDto> lista() {
-		return tipoPagamentoRepo.findAllByOrderByNomeAsc().stream().map(TipoPagamentoDto::new).collect(Collectors.toList());
+	public List<TipoPagamentoDTO> lista() {
+		return tipoPagamentoRepo.findAllByOrderByNomeAsc().stream().map(TipoPagamentoDTO::new).collect(Collectors.toList());
 	}
 
 	@GetMapping("/admin/tipo-pagamento/formas")
-	public List<FormaPagamentoDto> formas() {
+	public List<FormaPagamentoDTO> formas() {
 		return Arrays.asList(TipoPagamento.Forma.values()).stream()
-				.map(forma -> new FormaPagamentoDto(forma)).collect(Collectors.toList());
+				.map(forma -> new FormaPagamentoDTO(forma)).collect(Collectors.toList());
 	}
 
 	@PostMapping("/admin/tipo-pagamento")
-	public TipoPagamentoDto adiciona(@RequestBody TipoPagamento tipoPagamento) {
-		return new TipoPagamentoDto(tipoPagamentoRepo.save(tipoPagamento));
+	public TipoPagamentoDTO adiciona(@RequestBody TipoPagamento tipoPagamento) {
+		return new TipoPagamentoDTO(tipoPagamentoRepo.save(tipoPagamento));
 	}
 
 	@PutMapping("/admin/tipo-pagamento/{id}")
-	public TipoPagamentoDto atualiza(@RequestBody TipoPagamento tipoPagamento) {
-		return new TipoPagamentoDto(tipoPagamentoRepo.save(tipoPagamento));
+	public TipoPagamentoDTO atualiza(@RequestBody TipoPagamento tipoPagamento) {
+		return new TipoPagamentoDTO(tipoPagamentoRepo.save(tipoPagamento));
 	}
 
 	@DeleteMapping("/admin/tipo-pagamento/{id}")
@@ -49,13 +49,13 @@ class TipoPagamentoApi {
 	}
 	
 	@GetMapping("/admin/tipo-pagamento/{id}")
-	public TipoPagamentoDto tipoPorId(@PathVariable("id") Long id) {
+	public TipoPagamentoDTO tipoPorId(@PathVariable("id") Long id) {
 		TipoPagamento tipoPagamento = tipoPagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
-		return new TipoPagamentoDto(tipoPagamento); 
+		return new TipoPagamentoDTO(tipoPagamento); 
 	}
 	
 	@GetMapping("/tipo-pagamento/{nome}")
-	public List<TipoPagamentoDto> buscarPorNome(@PathVariable("nome") String nome) {
-		return tipoPagamentoRepo.findByNomeContainingIgnoreCase(nome).stream().map(TipoPagamentoDto::new).collect(Collectors.toList());
+	public List<TipoPagamentoDTO> buscarPorNome(@PathVariable("nome") String nome) {
+		return tipoPagamentoRepo.findByNomeContainingIgnoreCase(nome).stream().map(TipoPagamentoDTO::new).collect(Collectors.toList());
 	}
 }

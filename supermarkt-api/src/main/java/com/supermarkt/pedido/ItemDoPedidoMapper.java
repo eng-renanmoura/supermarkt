@@ -7,12 +7,12 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ItemDoPedidoMapper {
 	
-	ItemDoPedido paraItemDoPedido(ItemDoPedidoDto itemDoPedidoDto);
+	ItemDoPedido paraItemDoPedido(ItemDoPedidoDTO itemDoPedidoDto);
 	
-	ItemDoPedidoDto paraItemDoPedidoDto(ItemDoPedido itemDoPedido);
+	ItemDoPedidoDTO paraItemDoPedidoDto(ItemDoPedido itemDoPedido);
 	
-	List<ItemDoPedidoDto> paraItemDoPedidoDto(List<ItemDoPedido> itensDoPedido);
+	List<ItemDoPedidoDTO> paraItemDoPedidoDto(List<ItemDoPedido> itensDoPedido);
 	
-	List<ItemDoPedido> paraItensDoPedido(List<ItemDoPedidoDto> itensDoPedidoDto);
+	List<ItemDoPedido> paraItensDoPedido(List<ItemDoPedidoDTO> itensDoPedidoDto);
 	
 }

@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class SupermercadoComAvaliacaoDto {
+public class SupermercadoComAvaliacaoDTO {
 	
 	SupermercadoDto supermercado;
 	Double mediaDasAvaliacoes;

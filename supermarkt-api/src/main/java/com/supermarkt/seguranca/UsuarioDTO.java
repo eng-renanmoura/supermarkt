@@ -3,7 +3,7 @@ package com.supermarkt.seguranca;
 import lombok.Data;
 
 @Data
-public class UsuarioDto {
+public class UsuarioDTO {
 
 	private String username;
 	private String password;

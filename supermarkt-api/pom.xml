@@ -15,12 +15,8 @@
 	<description>Supermarkt</description>
 
 	<properties>
-		<java.version>11</java.version>
-		<maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <org.mapstruct.version>1.2.0.Final</org.mapstruct.version>
-        <org.projectlombok.version>1.18.6</org.projectlombok.version>
-        <m2e.apt.activation>jdt_apt</m2e.apt.activation>
+		<java.version>1.8</java.version>
+        <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
 	</properties>
 
 	<dependencies>
@@ -56,10 +52,10 @@
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <scope>provided</scope>
         </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -100,12 +96,11 @@
                             <path>
                                 <groupId>org.projectlombok</groupId>
                                 <artifactId>lombok</artifactId>
-                                <version>${org.projectlombok.version}</version>
+                                <version>${lombok.version}</version>
                             </path>
                         </annotationProcessorPaths>
 				</configuration>
 			</plugin>
-            
             
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -1,7 +1,6 @@
 package com.supermarkt.supermercado;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,29 +19,30 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-public class SupermercadoApi {
+public class SupermercadoAPI {
 	
 	private SupermercadoRepositorio supermercadoRepo;
+	private SupermercadoMapper supermercadoMapper;
 
 	@GetMapping("/admin/supermercados")
 	public List<SupermercadoDto> lista() {
-		return supermercadoRepo.findAllByOrderByNomeAsc().stream().map(SupermercadoDto::new).collect(Collectors.toList());
+		return supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAllByOrderByNomeAsc());
 	}
 	
 	@GetMapping("/admin/supermercados/{nome}")
 	public List<SupermercadoDto> buscarPorNome(@PathVariable("nome") String nome) {
-		return supermercadoRepo.findByNomeContainingIgnoreCase(nome).stream().map(SupermercadoDto::new).collect(Collectors.toList());
+		return supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findByNomeContainingIgnoreCase(nome));
 	}
 	
 	@GetMapping("/supermercados/{id}")
 	public SupermercadoDto detalha(@PathVariable("id") Long id) {
 		Supermercado supermercado = supermercadoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
-		return new SupermercadoDto(supermercado);
+		return supermercadoMapper.paraSupermercadoDto(supermercado);
 	}
 	
 	@GetMapping("/supermercados")
 	public List<SupermercadoDto> detalhePorIds(@RequestParam List<Long> ids) {
-		return supermercadoRepo.findAllById(ids).stream().map(SupermercadoDto::new).collect(Collectors.toList());
+		return supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAllById(ids));
 	}
 	
 	@DeleteMapping("/admin/supermercados/{id}")
@@ -52,8 +52,8 @@ public class SupermercadoApi {
 	
 	@GetMapping("/parceiros/supermercados/{id}")
 	public SupermercadoDto detalhaParceiro(@PathVariable("id") Long id) {
-		Supermercado restaurante = supermercadoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
-		return new SupermercadoDto(restaurante);
+		Supermercado supermercado = supermercadoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
+		return supermercadoMapper.paraSupermercadoDto(supermercado);
 	}
 
 	@PostMapping("/parceiros/supermercados")
@@ -73,8 +73,7 @@ public class SupermercadoApi {
 
 	@GetMapping("/admin/supermercados/em-aprovacao")
 	public List<SupermercadoDto> emAprovacao() {
-		return supermercadoRepo.findAllByAprovado(false).stream().map(SupermercadoDto::new)
-				.collect(Collectors.toList());
+		return supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAllByAprovado(false));
 	}
 
 	@Transactional

@@ -7,12 +7,12 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface PedidoMapper {
 
-	Pedido paraPedido(PedidoDto PedidoDto);
+	Pedido paraPedido(PedidoDTO PedidoDto);
 	
-	PedidoDto paraPedidoDto(Pedido pedido);
+	PedidoDTO paraPedidoDto(Pedido pedido);
 	
-	List<PedidoDto> paraPedidoDto(List<Pedido> pedido);
+	List<PedidoDTO> paraPedidoDto(List<Pedido> pedido);
 	
-	List<Pedido> paraPedido(List<PedidoDto> pedidoDto);
+	List<Pedido> paraPedido(List<PedidoDTO> pedidoDto);
 	
 }

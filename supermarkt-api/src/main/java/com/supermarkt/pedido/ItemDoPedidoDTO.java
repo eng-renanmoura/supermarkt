@@ -1,21 +1,20 @@
 package com.supermarkt.pedido;
 
-import com.supermarkt.supermercado.ItemEstoqueDto;
+import com.supermarkt.supermercado.ItemEstoqueDTO;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class ItemDoPedidoDto {
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class ItemDoPedidoDTO {
 
 	private Long id;
 	private Integer quantidade;
 	private String observacao;
-	private ItemEstoqueDto itemEstoque;
+	private ItemEstoqueDTO itemEstoque;
 
 }

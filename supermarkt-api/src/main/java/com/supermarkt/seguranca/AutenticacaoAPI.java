@@ -17,7 +17,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/autenticacao")
 @AllArgsConstructor
-public class AutenticacaoApi {
+public class AutenticacaoAPI {
 	
 	private AuthenticationManager authManager;
 	private GerenciadorJwtToken gerenciadorJwtToken;
@@ -25,7 +25,7 @@ public class AutenticacaoApi {
 	private List<AutorizacaoTargetServico> autorizacaoTargetServicos;
 	
 	@PostMapping
-	public ResponseEntity<AutenticacaoDto> authenticate(@RequestBody UsuarioDto login) {
+	public ResponseEntity<AutenticacaoDTO> authenticate(@RequestBody UsuarioDTO login) {
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
 				login.getUsername(), login.getPassword());
 
@@ -34,7 +34,7 @@ public class AutenticacaoApi {
 			Usuario usuario = (Usuario) authentication.getPrincipal();
 			String jwt = gerenciadorJwtToken.gerarToken(usuario);
 			Long targetId = getTargetIdFor(usuario);
-			AutenticacaoDto tokenResponse = new AutenticacaoDto(usuario, jwt, targetId);
+			AutenticacaoDTO tokenResponse = new AutenticacaoDTO(usuario, jwt, targetId);
 			return ResponseEntity.ok(tokenResponse);
 		} catch (AuthenticationException e) {
 			return ResponseEntity.badRequest().build();
@@ -43,7 +43,7 @@ public class AutenticacaoApi {
 	}
 	
 	@PostMapping("/supermercado")
-	public Long register(@RequestBody UsuarioDto usuarioDto) {
+	public Long register(@RequestBody UsuarioDTO usuarioDto) {
 		Usuario usuario = usuarioDto.toUsuario();
 		usuario.addRole(Role.ROLES.SUPERMERCADO);
 		Usuario salvo = usuarioServico.salvar(usuario);

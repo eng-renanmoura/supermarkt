@@ -7,12 +7,12 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class FormaPagamentoDto {
+public class FormaPagamentoDTO {
 	
 	private String valor;
 	private String descricao;
 	
-	public FormaPagamentoDto(Forma forma) {
+	public FormaPagamentoDTO(Forma forma) {
 		this(forma.getCodigo(), forma.getDescricao());
 	}
 }

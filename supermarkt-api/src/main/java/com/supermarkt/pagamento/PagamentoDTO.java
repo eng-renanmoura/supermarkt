@@ -3,18 +3,17 @@ package com.supermarkt.pagamento;
 import java.math.BigDecimal;
 
 import com.supermarkt.admin.TipoPagamento;
-import com.supermarkt.pedido.PedidoDto;
+import com.supermarkt.pedido.PedidoDTO;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
-public class PagamentoDto {
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class PagamentoDTO {
 
 	private Long id;
 	private BigDecimal valor;
@@ -24,6 +23,6 @@ public class PagamentoDto {
 	private String codigo;
 	private Pagamento.Situacao situacao;
 	private TipoPagamento tipoPagamento;
-	private PedidoDto pedido;
+	private PedidoDTO pedido;
 
 }

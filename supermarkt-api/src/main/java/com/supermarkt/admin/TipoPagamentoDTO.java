@@ -1,17 +1,20 @@
 package com.supermarkt.admin;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
-public class TipoPagamentoDto {
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+public class TipoPagamentoDTO {
 	
 	private Long id;
 	private String nome;
 	private String forma;
 	
-	public TipoPagamentoDto(TipoPagamento tipoPagamento) {
+	public TipoPagamentoDTO(TipoPagamento tipoPagamento) {
 		this(tipoPagamento.getId(), tipoPagamento.getNome(), tipoPagamento.getForma().getCodigo());
 	}
 

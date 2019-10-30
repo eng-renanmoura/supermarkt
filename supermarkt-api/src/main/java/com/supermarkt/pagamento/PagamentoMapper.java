@@ -7,12 +7,12 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface PagamentoMapper {
 	
-	Pagamento paraPagamento(PagamentoDto pagamentoDto);
+	Pagamento paraPagamento(PagamentoDTO pagamentoDto);
 	
-	PagamentoDto paraPagamentoDto(Pagamento pagamento);
+	PagamentoDTO paraPagamentoDto(Pagamento pagamento);
 	
-	List<PagamentoDto> paraPagamentoDto(List<Pagamento> pagamento);
+	List<PagamentoDTO> paraPagamentoDto(List<Pagamento> pagamento);
 	
-	List<Pagamento> paraPedido(List<PagamentoDto> pagamentoDto);
+	List<Pagamento> paraPedido(List<PagamentoDTO> pagamentoDto);
 
 }

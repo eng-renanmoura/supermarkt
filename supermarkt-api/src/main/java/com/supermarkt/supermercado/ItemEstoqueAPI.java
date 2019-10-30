@@ -16,31 +16,31 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-public class ItemEstoqueApi {
+public class ItemEstoqueAPI {
 	
 	private ItemEstoqueRepositorio repo;
 	private ItemEstoqueMapper itemEstoqueMapper;
 	
 	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque")
-	public List<ItemEstoqueDto> estoqueDoSupermercado(@PathVariable("idSupermercado") Long idSupermercado) {
+	public List<ItemEstoqueDTO> estoqueDoSupermercado(@PathVariable("idSupermercado") Long idSupermercado) {
 		Supermercado supermercado = new Supermercado();
 		supermercado.setId(idSupermercado);
 		return itemEstoqueMapper.paraItemEstoqueDto(repo.findAllBySupermercado(supermercado));
 	}
 	
 	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque/{idEstoque}")
-	public ItemEstoqueDto porId(@PathVariable("idEstoque") Long idEstoque) {
+	public ItemEstoqueDTO porId(@PathVariable("idEstoque") Long idEstoque) {
 		ItemEstoque estoque = repo.findById(idEstoque).orElseThrow(() -> new RecursoNaoEncontradoException());
 		return itemEstoqueMapper.paraItemEstoqueDto(estoque);
 	}
 	
 	@PostMapping("/parceiros/supermercados/{idSupermercado}/estoque/")
-	public ItemEstoqueDto adiciona(@RequestBody ItemEstoque itemEstoque) {
+	public ItemEstoqueDTO adiciona(@RequestBody ItemEstoque itemEstoque) {
 		return itemEstoqueMapper.paraItemEstoqueDto(itemEstoque);
 	}
 
 	@PutMapping("/parceiros/supermercados/{idSupermercado}/estoque//{id}")
-	public ItemEstoqueDto atualiza(@RequestBody ItemEstoque itemEstoque) {
+	public ItemEstoqueDTO atualiza(@RequestBody ItemEstoque itemEstoque) {
 		return itemEstoqueMapper.paraItemEstoqueDto(itemEstoque);
 	}
 
@@ -50,13 +50,13 @@ public class ItemEstoqueApi {
 	}
 	
 	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque//{id}")
-	public ItemEstoqueDto itemEstoquePorId(@PathVariable("id") Long id) {
+	public ItemEstoqueDTO itemEstoquePorId(@PathVariable("id") Long id) {
 		ItemEstoque itemEstoque = repo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
 		return itemEstoqueMapper.paraItemEstoqueDto(itemEstoque); 
 	}
 	
 	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque/{nome}")
-	public List<ItemEstoqueDto> buscarPorNome(@PathVariable("nome") String nome) {
+	public List<ItemEstoqueDTO> buscarPorNome(@PathVariable("nome") String nome) {
 		return itemEstoqueMapper.paraItemEstoqueDto(repo.findByNomeContainingIgnoreCase(nome));
 	}
 

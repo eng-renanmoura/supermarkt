@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-class MediaAvaliacoesDto {
+class MediaAvaliacoesDTO {
 
 	private Long supermercadoId;
 	private Double media;

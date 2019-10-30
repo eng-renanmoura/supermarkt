@@ -4,9 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,34 +15,35 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.supermarkt.excecao.RecursoNaoEncontradoException;
 import com.supermarkt.supermercado.SupermercadoDto;
+import com.supermarkt.supermercado.SupermercadoMapper;
 import com.supermarkt.supermercado.SupermercadoRepositorio;
 
 import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-class PedidoApi {
+class PedidoAPI {
 
 	private PedidoRepositorio repo;
 	private AvaliacaoRepositorio avaliacaoRepo;
 	private SupermercadoRepositorio supermercadoRepo;
 	private SimpMessagingTemplate websocket;
 	private PedidoMapper pedidoMapper;
+	private SupermercadoMapper supermercadoMapper;
 
-	
 	@GetMapping("/pedidos")
-	public List<PedidoDto> lista() {
+	public List<PedidoDTO> lista() {
 		return pedidoMapper.paraPedidoDto(repo.findAll());
 	}
 
 	@GetMapping("/pedidos/{id}")
-	public PedidoDto porId(@PathVariable("id") Long id) {
+	public PedidoDTO porId(@PathVariable("id") Long id) {
 		Pedido pedido = repo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
 		return pedidoMapper.paraPedidoDto(pedido);
 	}
 
 	@PostMapping("/pedidos")
-	public PedidoDto adiciona(@RequestBody Pedido pedido) {
+	public PedidoDTO adiciona(@RequestBody Pedido pedido) {
 		pedido.setDataHora(LocalDateTime.now());
 		pedido.setSituacao(Pedido.Situacao.REALIZADO);
 		pedido.getItens().forEach(item -> item.setPedido(pedido));
@@ -54,34 +53,34 @@ class PedidoApi {
 	}
 
 	@PutMapping("/pedidos/{id}/situacao")
-	public PedidoDto atualizaStatus(@RequestBody Pedido pedido) {
+	public PedidoDTO atualizaStatus(@RequestBody Pedido pedido) {
 		repo.atualizaStatus(pedido.getSituacao(), pedido);
 		websocket.convertAndSend("/pedidos/"+pedido.getId()+"/situacao", pedido);
 		return pedidoMapper.paraPedidoDto(pedido);
 	}
 
 	@GetMapping("/parceiros/supermercados/{supermercadoId}/pedidos/pendentes")
-	public List<PedidoDto> pendentes(@PathVariable("supermercadoId") Long supermercadoId) {
+	public List<PedidoDTO> pendentes(@PathVariable("supermercadoId") Long supermercadoId) {
 		return pedidoMapper.paraPedidoDto(repo.doSupermercadoSemSituacao(supermercadoId, Arrays.asList(Pedido.Situacao.REALIZADO, Pedido.Situacao.ENTREGUE)));
 	}
 	
 	@GetMapping("/pedidos/supermercados-avaliados")
-	public List<SupermercadoComAvaliacaoDto> listaSupermercadosAvaliados(){
-		List<SupermercadoDto> supermercados = supermercadoRepo.findAll().stream().map(supermercado -> new SupermercadoDto(supermercado)).collect(Collectors.toList());
-		List<SupermercadoComAvaliacaoDto> supermercadosComAvaliacaoDto = new ArrayList<SupermercadoComAvaliacaoDto>();
+	public List<SupermercadoComAvaliacaoDTO> listaSupermercadosAvaliados(){
+		List<SupermercadoDto> supermercados = supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAll());
+		List<SupermercadoComAvaliacaoDTO> supermercadosComAvaliacaoDto = new ArrayList<SupermercadoComAvaliacaoDTO>();
 		for (SupermercadoDto supermercado : supermercados) {
 			Double media = avaliacaoRepo.mediaDoSupermercadoPeloId(supermercado.getId());
-			SupermercadoComAvaliacaoDto superComAvaliacao = new SupermercadoComAvaliacaoDto(supermercado, media);
+			SupermercadoComAvaliacaoDTO superComAvaliacao = new SupermercadoComAvaliacaoDTO(supermercado, media);
 			supermercadosComAvaliacaoDto.add(superComAvaliacao);
 		}
 		return supermercadosComAvaliacaoDto;
 	}
 	
 	@GetMapping("/pedidos/supermercado-avaliado/{supermercadoId}")
-	public SupermercadoComAvaliacaoDto supermercadosAvaliados(@PathVariable("supermercadoId") Long supermercadoId){
-		SupermercadoDto supermercado =  new SupermercadoDto(supermercadoRepo.findById(supermercadoId).get());
+	public SupermercadoComAvaliacaoDTO supermercadosAvaliados(@PathVariable("supermercadoId") Long supermercadoId){
+		SupermercadoDto supermercado =  supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findById(supermercadoId).get());
 		Double media = avaliacaoRepo.mediaDoSupermercadoPeloId(supermercado.getId());
-		SupermercadoComAvaliacaoDto superComAvaliacao = new SupermercadoComAvaliacaoDto(supermercado, media);
+		SupermercadoComAvaliacaoDTO superComAvaliacao = new SupermercadoComAvaliacaoDTO(supermercado, media);
 		superComAvaliacao.setSupermercado(supermercado);
 		superComAvaliacao.setMediaDasAvaliacoes(media);
 		return superComAvaliacao;

@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 
 @RestController
 @AllArgsConstructor
-public class SupermercadoTipoPagamentoApi {
+public class SupermercadoTipoPagamentoAPI {
 	
 	private SupermercadoTipoPagamentoRepositorio supermercadoTipoPagamentoRepo;
 	

@@ -21,7 +21,7 @@ import com.supermarkt.pedido.PedidoServico;
 
 @RestController
 @RequestMapping("/pagamentos")
-public class PagamentoApi {
+public class PagamentoAPI {
 	
 	private PagamentoRepositorio pagamentoRepo;
 	private PedidoServico pedidos;
@@ -30,13 +30,13 @@ public class PagamentoApi {
 	private PagamentoMapper pagamentoMapper;
 	
 	@GetMapping("/{id}")
-	public PagamentoDto detalha(@PathVariable Long id) {
+	public PagamentoDTO detalha(@PathVariable Long id) {
 		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
 		return pagamentoMapper.paraPagamentoDto(pagamento);
 	}
 
 	@PostMapping
-	public ResponseEntity<PagamentoDto> cria(@RequestBody Pagamento pagamento, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<PagamentoDTO> cria(@RequestBody Pagamento pagamento, UriComponentsBuilder uriBuilder) {
 		pagamento.setSituacao(Pagamento.Situacao.CRIADO);
 		Pagamento salvo = pagamentoRepo.save(pagamento);
 		URI path = uriBuilder.path("/pagamentos/{id}").buildAndExpand(salvo.getId()).toUri();
@@ -44,7 +44,7 @@ public class PagamentoApi {
 	}
 
 	@PutMapping("/{id}")
-	public PagamentoDto confirma(@PathVariable Long id) {
+	public PagamentoDTO confirma(@PathVariable Long id) {
 		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
 		pagamento.setSituacao(Pagamento.Situacao.CONFIRMADO);
 		pagamentoRepo.save(pagamento);
@@ -57,7 +57,7 @@ public class PagamentoApi {
 	}
 
 	@DeleteMapping("/{id}")
-	public PagamentoDto cancela(@PathVariable Long id) {
+	public PagamentoDTO cancela(@PathVariable Long id) {
 		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
 		pagamento.setSituacao(Pagamento.Situacao.CANCELADO);
 		pagamentoRepo.save(pagamento);

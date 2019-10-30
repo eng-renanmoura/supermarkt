@@ -2,11 +2,14 @@ package com.supermarkt.supermercado;
 
 import java.math.BigDecimal;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class SupermercadoDto {
 
 	private Long id;
@@ -29,11 +32,4 @@ public class SupermercadoDto {
 
 	private Boolean aprovado;
 	
-	public SupermercadoDto(Supermercado supermercado) {
-		this(supermercado.getId(), supermercado.getCnpj(), supermercado.getNome(), supermercado.getDescricao(), supermercado.getCep(), supermercado.getEndereco(),
-				supermercado.getTaxaDeEntregaEmReais(), supermercado.getTempoDeEntregaMinimoEmMinutos(),
-				supermercado.getTempoDeEntregaMaximoEmMinutos(), supermercado.getAprovado());
-	}
-
-
 }
