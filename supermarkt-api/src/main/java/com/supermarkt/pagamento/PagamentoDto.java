@@ -6,10 +6,14 @@ import com.supermarkt.admin.TipoPagamento;
 import com.supermarkt.pedido.PedidoDto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class PagamentoDto {
 
 	private Long id;
@@ -22,8 +26,4 @@ public class PagamentoDto {
 	private TipoPagamento tipoPagamento;
 	private PedidoDto pedido;
 
-	public PagamentoDto(Pagamento p) {
-		this(p.getId(), p.getValor(), p.getNome(), p.getNumero(), p.getExpiracao(), p.getCodigo(), p.getSituacao(), p.getTipoPagamento(), new PedidoDto(p.getPedido()));
-	}
-	
 }

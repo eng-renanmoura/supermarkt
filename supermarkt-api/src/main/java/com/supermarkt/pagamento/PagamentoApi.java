@@ -16,24 +16,23 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.supermarkt.excecao.RecursoNaoEncontradoException;
 import com.supermarkt.pedido.Pedido;
-import com.supermarkt.pedido.PedidoDto;
+import com.supermarkt.pedido.PedidoMapper;
 import com.supermarkt.pedido.PedidoServico;
-
-import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/pagamentos")
-@AllArgsConstructor
 public class PagamentoApi {
 	
 	private PagamentoRepositorio pagamentoRepo;
 	private PedidoServico pedidos;
 	private SimpMessagingTemplate websocket;
-
+	private PedidoMapper pedidoMapper;
+	private PagamentoMapper pagamentoMapper;
+	
 	@GetMapping("/{id}")
 	public PagamentoDto detalha(@PathVariable Long id) {
 		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
-		return new PagamentoDto(pagamento);
+		return pagamentoMapper.paraPagamentoDto(pagamento);
 	}
 
 	@PostMapping
@@ -41,7 +40,7 @@ public class PagamentoApi {
 		pagamento.setSituacao(Pagamento.Situacao.CRIADO);
 		Pagamento salvo = pagamentoRepo.save(pagamento);
 		URI path = uriBuilder.path("/pagamentos/{id}").buildAndExpand(salvo.getId()).toUri();
-		return ResponseEntity.created(path).body(new PagamentoDto(salvo));
+		return ResponseEntity.created(path).body(pagamentoMapper.paraPagamentoDto(salvo));
 	}
 
 	@PutMapping("/{id}")
@@ -53,8 +52,8 @@ public class PagamentoApi {
 		Pedido pedido = pedidos.porIdComItens(pedidoId);
 		pedido.setSituacao(Pedido.Situacao.PAGO);
 		pedidos.atualizaStatus(Pedido.Situacao.PAGO, pedido);
-		websocket.convertAndSend("/parceiros/supermercados/"+pedido.getSupermercado().getId()+"/pedidos/pendentes", new PedidoDto(pedido));
-		return new PagamentoDto(pagamento);
+		websocket.convertAndSend("/parceiros/supermercados/"+pedido.getSupermercado().getId()+"/pedidos/pendentes", pedidoMapper.paraPedidoDto(pedido));
+		return pagamentoMapper.paraPagamentoDto(pagamento);
 	}
 
 	@DeleteMapping("/{id}")
@@ -62,7 +61,7 @@ public class PagamentoApi {
 		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
 		pagamento.setSituacao(Pagamento.Situacao.CANCELADO);
 		pagamentoRepo.save(pagamento);
-		return new PagamentoDto(pagamento);
+		return pagamentoMapper.paraPagamentoDto(pagamento);
 	}
 
 }

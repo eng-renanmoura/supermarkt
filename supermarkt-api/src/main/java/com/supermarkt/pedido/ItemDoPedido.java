@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-class ItemDoPedido {
+public class ItemDoPedido {
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;

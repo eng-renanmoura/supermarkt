@@ -1,7 +1,6 @@
 package com.supermarkt.pedido;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -53,6 +52,6 @@ public class Pedido {
 	private Entrega entrega;
 
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="pedido")
-	private List<ItemDoPedido> itens = new ArrayList<>();
+	private List<ItemDoPedido> itens;
 
 }

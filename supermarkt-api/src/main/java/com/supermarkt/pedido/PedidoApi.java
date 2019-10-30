@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,18 +29,18 @@ class PedidoApi {
 	private AvaliacaoRepositorio avaliacaoRepo;
 	private SupermercadoRepositorio supermercadoRepo;
 	private SimpMessagingTemplate websocket;
+	private PedidoMapper pedidoMapper;
 
 	
 	@GetMapping("/pedidos")
 	public List<PedidoDto> lista() {
-		return repo.findAll().stream()
-				.map(pedido -> new PedidoDto(pedido)).collect(Collectors.toList());
+		return pedidoMapper.paraPedidoDto(repo.findAll());
 	}
 
 	@GetMapping("/pedidos/{id}")
 	public PedidoDto porId(@PathVariable("id") Long id) {
 		Pedido pedido = repo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
-		return new PedidoDto(pedido);
+		return pedidoMapper.paraPedidoDto(pedido);
 	}
 
 	@PostMapping("/pedidos")
@@ -49,20 +50,19 @@ class PedidoApi {
 		pedido.getItens().forEach(item -> item.setPedido(pedido));
 		pedido.getEntrega().setPedido(pedido);
 		Pedido salvo = repo.save(pedido);
-		return new PedidoDto(salvo);
+		return pedidoMapper.paraPedidoDto(salvo);
 	}
 
 	@PutMapping("/pedidos/{id}/situacao")
 	public PedidoDto atualizaStatus(@RequestBody Pedido pedido) {
 		repo.atualizaStatus(pedido.getSituacao(), pedido);
 		websocket.convertAndSend("/pedidos/"+pedido.getId()+"/situacao", pedido);
-		return new PedidoDto(pedido);
+		return pedidoMapper.paraPedidoDto(pedido);
 	}
 
 	@GetMapping("/parceiros/supermercados/{supermercadoId}/pedidos/pendentes")
 	public List<PedidoDto> pendentes(@PathVariable("supermercadoId") Long supermercadoId) {
-		return repo.doSupermercadoSemSituacao(supermercadoId, Arrays.asList(Pedido.Situacao.REALIZADO, Pedido.Situacao.ENTREGUE)).stream()
-				.map(pedido -> new PedidoDto(pedido)).collect(Collectors.toList());
+		return pedidoMapper.paraPedidoDto(repo.doSupermercadoSemSituacao(supermercadoId, Arrays.asList(Pedido.Situacao.REALIZADO, Pedido.Situacao.ENTREGUE)));
 	}
 	
 	@GetMapping("/pedidos/supermercados-avaliados")

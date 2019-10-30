@@ -2,11 +2,16 @@ package com.supermarkt.supermercado;
 
 import java.math.BigDecimal;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@AllArgsConstructor
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ItemEstoqueDto {
 	
 	private Long id;
@@ -15,10 +20,5 @@ public class ItemEstoqueDto {
 	private Integer quantidade;
 	private BigDecimal preco;
 	private BigDecimal precoPromocional;
-
-	public ItemEstoqueDto(ItemEstoque estoque) {
-		this(estoque.getId(), estoque.getNome(), estoque.getDescricao(), estoque.getQuantidade(), 
-				estoque.getPreco(), estoque.getPrecoPromocional());
-	}
 
 }

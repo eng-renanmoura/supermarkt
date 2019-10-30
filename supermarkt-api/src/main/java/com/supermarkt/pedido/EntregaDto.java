@@ -2,10 +2,12 @@ package com.supermarkt.pedido;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-class EntregaDto {
+@NoArgsConstructor
+public class EntregaDto {
 
 	private Long id;
 	private Cliente cliente;
