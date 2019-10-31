@@ -1,5 +1,6 @@
 package com.supermarkt.pedido;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,5 +22,14 @@ public class PedidoDTO {
 	private Supermercado supermercado;
 	private EntregaDTO entrega;
 	private List<ItemDoPedidoDTO> itens;
+	
+	public BigDecimal getTotal() {
+		BigDecimal total = supermercado.getTaxaDeEntregaEmReais() != null ? supermercado.getTaxaDeEntregaEmReais() : BigDecimal.ZERO;
+		for (ItemDoPedidoDTO item : itens) {
+			BigDecimal preco = item.getItemEstoque().getPrecoPromocional() != null ? item.getItemEstoque().getPrecoPromocional() : item.getItemEstoque().getPreco() ;
+			total = total.add(preco.multiply(new BigDecimal(item.getQuantidade())));
+		}
+		return total;
+	}
 	
 }

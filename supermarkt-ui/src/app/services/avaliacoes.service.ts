@@ -15,7 +15,7 @@ export class AvaliacoesService {
     private http: HttpClient
   ) { }
 
-  porIdDoRestaurante(supermercadoId: string): Observable<any> {
+  porIdDoSupermercado(supermercadoId: string): Observable<any> {
     return this.http.get(`${this.API}/${supermercadoId}/avaliacoes`);
   }
 
@@ -24,7 +24,7 @@ export class AvaliacoesService {
     return this.http.post(`${this.API}/${supermercadoId}/avaliacoes`, avaliacao);
   }
 
-  mediaDasAvaliacoesDosRestaurantes(supermercados: any[]): Observable<any> {
+  mediaDasAvaliacoesDosSupermercados(supermercados: any[]): Observable<any> {
     const idsDosSupermercados = supermercados.map(supermercado => supermercado.id).join(',');
     return this.http.get(`${this.API}/media-avaliacoes?idsDosSupermercados=${idsDosSupermercados}`);
   }

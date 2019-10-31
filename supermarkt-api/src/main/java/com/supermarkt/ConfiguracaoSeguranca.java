@@ -40,6 +40,7 @@ public class ConfiguracaoSeguranca extends WebSecurityConfigurerAdapter {
 			.antMatchers("/autenticacao/**").permitAll()
 			.antMatchers("/admin/**").hasRole(Role.ROLES.ADMIN.name())
 			.antMatchers(HttpMethod.POST, "/parceiros/supermercados").permitAll()
+			.antMatchers("/supermercados/{supermercadoId}/estoque").permitAll()
 			.antMatchers("/parceiros/supermercados/{supermercadoId}/estoque/**")
 						.access("@autorizacaoServico.checarTargetId(authentication,#supermercadoId) or hasRole('ADMIN')")
 			.antMatchers("/parceiros/supermercados/{supermercadoId}/**").access("@autorizacaoServico.checarTargetId(authentication,#supermercadoId)")

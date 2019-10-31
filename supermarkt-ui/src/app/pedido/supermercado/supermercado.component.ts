@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { AvaliacoesService } from 'src/app/services/avaliacoes.service';
 import { PedidoService } from 'src/app/pedido/pedido.service';
-import { EstoqueService } from 'src/app/services/estoque.service';
+import { EstoqueService } from 'src/app/supermercados/estoque/estoque.service';
 
 @Component({
   selector: 'app-supermercado',
@@ -45,12 +45,12 @@ export class SupermercadoComponent implements OnInit {
         this.pedido.entrega = { cep: '', cliente: {} };
       });
 
-    this.avaliacoesService.porIdDoRestaurante(supermercadoId)
+    this.avaliacoesService.porIdDoSupermercado(supermercadoId)
       .subscribe(avaliacoes => {
         this.avaliacoes = avaliacoes;
     });
 
-    this.estoqueService.estoqueDoSupermercado(supermercadoId)
+    this.estoqueService.estoquePorSupermercadoId(supermercadoId)
       .subscribe(estoqueProdutos => {
         this.estoqueProdutos = estoqueProdutos;
       });
@@ -111,7 +111,6 @@ export class SupermercadoComponent implements OnInit {
   }
 
   registraEntrega() {
-    console.table(this.pedido);
     this.pedidoService.adiciona(this.pedido)
     .subscribe(pedido => {
       this.router.navigateByUrl(`pedidos/${pedido.id}/pagamento`);

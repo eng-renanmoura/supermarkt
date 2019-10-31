@@ -29,7 +29,6 @@ export class PagamentoComponent implements OnInit {
     this.pedidoService.porId(pedidoId)
       .subscribe((pedido: any) => {
         this.pedido = pedido;
-        console.log(this.pedido);
         this.pagamento = { pedido, valor: pedido.total };
         this.supermercadoService.tiposPagamento(pedido.supermercado)
           .subscribe(tiposPagamento => this.tiposPagamento = tiposPagamento);

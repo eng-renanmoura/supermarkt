@@ -22,7 +22,6 @@ export class TipoPagamentoService {
   }
 
   salva(tipoPagamento: any): Observable<any> {
-    console.log(tipoPagamento);
     let tipo = tipoPagamento;
     tipo.forma = tipoPagamento.forma.valor;
     if (tipoPagamento.id) {

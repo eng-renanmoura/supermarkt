@@ -30,7 +30,6 @@ export class PagamentoService {
   }
 
   private ajustaIds(pagamento) {
-    console.log(pagamento);
     pagamento.tipoPagamentoId = pagamento.tipoPagamentoId || pagamento.tipoPagamento.id;
     pagamento.pedidoId = pagamento.pedidoId || pagamento.pedido.id;
   }

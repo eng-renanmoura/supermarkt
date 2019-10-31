@@ -63,7 +63,7 @@ export class EstoqueBuscaComponent implements OnInit {
   }
 
   private loadEstoque() {
-    this.estoqueService.estoquePorSupermercadoId(this.supermercadoId)
+    this.estoqueService.detalhaEstoqueDoSupermercado(this.supermercadoId)
         .subscribe(
           itensEstoque => {
             this.itensEstoque = itensEstoque;

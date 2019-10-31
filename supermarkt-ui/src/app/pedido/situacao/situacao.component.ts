@@ -46,7 +46,6 @@ export class SituacaoComponent implements OnInit, OnDestroy {
 
   salvaAvaliacao() {
     this.avaliacao.pedido = this.pedido;
-    console.log(this.avaliacao);
     this.avaliacoesService.salva(this.avaliacao)
       .subscribe(avaliacao => this.avaliacao = avaliacao);
   }

@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-
 import { MessageService } from 'primeng/api';
-
 import { TipoPagamentoService } from '../tipo-pagamento.service';
-
 
 @Component({
   selector: 'app-tipo-pagamento-formulario',
@@ -75,7 +72,6 @@ export class TipoPagamentoFormularioComponent implements OnInit {
   }
 
   private updateItemForm(tipo) {
-    console.log(tipo);
     this.tipoForm.patchValue({
         forma: tipo.forma,
         nome: tipo.nome,

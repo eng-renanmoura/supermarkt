@@ -20,8 +20,13 @@ public class ItemEstoqueAPI {
 	
 	private final ItemEstoqueServico itemEstoqueServico;
 	
-	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque")
+	@GetMapping("/supermercados/{idSupermercado}/estoque")
 	public ResponseEntity<List<ItemEstoqueDTO>> estoqueDoSupermercado(@PathVariable("idSupermercado") Long idSupermercado) {
+		return ResponseEntity.ok(itemEstoqueServico.estoqueDoSupermercado(idSupermercado));
+	}
+	
+	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque/detalha")
+	public ResponseEntity<List<ItemEstoqueDTO>> detalhaEstoqueDoSupermercado(@PathVariable("idSupermercado") Long idSupermercado) {
 		return ResponseEntity.ok(itemEstoqueServico.estoqueDoSupermercado(idSupermercado));
 	}
 	
