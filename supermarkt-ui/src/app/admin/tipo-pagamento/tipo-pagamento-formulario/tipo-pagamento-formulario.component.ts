@@ -13,7 +13,7 @@ import { TipoPagamentoService } from '../tipo-pagamento.service';
 export class TipoPagamentoFormularioComponent implements OnInit {
 
   tipoForm: FormGroup;
-  idTipo = '';
+  idTipo: number;
   tipo = {};
 
   formas: object[];
