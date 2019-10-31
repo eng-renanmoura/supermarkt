@@ -1,11 +1,9 @@
 package com.supermarkt.pedido;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,77 +11,47 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.supermarkt.excecao.RecursoNaoEncontradoException;
-import com.supermarkt.supermercado.SupermercadoDTO;
-import com.supermarkt.supermercado.SupermercadoMapper;
-import com.supermarkt.supermercado.SupermercadoRepositorio;
-
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 class PedidoAPI {
 
-	private PedidoRepositorio repo;
-	private AvaliacaoRepositorio avaliacaoRepo;
-	private SupermercadoRepositorio supermercadoRepo;
-	private SimpMessagingTemplate websocket;
-	private PedidoMapper pedidoMapper;
-	private SupermercadoMapper supermercadoMapper;
+	private final PedidoServico pedidoServico;
 
 	@GetMapping("/pedidos")
-	public List<PedidoDTO> lista() {
-		return pedidoMapper.paraPedidoDto(repo.findAll());
+	public ResponseEntity<List<PedidoDTO>> lista() {
+		return ResponseEntity.ok(pedidoServico.lista());
 	}
 
 	@GetMapping("/pedidos/{id}")
-	public PedidoDTO porId(@PathVariable("id") Long id) {
-		Pedido pedido = repo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
-		return pedidoMapper.paraPedidoDto(pedido);
+	public ResponseEntity<PedidoDTO> porId(@PathVariable("id") Long id) {
+		return ResponseEntity.ok(pedidoServico.porId(id));
 	}
 
 	@PostMapping("/pedidos")
-	public PedidoDTO adiciona(@RequestBody Pedido pedido) {
-		pedido.setDataHora(LocalDateTime.now());
-		pedido.setSituacao(Pedido.Situacao.REALIZADO);
-		pedido.getItens().forEach(item -> item.setPedido(pedido));
-		pedido.getEntrega().setPedido(pedido);
-		Pedido salvo = repo.save(pedido);
-		return pedidoMapper.paraPedidoDto(salvo);
+	public ResponseEntity<PedidoDTO> adiciona(@RequestBody Pedido pedido) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(pedidoServico.adiciona(pedido));
 	}
 
 	@PutMapping("/pedidos/{id}/situacao")
-	public PedidoDTO atualizaStatus(@RequestBody Pedido pedido) {
-		repo.atualizaStatus(pedido.getSituacao(), pedido);
-		websocket.convertAndSend("/pedidos/"+pedido.getId()+"/situacao", pedido);
-		return pedidoMapper.paraPedidoDto(pedido);
+	public ResponseEntity<PedidoDTO> atualizaStatus(@RequestBody Pedido pedido) {
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(pedidoServico.atualizaStatus(pedido));
 	}
 
 	@GetMapping("/parceiros/supermercados/{supermercadoId}/pedidos/pendentes")
-	public List<PedidoDTO> pendentes(@PathVariable("supermercadoId") Long supermercadoId) {
-		return pedidoMapper.paraPedidoDto(repo.doSupermercadoSemSituacao(supermercadoId, Arrays.asList(Pedido.Situacao.REALIZADO, Pedido.Situacao.ENTREGUE)));
+	public ResponseEntity<List<PedidoDTO>> pendentes(@PathVariable("supermercadoId") Long supermercadoId) {
+		return ResponseEntity.ok(pedidoServico.pendentes(supermercadoId));
 	}
 	
 	@GetMapping("/pedidos/supermercados-avaliados")
-	public List<SupermercadoComAvaliacaoDTO> listaSupermercadosAvaliados(){
-		List<SupermercadoDTO> supermercados = supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAll());
-		List<SupermercadoComAvaliacaoDTO> supermercadosComAvaliacaoDto = new ArrayList<SupermercadoComAvaliacaoDTO>();
-		for (SupermercadoDTO supermercado : supermercados) {
-			Double media = avaliacaoRepo.mediaDoSupermercadoPeloId(supermercado.getId());
-			SupermercadoComAvaliacaoDTO superComAvaliacao = new SupermercadoComAvaliacaoDTO(supermercado, media);
-			supermercadosComAvaliacaoDto.add(superComAvaliacao);
-		}
-		return supermercadosComAvaliacaoDto;
+	public ResponseEntity<List<SupermercadoComAvaliacaoDTO>> listaSupermercadosAvaliados(){
+		return ResponseEntity.ok(pedidoServico.listaSupermercadosAvaliados());
 	}
 	
 	@GetMapping("/pedidos/supermercado-avaliado/{supermercadoId}")
-	public SupermercadoComAvaliacaoDTO supermercadosAvaliados(@PathVariable("supermercadoId") Long supermercadoId){
-		SupermercadoDTO supermercado =  supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findById(supermercadoId).get());
-		Double media = avaliacaoRepo.mediaDoSupermercadoPeloId(supermercado.getId());
-		SupermercadoComAvaliacaoDTO superComAvaliacao = new SupermercadoComAvaliacaoDTO(supermercado, media);
-		superComAvaliacao.setSupermercado(supermercado);
-		superComAvaliacao.setMediaDasAvaliacoes(media);
-		return superComAvaliacao;
+	public ResponseEntity<SupermercadoComAvaliacaoDTO> supermercadosAvaliados(@PathVariable("supermercadoId") Long supermercadoId){
+		return ResponseEntity.ok(pedidoServico.supermercadosAvaliados(supermercadoId));
 	}
 
 }

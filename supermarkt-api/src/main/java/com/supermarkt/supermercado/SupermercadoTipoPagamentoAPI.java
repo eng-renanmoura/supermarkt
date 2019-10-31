@@ -2,6 +2,7 @@ package com.supermarkt.supermercado;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,37 +11,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.supermarkt.admin.TipoPagamento;
-import com.supermarkt.supermercado.SupermercadoTipoPagamento.SupermercadoTipoPagamentoId;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SupermercadoTipoPagamentoAPI {
 	
-	private SupermercadoTipoPagamentoRepositorio supermercadoTipoPagamentoRepo;
+	private final SupermercadoTipoPagamentoServico supermercadoTipoPagamentoServico;
 	
 	@PostMapping("/parceiros/supermercados/{idSupermercado}/tipo-pagamento")
-	public void adiciona(@PathVariable("idSupermercado") Long idRestaurante, @RequestBody TipoPagamento tipoPagamento) {
-		SupermercadoTipoPagamentoId id = new SupermercadoTipoPagamentoId(idRestaurante, tipoPagamento.getId());
-		Supermercado supermercado = new Supermercado();
-		supermercado.setId(idRestaurante);
-		SupermercadoTipoPagamento supermercadoTipoPagamento = new SupermercadoTipoPagamento(id, supermercado,
-				tipoPagamento);
-		supermercadoTipoPagamentoRepo.save(supermercadoTipoPagamento);
+	public ResponseEntity<?> adiciona(@PathVariable("idSupermercado") Long idRestaurante, @RequestBody TipoPagamento tipoPagamento) {
+		supermercadoTipoPagamentoServico.adiciona(idRestaurante, tipoPagamento);
+		return ResponseEntity.noContent().build();
 	}
 
 	@DeleteMapping("/parceiros/supermercados/{idSupermercado}/tipo-pagamento/{idTipoPagamento}")
-	public void removeDoRestaurante(@PathVariable("idSupermercado") Long idRestaurante, @PathVariable("idTipoPagamento") Long idFormaDePagamento) {
-		SupermercadoTipoPagamentoId id = new SupermercadoTipoPagamentoId(idRestaurante, idFormaDePagamento);
-		supermercadoTipoPagamentoRepo.deleteById(id);
+	public ResponseEntity<?> removeDoRestaurante(@PathVariable("idSupermercado") Long idRestaurante, @PathVariable("idTipoPagamento") Long idFormaDePagamento) {
+		supermercadoTipoPagamentoServico.removeDoRestaurante(idRestaurante, idFormaDePagamento);
+		return ResponseEntity.noContent().build();
 	}
 
 	@GetMapping("/supermercados/{idSupermercado}/tipo-pagamento")
-	public List<TipoPagamento> lista(@PathVariable("idSupermercado") Long idSupermercado) {
-		Supermercado supermercado = new Supermercado();
-		supermercado.setId(idSupermercado);
-		return supermercadoTipoPagamentoRepo.findAllBySupermercadoOrderByNomeAsc(supermercado);
+	public ResponseEntity<List<TipoPagamento>> lista(@PathVariable("idSupermercado") Long idSupermercado) {
+		return ResponseEntity.ok(supermercadoTipoPagamentoServico.lista(idSupermercado));
 	}
 	
 }

@@ -2,6 +2,8 @@ package com.supermarkt.supermercado;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,54 +12,48 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.supermarkt.excecao.RecursoNaoEncontradoException;
-
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ItemEstoqueAPI {
 	
-	private ItemEstoqueRepositorio repo;
-	private ItemEstoqueMapper itemEstoqueMapper;
+	private final ItemEstoqueServico itemEstoqueServico;
 	
 	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque")
-	public List<ItemEstoqueDTO> estoqueDoSupermercado(@PathVariable("idSupermercado") Long idSupermercado) {
-		Supermercado supermercado = new Supermercado();
-		supermercado.setId(idSupermercado);
-		return itemEstoqueMapper.paraItemEstoqueDto(repo.findAllBySupermercado(supermercado));
+	public ResponseEntity<List<ItemEstoqueDTO>> estoqueDoSupermercado(@PathVariable("idSupermercado") Long idSupermercado) {
+		return ResponseEntity.ok(itemEstoqueServico.estoqueDoSupermercado(idSupermercado));
 	}
 	
 	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque/{idEstoque}")
-	public ItemEstoqueDTO porId(@PathVariable("idEstoque") Long idEstoque) {
-		ItemEstoque estoque = repo.findById(idEstoque).orElseThrow(() -> new RecursoNaoEncontradoException());
-		return itemEstoqueMapper.paraItemEstoqueDto(estoque);
+	public ResponseEntity<ItemEstoqueDTO> porId(@PathVariable("idEstoque") Long idEstoque) {
+		return ResponseEntity.ok(itemEstoqueServico.porId(idEstoque));
 	}
 	
 	@PostMapping("/parceiros/supermercados/{idSupermercado}/estoque/")
-	public ItemEstoqueDTO adiciona(@RequestBody ItemEstoque itemEstoque) {
-		return itemEstoqueMapper.paraItemEstoqueDto(itemEstoque);
+	public ResponseEntity<ItemEstoqueDTO> adiciona(@RequestBody ItemEstoque itemEstoque) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(itemEstoqueServico.adiciona(itemEstoque));
 	}
 
 	@PutMapping("/parceiros/supermercados/{idSupermercado}/estoque//{id}")
-	public ItemEstoqueDTO atualiza(@RequestBody ItemEstoque itemEstoque) {
-		return itemEstoqueMapper.paraItemEstoqueDto(itemEstoque);
+	public ResponseEntity<ItemEstoqueDTO> atualiza(@RequestBody ItemEstoque itemEstoque) {
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(itemEstoqueServico.atualiza(itemEstoque));
 	}
 
 	@DeleteMapping("/supermercados/{idSupermercado}/estoque/{id}")
-	public void remove(@PathVariable("id") Long id) {
-		repo.deleteById(id);
+	public ResponseEntity<?> remove(@PathVariable("id") Long id) {
+		itemEstoqueServico.remove(id);
+		return ResponseEntity.noContent().build();
 	}
 	
 	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque//{id}")
-	public ItemEstoqueDTO itemEstoquePorId(@PathVariable("id") Long id) {
-		ItemEstoque itemEstoque = repo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
-		return itemEstoqueMapper.paraItemEstoqueDto(itemEstoque); 
+	public ResponseEntity<ItemEstoqueDTO> itemEstoquePorId(@PathVariable("id") Long id) {
+		return ResponseEntity.ok(itemEstoqueServico.itemEstoquePorId(id));
 	}
 	
 	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque/{nome}")
-	public List<ItemEstoqueDTO> buscarPorNome(@PathVariable("nome") String nome) {
-		return itemEstoqueMapper.paraItemEstoqueDto(repo.findByNomeContainingIgnoreCase(nome));
+	public ResponseEntity<List<ItemEstoqueDTO>> buscarPorNome(@PathVariable("nome") String nome) {
+		return ResponseEntity.ok(itemEstoqueServico.buscarPorNome(nome));
 	}
 
 }

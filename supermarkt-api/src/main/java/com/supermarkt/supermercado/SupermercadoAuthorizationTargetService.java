@@ -6,13 +6,13 @@ import com.supermarkt.seguranca.AutorizacaoTargetServico;
 import com.supermarkt.seguranca.Role;
 import com.supermarkt.seguranca.Usuario;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class SupermercadoAuthorizationTargetService implements AutorizacaoTargetServico {
 	
-	private SupermercadoRepositorio supermercadoRepo;
+	private final SupermercadoRepositorio supermercadoRepo;
 
 	@Override
 	public Long getTargetIdByUser(Usuario usuario) {

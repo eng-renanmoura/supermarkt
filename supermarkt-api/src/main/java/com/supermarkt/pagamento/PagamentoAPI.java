@@ -2,8 +2,8 @@ package com.supermarkt.pagamento;
 
 import java.net.URI;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,54 +14,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.supermarkt.excecao.RecursoNaoEncontradoException;
-import com.supermarkt.pedido.Pedido;
-import com.supermarkt.pedido.PedidoMapper;
-import com.supermarkt.pedido.PedidoServico;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/pagamentos")
 public class PagamentoAPI {
 	
-	private PagamentoRepositorio pagamentoRepo;
-	private PedidoServico pedidos;
-	private SimpMessagingTemplate websocket;
-	private PedidoMapper pedidoMapper;
-	private PagamentoMapper pagamentoMapper;
+	private final PagamentoServico pagamentoServico;
 	
 	@GetMapping("/{id}")
-	public PagamentoDTO detalha(@PathVariable Long id) {
-		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
-		return pagamentoMapper.paraPagamentoDto(pagamento);
+	public ResponseEntity<PagamentoDTO> detalha(@PathVariable Long id) {
+		return ResponseEntity.ok(pagamentoServico.detalha(id));
 	}
 
 	@PostMapping
 	public ResponseEntity<PagamentoDTO> cria(@RequestBody Pagamento pagamento, UriComponentsBuilder uriBuilder) {
-		pagamento.setSituacao(Pagamento.Situacao.CRIADO);
-		Pagamento salvo = pagamentoRepo.save(pagamento);
-		URI path = uriBuilder.path("/pagamentos/{id}").buildAndExpand(salvo.getId()).toUri();
-		return ResponseEntity.created(path).body(pagamentoMapper.paraPagamentoDto(salvo));
+		PagamentoDTO pagamentoDto = pagamentoServico.cria(pagamento);
+		URI path = uriBuilder.path("/pagamentos/{id}").buildAndExpand(pagamentoDto.getId()).toUri();
+		return ResponseEntity.created(path).body(pagamentoDto);
 	}
 
 	@PutMapping("/{id}")
-	public PagamentoDTO confirma(@PathVariable Long id) {
-		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
-		pagamento.setSituacao(Pagamento.Situacao.CONFIRMADO);
-		pagamentoRepo.save(pagamento);
-		Long pedidoId = pagamento.getPedido().getId();
-		Pedido pedido = pedidos.porIdComItens(pedidoId);
-		pedido.setSituacao(Pedido.Situacao.PAGO);
-		pedidos.atualizaStatus(Pedido.Situacao.PAGO, pedido);
-		websocket.convertAndSend("/parceiros/supermercados/"+pedido.getSupermercado().getId()+"/pedidos/pendentes", pedidoMapper.paraPedidoDto(pedido));
-		return pagamentoMapper.paraPagamentoDto(pagamento);
+	public ResponseEntity<PagamentoDTO> confirma(@PathVariable Long id) {
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(pagamentoServico.confirma(id));
 	}
 
 	@DeleteMapping("/{id}")
-	public PagamentoDTO cancela(@PathVariable Long id) {
-		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
-		pagamento.setSituacao(Pagamento.Situacao.CANCELADO);
-		pagamentoRepo.save(pagamento);
-		return pagamentoMapper.paraPagamentoDto(pagamento);
+	public ResponseEntity<PagamentoDTO> cancela(@PathVariable Long id) {
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(pagamentoServico.cancela(id));
 	}
 
 }
