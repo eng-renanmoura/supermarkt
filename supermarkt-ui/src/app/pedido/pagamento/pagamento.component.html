@@ -5,7 +5,7 @@
           <app-resumo [pedido]="pedido"></app-resumo>
       </div>
 
-      <div class="p-col-10">
+      <div *ngIf="pagamento" class="p-col-10">
         <form *ngIf="pagamento.situacao !== 'CRIADO'" #pagamentoForm="ngForm" (ngSubmit)="criaPagamento()">
           <h3>Dados do pagamento</h3>
           <div class="p-grid">

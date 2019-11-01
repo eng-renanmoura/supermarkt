@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class TipoPagamento {
-
+	
 	public static enum Forma {
 		CARTAO_CREDITO("Cartão de Crédito", "CARTAO_CREDITO"), 
 		CARTAO_DEBITO("Cartão de Débito", "CARTAO_DEBITO"), 

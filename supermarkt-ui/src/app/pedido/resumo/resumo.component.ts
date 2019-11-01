@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Pedido } from '../pedido';
 
 @Component({
   selector: 'app-resumo',
@@ -7,7 +8,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ResumoComponent {
 
-  @Input() pedido;
+  @Input() pedido: Pedido;
 
   constructor() { }
 

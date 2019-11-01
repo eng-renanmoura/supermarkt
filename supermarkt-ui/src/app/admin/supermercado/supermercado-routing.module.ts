@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
+import { AutorizacaoGuard } from '../../guards/autorizacao.guard';
 import { SupermercadoBuscaComponent } from './supermercado-busca/supermercado-busca.component';
 import { SupermercadoFormularioComponent } from './supermercado-formulario/supermercado-formulario.component';
-import { AutorizacaoGuard } from '../../guards/autorizacao.guard';
+
 
 const routes: Routes = [
   {

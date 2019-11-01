@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { environment } from 'src/environments/environment';
+import { Pagamento } from './pagamento';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,23 +15,16 @@ export class PagamentoService {
   constructor(private http: HttpClient) {
   }
 
-  cria(pagamento): Observable<any> {
-    this.ajustaIds(pagamento);
-    return this.http.post(`${this.API}`, pagamento);
+  cria(pagamento: Pagamento): Observable<Pagamento> {
+    return this.http.post<Pagamento>(`${this.API}`, pagamento);
   }
 
-  confirma(pagamento): Observable<any> {
-    this.ajustaIds(pagamento);
-    return this.http.put(`${this.API}/${pagamento.id}`, null);
+  confirma(pagamento: Pagamento): Observable<Pagamento> {
+    return this.http.put<Pagamento>(`${this.API}/${pagamento.id}`, undefined);
   }
 
-  cancela(pagamento): Observable<any> {
-    this.ajustaIds(pagamento);
-    return this.http.delete(`${this.API}/${pagamento.id}`);
+  cancela(pagamento: Pagamento): Observable<void> {
+    return this.http.delete<void>(`${this.API}/${pagamento.id}`);
   }
 
-  private ajustaIds(pagamento) {
-    pagamento.tipoPagamentoId = pagamento.tipoPagamentoId || pagamento.tipoPagamento.id;
-    pagamento.pedidoId = pagamento.pedidoId || pagamento.pedido.id;
-  }
 }

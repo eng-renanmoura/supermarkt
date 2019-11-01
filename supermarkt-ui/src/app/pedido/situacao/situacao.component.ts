@@ -1,13 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-import { Subscription } from 'rxjs';
-
-import { RxStompService} from '@stomp/ng2-stompjs';
+import { RxStompService } from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
-
+import { Subscription } from 'rxjs';
 import { PedidoService } from 'src/app/pedido/pedido.service';
+import { Avaliacao } from 'src/app/services/avaliacao';
 import { AvaliacoesService } from 'src/app/services/avaliacoes.service';
+import { Pedido } from '../pedido';
 
 
 @Component({
@@ -19,8 +18,8 @@ export class SituacaoComponent implements OnInit, OnDestroy {
 
   private topicSubscription: Subscription;
 
-  pedido: any = {};
-  avaliacao: any = {};
+  pedido: Pedido;
+  avaliacao: Avaliacao;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,7 +28,7 @@ export class SituacaoComponent implements OnInit, OnDestroy {
     private avaliacoesService: AvaliacoesService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     const pedidoId = this.route.snapshot.params.pedidoId;
     this.pedidoService.porId(pedidoId)
       .subscribe(pedido => this.pedido = pedido);
@@ -38,15 +37,16 @@ export class SituacaoComponent implements OnInit, OnDestroy {
       const pedido = JSON.parse(message.body);
       this.pedido.situacao = pedido.situacao;
     });
+    this.avaliacao = new Avaliacao();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.topicSubscription.unsubscribe();
   }
 
-  salvaAvaliacao() {
+  salvaAvaliacao(): void {
     this.avaliacao.pedido = this.pedido;
-    this.avaliacoesService.salva(this.avaliacao)
+    this.avaliacoesService.salva(this.avaliacao, this.pedido.supermercado.id)
       .subscribe(avaliacao => this.avaliacao = avaliacao);
   }
 

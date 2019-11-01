@@ -42,7 +42,7 @@
                         </div>
                     </p-tabPanel>
 
-                    <p-tabPanel header="Avaliações" rightIcon="pi pi-star">
+                    <p-tabPanel *ngIf="avaliacoes" header="Avaliações" rightIcon="pi pi-star">
                                 <p-rating [ngModel]="supermercadoComAvaliacao.mediaDasAvaliacoes" readonly="true" stars="5" [cancel]="false"></p-rating>
                                 <p>{{supermercadoComAvaliacao.mediaAvaliacoes | number:'1.1-1' }} de {{avaliacoes.length}} {{avaliacoes.length > 1 ? 'avaliações' : 'avaliação'}}</p>
                                 <div *ngFor="let avaliacao of avaliacoes">
@@ -119,7 +119,7 @@
     </p-dialog>
 </div>
 
-<p-dialog header="Dados da Entrega" [(visible)]="displayModalEntrega" [modal]="true" 
+<p-dialog *ngIf="pedido" header="Dados da Entrega" [(visible)]="displayModalEntrega" [modal]="true" 
     [responsive]="true">
         <form #entregaForm="ngForm" (ngSubmit)="registraEntrega()" style="width: 250px">
           <fieldset>

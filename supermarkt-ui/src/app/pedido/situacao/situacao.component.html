@@ -4,7 +4,7 @@
     <div class="p-col-2">
       <app-resumo [pedido]="pedido"></app-resumo>
     </div>
-    <div class="p-col-10">
+    <div *ngIf="pedido" class="p-col-10">
       <h2>Acompanhe o Pedido</h2>
       <h1><span>{{ pedido.situacao | situacaoPedido }}</span></h1>
   

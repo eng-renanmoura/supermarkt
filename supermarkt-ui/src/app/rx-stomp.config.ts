@@ -1,7 +1,7 @@
 import { InjectableRxStompConfig } from '@stomp/ng2-stompjs';
-
-import { environment } from 'src/environments/environment';
 import SockJS from 'sockjs-client';
+import { environment } from 'src/environments/environment';
+
 
 export const rxStompConfig: InjectableRxStompConfig = {
   webSocketFactory: () => {

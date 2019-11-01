@@ -26,11 +26,13 @@ public class TipoPagamentoServico {
 				.map(forma -> new FormaPagamentoDTO(forma)).collect(Collectors.toList());
 	}
 	
-	public TipoPagamentoDTO adiciona(TipoPagamento tipoPagamento) {
+	public TipoPagamentoDTO adiciona(TipoPagamentoDTO tipoPagamentoDto) {
+		TipoPagamento tipoPagamento = tipoPagamentoMapper.paraTipoPagamento(tipoPagamentoDto);
 		return tipoPagamentoMapper.paraTipoPagamentoDto(tipoPagamentoRepo.save(tipoPagamento));
 	}
 
-	public TipoPagamentoDTO atualiza(TipoPagamento tipoPagamento) {
+	public TipoPagamentoDTO atualiza(TipoPagamentoDTO tipoPagamentoDto) {
+		TipoPagamento tipoPagamento = tipoPagamentoMapper.paraTipoPagamento(tipoPagamentoDto);
 		return tipoPagamentoMapper.paraTipoPagamentoDto(tipoPagamentoRepo.save(tipoPagamento));
 	}
 	

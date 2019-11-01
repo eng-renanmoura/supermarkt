@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { environment } from 'src/environments/environment';
+import { Pedido } from './pedido';
+import { SupermercadoComAvaliacao } from './supermercado-com-avaliacao';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,28 +15,28 @@ export class PedidoService {
 
   constructor(private http: HttpClient) { }
 
-  getSupermercadosComAvaliacao(): Observable<any> {
-    return this.http.get(`${this.API}/pedidos/supermercados-avaliados`);
+  getSupermercadosComAvaliacao(): Observable<SupermercadoComAvaliacao[]> {
+    return this.http.get<SupermercadoComAvaliacao[]>(`${this.API}/pedidos/supermercados-avaliados`);
   }
 
-  getSupermercadoComAvaliacaoPorId(supermercadoId: string): Observable<any> {
-    return this.http.get(`${this.API}/pedidos/supermercado-avaliado/${supermercadoId}`);
+  getSupermercadoComAvaliacaoPorId(supermercadoId: string): Observable<SupermercadoComAvaliacao> {
+    return this.http.get<SupermercadoComAvaliacao>(`${this.API}/pedidos/supermercado-avaliado/${supermercadoId}`);
   }
 
-  adiciona(pedido): Observable<any> {
-    return this.http.post(`${this.API}/pedidos`, pedido);
+  adiciona(pedido: Pedido): Observable<Pedido> {
+    return this.http.post<Pedido>(`${this.API}/pedidos`, pedido);
   }
 
-  porId(pedidoId) {
-    return this.http.get(`${this.API}/pedidos/${pedidoId}`);
+  porId(pedidoId: number): Observable<Pedido> {
+    return this.http.get<Pedido>(`${this.API}/pedidos/${pedidoId}`);
   }
 
-  pendentes(supermercadoId): Observable<any> {
-    return this.http.get(`${this.API}/parceiros/supermercados/${supermercadoId}/pedidos/pendentes`);
+  pendentes(supermercadoId: number): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(`${this.API}/parceiros/supermercados/${supermercadoId}/pedidos/pendentes`);
   }
 
-  atualizaSituacao(pedido): Observable<any> {
-    return this.http.put(`${this.API}/pedidos/${pedido.id}/situacao`, pedido);
+  atualizaSituacao(pedido: Pedido): Observable<Pedido> {
+    return this.http.put<Pedido>(`${this.API}/pedidos/${pedido.id}/situacao`, pedido);
   }
 
 }

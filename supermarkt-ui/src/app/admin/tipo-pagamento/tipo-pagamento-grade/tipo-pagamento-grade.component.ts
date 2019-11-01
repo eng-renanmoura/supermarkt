@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TipoPagamento } from '../tipo-pagamento';
 
 @Component({
   selector: 'app-tipo-pagamento-grade',
   templateUrl: './tipo-pagamento-grade.component.html',
   styleUrls: ['./tipo-pagamento-grade.component.scss']
 })
-export class TipoPagamentoGradeComponent implements OnInit {
+export class TipoPagamentoGradeComponent {
 
   @Input() tipos = [];
 
@@ -13,10 +14,7 @@ export class TipoPagamentoGradeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
-  handleDelete(tipo) {
+  handleDelete(tipo: TipoPagamento): void {
     this.delete.emit(tipo);
   }
 }

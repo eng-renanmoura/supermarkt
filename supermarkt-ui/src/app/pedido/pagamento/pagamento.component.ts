@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import { SupermercadoService } from 'src/app/admin/supermercado/supermercado.service';
-import { PagamentoService } from './pagamento.service';
+import { TipoPagamento } from 'src/app/admin/tipo-pagamento/tipo-pagamento';
 import { PedidoService } from 'src/app/pedido/pedido.service';
+import { Pedido } from '../pedido';
+import { Pagamento } from './pagamento';
+import { PagamentoService } from './pagamento.service';
+
 
 @Component({
   selector: 'app-pagamento',
@@ -12,9 +15,9 @@ import { PedidoService } from 'src/app/pedido/pedido.service';
 })
 export class PagamentoComponent implements OnInit {
 
-  pedido: any;
-  tiposPagamento: Array<any>;
-  pagamento: any = {};
+  pedido: Pedido;
+  tiposPagamento: TipoPagamento;
+  pagamento: Pagamento;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,30 +27,32 @@ export class PagamentoComponent implements OnInit {
     private supermercadoService: SupermercadoService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     const pedidoId = this.route.snapshot.params.pedidoId;
     this.pedidoService.porId(pedidoId)
-      .subscribe((pedido: any) => {
+      .subscribe((pedido: Pedido) => {
         this.pedido = pedido;
-        this.pagamento = { pedido, valor: pedido.total };
+        this.pagamento = new Pagamento();
+        this.pagamento.pedido = pedido;
+        this.pagamento.valor = pedido.total;
         this.supermercadoService.tiposPagamento(pedido.supermercado)
           .subscribe(tiposPagamento => this.tiposPagamento = tiposPagamento);
       });
   }
 
-  criaPagamento() {
+  criaPagamento(): void {
     this.pagamentoService.cria(this.pagamento)
       .subscribe(pagamento => {
         this.pagamento = pagamento;
       });
   }
 
-  confirmaPagamento() {
+  confirmaPagamento(): void {
     this.pagamentoService.confirma(this.pagamento)
       .subscribe(pagamento => this.router.navigateByUrl(`pedidos/${pagamento.pedido.id}/situacao`));
   }
 
-  cancelaPagamento() {
+  cancelaPagamento(): void {
     this.pagamentoService.cancela(this.pagamento)
       .subscribe(() => this.router.navigateByUrl(``));
   }

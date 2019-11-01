@@ -1,9 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
-
-import { environment } from 'src/environments/environment';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { Autenticacao } from '../login/autenticacao';
+import { Usuario } from '../login/usuario';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,15 +13,15 @@ import { map } from 'rxjs/operators';
 export class AutenticacaoService {
 
   private API = environment.baseUrl + '/autenticacao';
-  private currentUserSubject: BehaviorSubject<any>;
-  public currentUser: Observable<any>;
+  private currentUserSubject: BehaviorSubject<Autenticacao>;
+  public currentUser: Observable<Autenticacao>;
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<Autenticacao>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get currentUserValue(): any {
+  public get currentUserValue(): Autenticacao {
     return this.currentUserSubject.value;
   }
 
@@ -35,9 +37,9 @@ export class AutenticacaoService {
     return found;
   }
 
-  login(loginInfo): Observable<any> {
+  login(loginInfo: Usuario): Observable<Autenticacao> {
     return this.http.post(`${this.API}`, loginInfo)
-      .pipe(map((authData: any) => {
+      .pipe(map((authData: Autenticacao) => {
         if (authData && authData.token) {
           localStorage.setItem('currentUser', JSON.stringify(authData));
           this.currentUserSubject.next(authData);
@@ -46,13 +48,13 @@ export class AutenticacaoService {
       }));
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+    this.currentUserSubject.next(undefined);
   }
 
-  registraParceiro(userInfo: any): Observable<any> {
-    return this.http.post(`${this.API}/parceiro`, userInfo);
+  registraParceiro(userInfo: Usuario): Observable<number> {
+    return this.http.post<number>(`${this.API}/supermercado`, userInfo);
   }
 
 }

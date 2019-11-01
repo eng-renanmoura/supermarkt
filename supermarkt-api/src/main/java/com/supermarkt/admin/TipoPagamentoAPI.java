@@ -31,12 +31,12 @@ public class TipoPagamentoAPI {
 	}
 
 	@PostMapping("/admin/tipo-pagamento")
-	public ResponseEntity<TipoPagamentoDTO> adiciona(@RequestBody TipoPagamento tipoPagamento) {
+	public ResponseEntity<TipoPagamentoDTO> adiciona(@RequestBody TipoPagamentoDTO tipoPagamento) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(tipoPagamentoServico.adiciona(tipoPagamento));
 	}
 
 	@PutMapping("/admin/tipo-pagamento/{id}")
-	public ResponseEntity<TipoPagamentoDTO> atualiza(@RequestBody TipoPagamento tipoPagamento) {
+	public ResponseEntity<TipoPagamentoDTO> atualiza(@RequestBody TipoPagamentoDTO tipoPagamento) {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(tipoPagamentoServico.atualiza(tipoPagamento));
 	}
 

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { environment } from 'src/environments/environment';
+import { Avaliacao } from './avaliacao';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,18 +16,12 @@ export class AvaliacoesService {
     private http: HttpClient
   ) { }
 
-  porIdDoSupermercado(supermercadoId: string): Observable<any> {
-    return this.http.get(`${this.API}/${supermercadoId}/avaliacoes`);
+  porIdDoSupermercado(supermercadoId: string): Observable<Avaliacao[]> {
+    return this.http.get<Avaliacao[]>(`${this.API}/${supermercadoId}/avaliacoes`);
   }
 
-  salva(avaliacao: any): Observable<any> {
-    const supermercadoId = avaliacao.pedido.supermercado.id;
-    return this.http.post(`${this.API}/${supermercadoId}/avaliacoes`, avaliacao);
-  }
-
-  mediaDasAvaliacoesDosSupermercados(supermercados: any[]): Observable<any> {
-    const idsDosSupermercados = supermercados.map(supermercado => supermercado.id).join(',');
-    return this.http.get(`${this.API}/media-avaliacoes?idsDosSupermercados=${idsDosSupermercados}`);
+  salva(avaliacao: Avaliacao, supermercadoId: number): Observable<Avaliacao> {
+    return this.http.post<Avaliacao>(`${this.API}/${supermercadoId}/avaliacoes`, avaliacao);
   }
 
 }

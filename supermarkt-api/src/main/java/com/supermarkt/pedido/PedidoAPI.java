@@ -30,12 +30,12 @@ class PedidoAPI {
 	}
 
 	@PostMapping("/pedidos")
-	public ResponseEntity<PedidoDTO> adiciona(@RequestBody Pedido pedido) {
+	public ResponseEntity<PedidoDTO> adiciona(@RequestBody PedidoDTO pedido) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(pedidoServico.adiciona(pedido));
 	}
 
 	@PutMapping("/pedidos/{id}/situacao")
-	public ResponseEntity<PedidoDTO> atualizaStatus(@RequestBody Pedido pedido) {
+	public ResponseEntity<PedidoDTO> atualizaStatus(@RequestBody PedidoDTO pedido) {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(pedidoServico.atualizaStatus(pedido));
 	}
 

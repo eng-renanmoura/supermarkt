@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { FormaPagamento } from '../forma-pagamento';
+import { TipoPagamento } from '../tipo-pagamento';
+import { TipoPagamentoForm } from '../tipo-pagamento-form';
 import { TipoPagamentoService } from '../tipo-pagamento.service';
+
 
 @Component({
   selector: 'app-tipo-pagamento-formulario',
@@ -16,7 +20,7 @@ export class TipoPagamentoFormularioComponent implements OnInit {
   idTipo: number;
   tipo = {};
 
-  formas: object[];
+  formas: FormaPagamento[];
 
   constructor(
       private fb: FormBuilder,
@@ -25,7 +29,22 @@ export class TipoPagamentoFormularioComponent implements OnInit {
       private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.tipoForm = this.fb.group({
+      id: undefined,
+      nome: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      forma: new FormControl(FormaPagamento, Validators.compose([Validators.required, Validators.maxLength(50)])),
+    });
+
+    this.tipoPagamentoService.getFormas()
+          .subscribe(formas => {
+            this.formas = formas;
+          },
+          erro => {
+            this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível efetuar a operação. Tente novamente'});
+          }
+        );
+
     this.idTipo = this.route.snapshot.params.idTipo;
     if (this.idTipo) {
         this.tipoPagamentoService.getTipoPagamentoById(this.idTipo)
@@ -38,24 +57,11 @@ export class TipoPagamentoFormularioComponent implements OnInit {
         );
     }
 
-    this.tipoPagamentoService.getFormas()
-          .subscribe(formas => {
-            this.formas = formas;
-          },
-          erro => {
-            this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível efetuar a operação. Tente novamente'});
-          }
-        );
-
-    this.tipoForm = this.fb.group({
-      id: null,
-      nome: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      forma: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)]))
-    });
   }
 
-  onSubmit(value: string) {
-    this.tipoPagamentoService.salva(value)
+  onSubmit(tipoPagamentoForm: TipoPagamentoForm): void {
+    const tipoPagamento = new TipoPagamento(tipoPagamentoForm.id, tipoPagamentoForm.nome, tipoPagamentoForm.forma.codigo);
+    this.tipoPagamentoService.salva(tipoPagamento)
       .subscribe(
         () => {
           this.tipoForm.reset();
@@ -67,11 +73,11 @@ export class TipoPagamentoFormularioComponent implements OnInit {
       );
   }
 
-  formInvalid() {
+  formInvalid(): boolean {
     return !this.tipoForm.valid;
   }
 
-  private updateItemForm(tipo) {
+  private updateItemForm(tipo: TipoPagamento): void {
     this.tipoForm.patchValue({
         forma: tipo.forma,
         nome: tipo.nome,

@@ -1,11 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Supermercado } from '../supermercado';
+
 
 @Component({
   selector: 'app-supermercado-grade',
   templateUrl: './supermercado-grade.component.html',
   styleUrls: ['./supermercado-grade.component.scss']
 })
-export class SupermercadoGradeComponent implements OnInit {
+export class SupermercadoGradeComponent {
 
   @Input() supermercados = [];
 
@@ -13,10 +15,7 @@ export class SupermercadoGradeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
-  handleDelete(supermercado) {
+  handleDelete(supermercado: Supermercado): void {
     this.delete.emit(supermercado);
   }
 

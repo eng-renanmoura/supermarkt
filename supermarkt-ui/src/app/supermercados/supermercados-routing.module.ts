@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AutorizacaoGuard } from '../guards/autorizacao.guard';
-
 import { PedidoPendenteComponent } from './pedido-pendente/pedido-pendente.component';
+
 
 const routes: Routes = [
   {

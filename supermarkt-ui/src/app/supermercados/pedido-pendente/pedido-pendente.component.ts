@@ -1,12 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-import { Subscription } from 'rxjs';
-
-import { RxStompService} from '@stomp/ng2-stompjs';
+import { RxStompService } from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
-
+import { Subscription } from 'rxjs';
+import { Pedido } from 'src/app/pedido/pedido';
 import { PedidoService } from '../../pedido/pedido.service';
+
 
 @Component({
   selector: 'app-pedido-pendente',
@@ -17,14 +16,14 @@ export class PedidoPendenteComponent implements OnInit, OnDestroy {
 
   private topicSubscription: Subscription;
 
-  pendentes: Array<any>;
+  pendentes: Pedido[];
 
   constructor(private route: ActivatedRoute,
               private rxStompService: RxStompService,
               private pedidosService: PedidoService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     const supermercadoId = this.route.snapshot.params.supermercadoId;
     this.pedidosService.pendentes(supermercadoId)
       .subscribe(pedidosPendentes => this.pendentes = pedidosPendentes);
@@ -35,29 +34,29 @@ export class PedidoPendenteComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.topicSubscription.unsubscribe();
   }
 
-  confirma(pedido) {
+  confirma(pedido: Pedido): void {
     pedido.situacao = 'CONFIRMADO';
     this.pedidosService.atualizaSituacao(pedido)
       .subscribe();
   }
 
-  avisaPronto(pedido) {
+  avisaPronto(pedido: Pedido): void {
     pedido.situacao = 'PRONTO';
     this.pedidosService.atualizaSituacao(pedido)
       .subscribe();
   }
 
-  avisaSaiu(pedido) {
+  avisaSaiu(pedido: Pedido): void {
     pedido.situacao = 'SAIU_PARA_ENTREGA';
     this.pedidosService.atualizaSituacao(pedido)
       .subscribe();
   }
 
-  avisaEntregue(pedido) {
+  avisaEntregue(pedido: Pedido): void {
     pedido.situacao = 'ENTREGUE';
     this.pedidosService.atualizaSituacao(pedido)
       .subscribe();

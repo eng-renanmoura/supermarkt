@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-
 import { MessageService } from 'primeng/api';
-
 import { EstoqueService } from '../estoque.service';
+import { ItemEstoque } from '../item-estoque';
+
+
 
 @Component({
   selector: 'app-estoque-formulario',
@@ -15,8 +16,8 @@ import { EstoqueService } from '../estoque.service';
 export class EstoqueFormularioComponent implements OnInit {
 
   estoqueForm: FormGroup;
-  idSupermercado = '';
-  idItemEstoque = '';
+  idSupermercado: number;
+  idItemEstoque: number;
   supermercado = {};
 
   constructor(
@@ -26,7 +27,7 @@ export class EstoqueFormularioComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.idSupermercado = this.route.snapshot.params.idSupermercado;
     this.idItemEstoque = this.route.snapshot.params.idItemEstoque;
 
@@ -42,17 +43,17 @@ export class EstoqueFormularioComponent implements OnInit {
     }
 
     this.estoqueForm = this.fb.group({
-      id: null,
-      nome: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      descricao: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      quantidade: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      preco: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      precoPromocional: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      id: undefined,
+      nome: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      descricao: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      quantidade: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      preco: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      precoPromocional: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
     });
   }
 
-  onSubmit(value: string) {
-    this.estoqueService.salva(this.idSupermercado, value)
+  onSubmit(itemEstoque: ItemEstoque): void {
+    this.estoqueService.salva(this.idSupermercado, itemEstoque)
       .subscribe(
         () => {
           this.estoqueForm.reset();
@@ -64,11 +65,11 @@ export class EstoqueFormularioComponent implements OnInit {
       );
   }
 
-  formInvalid() {
+  formInvalid(): boolean {
     return !this.estoqueForm.valid;
   }
 
-  private updateItemForm(estoque) {
+  private updateItemForm(estoque: ItemEstoque): void {
     this.estoqueForm.patchValue({
         precoPromocional: estoque.precoPromocional,
         preco: estoque.preco,

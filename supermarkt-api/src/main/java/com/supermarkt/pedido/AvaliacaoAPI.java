@@ -25,7 +25,7 @@ public class AvaliacaoAPI {
 	}
 
 	@PostMapping("/supermercados/{supermercadoId}/avaliacoes")
-	public ResponseEntity<AvaliacaoDTO> adiciona(@RequestBody Avaliacao avaliacao) {
+	public ResponseEntity<AvaliacaoDTO> adiciona(@RequestBody AvaliacaoDTO avaliacao) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(avaliacaoServico.adiciona(avaliacao));
 	}
 

@@ -37,7 +37,8 @@ public class PedidoServico {
 		return pedidoMapper.paraPedidoDto(pedido);
 	}
 
-	public PedidoDTO adiciona(Pedido pedido) {
+	public PedidoDTO adiciona(PedidoDTO pedidoDto) {
+		Pedido pedido = pedidoMapper.paraPedido(pedidoDto);
 		pedido.setDataHora(LocalDateTime.now());
 		pedido.setSituacao(Pedido.Situacao.REALIZADO);
 		pedido.getItens().forEach(item -> item.setPedido(pedido));
@@ -46,7 +47,8 @@ public class PedidoServico {
 		return pedidoMapper.paraPedidoDto(salvo);
 	}
 
-	public PedidoDTO atualizaStatus(Pedido pedido) {
+	public PedidoDTO atualizaStatus(PedidoDTO pedidoDto) {
+		Pedido pedido = pedidoMapper.paraPedido(pedidoDto);
 		pedidoRepo.atualizaStatus(pedido.getSituacao(), pedido);
 		websocket.convertAndSend("/pedidos/"+pedido.getId()+"/situacao", pedido);
 		return pedidoMapper.paraPedidoDto(pedido);

@@ -23,7 +23,8 @@ public class AvaliacaoServico {
 		return avaliacaoMapper.paraAvaliacaoDto(repo.findAllBySupermercado(supermercado));
 	}
 
-	public AvaliacaoDTO adiciona(@RequestBody Avaliacao avaliacao) {
+	public AvaliacaoDTO adiciona(@RequestBody AvaliacaoDTO avaliacaoDto) {
+		Avaliacao avaliacao = avaliacaoMapper.paraAvaliacao(avaliacaoDto);
 		Avaliacao salvo = repo.save(avaliacao);
 		return avaliacaoMapper.paraAvaliacaoDto(salvo);
 	}

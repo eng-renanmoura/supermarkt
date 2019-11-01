@@ -5,6 +5,7 @@ export class Supermercado {
         public nome: string,
         public descricao: string,
         public cep: string,
+        public endereco: string,
         public taxaDeEntregaEmReais: number,
         public tempoDeEntregaMinimoEmMinutos: number,
         public tempoDeEntregaMaximoEmMinutos: number,

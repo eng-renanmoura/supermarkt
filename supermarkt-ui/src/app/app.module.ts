@@ -1,26 +1,18 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { LOCALE_ID, NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { AppRoutingModule } from './app-routing.module';
-
 import { registerLocaleData } from '@angular/common';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import localeFr from '@angular/common/locales/pt';
-
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { SupermercadoModule } from './admin/supermercado/supermercado.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { LoginComponent } from './login/login.component';
-
 import { ErrorHandlingInterceptor } from './interceptors/error-handling-interceptor';
 import { JwtInterceptor } from './interceptors/jwt-interceptor';
-
+import { LoginComponent } from './login/login.component';
 import { TemplateModule } from './template/template.module';
-
-import { SupermercadoModule } from './admin/supermercado/supermercado.module';
 
 registerLocaleData(localeFr, 'pt');
 

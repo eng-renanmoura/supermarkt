@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ListaSupermercadosComponent } from './lista-supermercados/lista-supermercados.component';
-
-import { SupermercadoComponent } from './supermercado/supermercado.component';
-import { SituacaoComponent } from './situacao/situacao.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
+import { SituacaoComponent } from './situacao/situacao.component';
+import { SupermercadoComponent } from './supermercado/supermercado.component';
+
 
 const routes: Routes = [
   {

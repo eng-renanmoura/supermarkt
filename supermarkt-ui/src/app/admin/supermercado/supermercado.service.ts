@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { environment } from 'src/environments/environment';
+import { TipoPagamento } from '../tipo-pagamento/tipo-pagamento';
+import { Supermercado } from './supermercado';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,34 +15,34 @@ export class SupermercadoService {
 
   constructor(private http: HttpClient) { }
 
-  getSupermercados(): Observable<any> {
-    return this.http.get(`${this.API}/admin/supermercados`);
+  getSupermercados(): Observable<Supermercado[]> {
+    return this.http.get<Supermercado[]>(`${this.API}/admin/supermercados`);
   }
 
-  getByName(nome: any): Observable<any> {
-    return this.http.get(`${this.API}/admin/supermercados/${nome}`);
+  getByName(nome: string): Observable<Supermercado[]> {
+    return this.http.get<Supermercado[]>(`${this.API}/admin/supermercados/${nome}`);
   }
 
-  salva(categoria: any): Observable<any> {
-    if (categoria.id) {
-      return this.http.put(`${this.API}/admin/supermercados/${categoria.id}`, categoria);
+  salva(supermercado: Supermercado): Observable<Supermercado> {
+    if (supermercado.id) {
+      return this.http.put<Supermercado>(`${this.API}/admin/supermercados/${supermercado.id}`, supermercado);
     }
-    return this.http.post(`${this.API}/admin/supermercados`, categoria);
+    return this.http.post<Supermercado>(`${this.API}/admin/supermercados`, supermercado);
   }
 
-  remove(categoria: any): Observable<any> {
-    return this.http.delete(`${this.API}/admin/supermercados/${categoria.id}`);
+  remove(supermercado: Supermercado): Observable<void> {
+    return this.http.delete<void>(`${this.API}/admin/supermercados/${supermercado.id}`);
   }
 
-  getSupermercadoById(id): Observable<any> {
-    return this.http.get(`${this.API}/supermercados/${id}`);
+  getSupermercadoById(id: number): Observable<Supermercado> {
+    return this.http.get<Supermercado>(`${this.API}/supermercados/${id}`);
   }
 
-  parceiroPorId(id): Observable<any> {
-    return this.http.get(`${this.API}/parceiros/supermercados/${id}`);
+  parceiroPorId(id: number): Observable<Supermercado> {
+    return this.http.get<Supermercado>(`${this.API}/parceiros/supermercados/${id}`);
   }
 
-  tiposPagamento(supermercado): Observable<any>  {
-    return this.http.get(`${this.API}/supermercados/${supermercado.id}/tipo-pagamento`);
+  tiposPagamento(supermercado: Supermercado): Observable<TipoPagamento>  {
+    return this.http.get<TipoPagamento>(`${this.API}/supermercados/${supermercado.id}/tipo-pagamento`);
   }
 }

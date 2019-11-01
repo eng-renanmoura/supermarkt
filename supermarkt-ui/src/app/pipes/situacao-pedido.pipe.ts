@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SituacaoPedidoPipe implements PipeTransform {
 
-  descricaoSituacaoDoPedido: any = {
+  descricaoSituacaoDoPedido = {
     REALIZADO: 'Realizado',
     PAGO: 'Pago',
     CONFIRMADO: 'Confirmado',
@@ -14,7 +14,7 @@ export class SituacaoPedidoPipe implements PipeTransform {
     ENTREGUE: 'Entregue'
   };
 
-  transform(value: any): string {
+  transform(value: string): string {
     return this.descricaoSituacaoDoPedido[value] || value;
   }
 

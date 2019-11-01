@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { Usuario } from './login/usuario';
 import { AutenticacaoService } from './services/autenticacao.service';
+
 
 @Component({
   selector: 'app-root',
@@ -10,16 +11,16 @@ import { AutenticacaoService } from './services/autenticacao.service';
 })
 export class AppComponent implements OnInit {
   title = 'supermarkt-ui';
-  user: any;
+  user: Usuario;
 
   constructor(private router: Router,
               private autenticacaoService: AutenticacaoService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.autenticacaoService.currentUser.subscribe(user => this.user = user);
   }
 
-  logout() {
+  logout(): void {
     this.autenticacaoService.logout();
     this.router.navigate(['']);
   }

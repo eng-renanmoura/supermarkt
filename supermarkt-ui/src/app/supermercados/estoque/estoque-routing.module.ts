@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
+import { AutorizacaoGuard } from '../../guards/autorizacao.guard';
 import { EstoqueBuscaComponent } from './estoque-busca/estoque-busca.component';
 import { EstoqueFormularioComponent } from './estoque-formulario/estoque-formulario.component';
-import { AutorizacaoGuard } from '../../guards/autorizacao.guard';
+
 
 const routes: Routes = [
   {

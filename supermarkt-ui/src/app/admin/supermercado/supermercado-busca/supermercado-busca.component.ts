@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { Supermercado } from '../supermercado';
 import { SupermercadoService } from '../supermercado.service';
-import { ConfirmationService } from 'primeng/api';
 
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-supermercado-busca',
@@ -12,7 +12,7 @@ import { MessageService } from 'primeng/api';
 })
 export class SupermercadoBuscaComponent implements OnInit {
 
-  supermercados = [];
+  supermercados: Supermercado[];
   inputSearch;
 
   constructor(
@@ -21,11 +21,11 @@ export class SupermercadoBuscaComponent implements OnInit {
     private messageService: MessageService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadSupermercados();
   }
 
-  dialogDelete(item) {
+  dialogDelete(supermercado: Supermercado): void {
     this.confirmationService.confirm({
         message: 'Tem certeza que deseja excluir este item?',
         acceptLabel: 'Sim',
@@ -33,15 +33,15 @@ export class SupermercadoBuscaComponent implements OnInit {
         header: 'Confirmação',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.deleteSupermercado(item);
+            this.deleteSupermercado(supermercado);
         },
         reject: () => {
         }
     });
   }
 
-  getSupermercadosByName(value) {
-    this.supermercadoService.getByName(value)
+  getSupermercadosByName(nome: string): void {
+    this.supermercadoService.getByName(nome)
       .subscribe(
         supermercados => {
           this.supermercados = supermercados;
@@ -52,7 +52,7 @@ export class SupermercadoBuscaComponent implements OnInit {
       );
   }
 
-  private loadSupermercados() {
+  private loadSupermercados(): void {
     this.supermercadoService.getSupermercados()
         .subscribe(
           supermercados => {
@@ -64,7 +64,7 @@ export class SupermercadoBuscaComponent implements OnInit {
         );
   }
 
-  private deleteSupermercado(supermercado) {
+  private deleteSupermercado(supermercado: Supermercado): void {
     this.supermercadoService.remove(supermercado)
       .subscribe(
         () => {

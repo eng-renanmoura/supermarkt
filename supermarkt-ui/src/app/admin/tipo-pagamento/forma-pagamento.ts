@@ -1,6 +1,6 @@
 export class FormaPagamento {
     constructor(
-        public valor: string,
+        public codigo: string,
         public descricao: string
     ) {}
 }

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { EstoqueService } from '../estoque.service';
-import { ConfirmationService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
-
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { Supermercado } from 'src/app/admin/supermercado/supermercado';
 import { SupermercadoService } from '../../../admin/supermercado/supermercado.service';
+import { EstoqueService } from '../estoque.service';
+import { ItemEstoque } from '../item-estoque';
 
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-estoque-busca',
@@ -15,10 +15,10 @@ import { MessageService } from 'primeng/api';
 })
 export class EstoqueBuscaComponent implements OnInit {
 
-  itensEstoque = [];
+  itensEstoque: ItemEstoque[];
   inputSearch;
-  supermercadoId = '';
-  supermercado;
+  supermercadoId: number;
+  supermercado: Supermercado;
 
   constructor(
     private estoqueService: EstoqueService,
@@ -28,14 +28,14 @@ export class EstoqueBuscaComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.supermercadoId = this.route.snapshot.params.supermercadoId;
     this.supermercadoService.getSupermercadoById(this.supermercadoId)
         .subscribe( supermercado => this.supermercado = supermercado);
     this.loadEstoque();
   }
 
-  dialogDelete(item) {
+  dialogDelete(item: ItemEstoque): void {
     this.confirmationService.confirm({
         message: 'Tem certeza que deseja excluir este item?',
         acceptLabel: 'Sim',
@@ -50,8 +50,8 @@ export class EstoqueBuscaComponent implements OnInit {
     });
   }
 
-  getItemEstoqueByName(value) {
-    this.estoqueService.getByName(this.supermercadoId, value)
+  getItemEstoqueByName(nome: string): void {
+    this.estoqueService.getByName(this.supermercadoId, nome)
       .subscribe(
         itensEstoque => {
           this.itensEstoque = itensEstoque;
@@ -62,7 +62,7 @@ export class EstoqueBuscaComponent implements OnInit {
       );
   }
 
-  private loadEstoque() {
+  private loadEstoque(): void {
     this.estoqueService.detalhaEstoqueDoSupermercado(this.supermercadoId)
         .subscribe(
           itensEstoque => {
@@ -74,8 +74,8 @@ export class EstoqueBuscaComponent implements OnInit {
         );
   }
 
-  private deleteItemEstoque(itemEstoque) {
-    this.estoqueService.remove(this.supermercadoId, itemEstoque)
+  private deleteItemEstoque(itemEstoque: ItemEstoque): void {
+    this.estoqueService.remove(this.supermercadoId, itemEstoque.id)
       .subscribe(
         () => {
           this.loadEstoque();

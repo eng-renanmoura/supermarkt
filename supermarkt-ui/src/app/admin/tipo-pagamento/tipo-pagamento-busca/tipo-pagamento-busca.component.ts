@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { TipoPagamento } from '../tipo-pagamento';
 import { TipoPagamentoService } from '../tipo-pagamento.service';
-import { ConfirmationService } from 'primeng/api';
-
-import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -13,7 +12,7 @@ import { MessageService } from 'primeng/api';
 })
 export class TipoPagamentoBuscaComponent implements OnInit {
 
-  tipos = [];
+  tipos: TipoPagamento[];
   inputSearch;
 
   constructor(
@@ -22,11 +21,11 @@ export class TipoPagamentoBuscaComponent implements OnInit {
     private messageService: MessageService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loadTiposPagamento();
   }
 
-  dialogDelete(item) {
+  dialogDelete(tipoPagamento: TipoPagamento): void {
     this.confirmationService.confirm({
         message: 'Tem certeza que deseja excluir este item?',
         acceptLabel: 'Sim',
@@ -34,15 +33,15 @@ export class TipoPagamentoBuscaComponent implements OnInit {
         header: 'Confirmação',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-            this.deleteTipo(item);
+            this.deleteTipo(tipoPagamento);
         },
         reject: () => {
         }
     });
   }
 
-  getTiposDePagamentoByName(value) {
-    this.tipoPagamentoService.getByName(value)
+  getTiposDePagamentoByName(nome: string): void {
+    this.tipoPagamentoService.getByName(nome)
       .subscribe(
         tipos => {
           this.tipos = tipos;
@@ -53,7 +52,7 @@ export class TipoPagamentoBuscaComponent implements OnInit {
       );
   }
 
-  private loadTiposPagamento() {
+  private loadTiposPagamento(): void {
     this.tipoPagamentoService.getTiposPagamento()
         .subscribe(
           tipos => {
@@ -65,8 +64,8 @@ export class TipoPagamentoBuscaComponent implements OnInit {
         );
   }
 
-  private deleteTipo(tipo) {
-    this.tipoPagamentoService.remove(tipo)
+  private deleteTipo(tipoPagamento: TipoPagamento): void {
+    this.tipoPagamentoService.remove(tipoPagamento)
       .subscribe(
         () => {
           this.loadTiposPagamento();

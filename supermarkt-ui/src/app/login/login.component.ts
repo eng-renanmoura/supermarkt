@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AutenticacaoService } from '../services/autenticacao.service';
+import { Usuario } from './usuario';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +10,12 @@ import { AutenticacaoService } from '../services/autenticacao.service';
 })
 export class LoginComponent {
 
-  loginInfo: any = {};
+  loginInfo: Usuario = {};
 
   constructor(private router: Router,
               private autenticacaoService: AutenticacaoService) { }
 
-  efetuaLogin() {
+  efetuaLogin(): void {
     this.autenticacaoService.login(this.loginInfo)
       .subscribe(() => this.router.navigate(['']));
   }

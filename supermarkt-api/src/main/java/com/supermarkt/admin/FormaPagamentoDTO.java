@@ -1,15 +1,20 @@
 package com.supermarkt.admin;
 
 import com.supermarkt.admin.TipoPagamento.Forma;
+import com.supermarkt.admin.TipoPagamentoDTO.TipoPagamentoDTOBuilder;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class FormaPagamentoDTO {
 	
-	private String valor;
+	private String codigo;
 	private String descricao;
 	
 	public FormaPagamentoDTO(Forma forma) {

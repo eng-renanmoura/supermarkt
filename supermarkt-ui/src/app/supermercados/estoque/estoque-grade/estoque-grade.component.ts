@@ -1,22 +1,18 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ItemEstoque } from '../item-estoque';
 
 @Component({
   selector: 'app-estoque-grade',
   templateUrl: './estoque-grade.component.html',
   styleUrls: ['./estoque-grade.component.scss']
 })
-export class EstoqueGradeComponent implements OnInit {
+export class EstoqueGradeComponent {
 
-  @Input() itensEstoque = [];
+  @Input() itensEstoque: ItemEstoque[];
 
   @Output() delete = new EventEmitter();
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  handleDelete(itemEstoque) {
+  handleDelete(itemEstoque: ItemEstoque): void {
     this.delete.emit(itemEstoque);
   }
 

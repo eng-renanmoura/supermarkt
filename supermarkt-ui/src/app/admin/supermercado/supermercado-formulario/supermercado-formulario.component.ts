@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-
 import { MessageService } from 'primeng/api';
-
+import { Supermercado } from '../supermercado';
 import { SupermercadoService } from '../supermercado.service';
+
 
 @Component({
   selector: 'app-supermercado-formulario',
@@ -15,7 +15,7 @@ import { SupermercadoService } from '../supermercado.service';
 export class SupermercadoFormularioComponent implements OnInit {
 
   supermercadoForm: FormGroup;
-  idSupermercado = '';
+  idSupermercado: number;
   supermercado = {};
 
   constructor(
@@ -25,7 +25,7 @@ export class SupermercadoFormularioComponent implements OnInit {
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.idSupermercado = this.route.snapshot.params.idSupermercado;
     if (this.idSupermercado) {
         this.supermercadoService.getSupermercadoById(this.idSupermercado)
@@ -39,20 +39,20 @@ export class SupermercadoFormularioComponent implements OnInit {
     }
 
     this.supermercadoForm = this.fb.group({
-      id: null,
-      nome: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      cnpj: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      descricao: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      cep: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      endereco: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      taxaDeEntregaEmReais: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      tempoDeEntregaMinimoEmMinutos: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      tempoDeEntregaMaximoEmMinutos: new FormControl(null, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      id: undefined,
+      nome: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      cnpj: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      descricao: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      cep: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      endereco: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      taxaDeEntregaEmReais: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      tempoDeEntregaMinimoEmMinutos: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      tempoDeEntregaMaximoEmMinutos: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
     });
   }
 
-  onSubmit(value: string) {
-    this.supermercadoService.salva(value)
+  onSubmit(supermercado: Supermercado): void {
+    this.supermercadoService.salva(supermercado)
       .subscribe(
         () => {
           this.supermercadoForm.reset();
@@ -64,11 +64,11 @@ export class SupermercadoFormularioComponent implements OnInit {
       );
   }
 
-  formInvalid() {
+  formInvalid(): boolean {
     return !this.supermercadoForm.valid;
   }
 
-  private updateItemForm(supermercado) {
+  private updateItemForm(supermercado: Supermercado): void {
     this.supermercadoForm.patchValue({
         tempoDeEntregaMaximoEmMinutos: supermercado.tempoDeEntregaMaximoEmMinutos,
         tempoDeEntregaMinimoEmMinutos: supermercado.tempoDeEntregaMinimoEmMinutos,

@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 import { environment } from 'src/environments/environment';
+import { ItemEstoque } from './item-estoque';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,31 +14,31 @@ export class EstoqueService {
 
   constructor(private http: HttpClient) { }
 
-  getByName(idSupermercado, nome: any): Observable<any> {
-    return this.http.get(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque/${nome}`);
+  getByName(idSupermercado: number, nome: string): Observable<ItemEstoque[]> {
+    return this.http.get<ItemEstoque[]>(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque/${nome}`);
   }
 
-  salva(idSupermercado, itemEstoque: any): Observable<any> {
+  salva(idSupermercado: number, itemEstoque: ItemEstoque): Observable<ItemEstoque> {
     if (itemEstoque) {
-      return this.http.put(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque/${itemEstoque.id}`, itemEstoque);
+      return this.http.put<ItemEstoque>(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque/${itemEstoque.id}`, itemEstoque);
     }
-    return this.http.post(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque`, itemEstoque);
+    return this.http.post<ItemEstoque>(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque`, itemEstoque);
   }
 
-  remove(idSupermercado, idItemEstoque: any): Observable<any> {
-    return this.http.delete(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque/${idItemEstoque}`);
+  remove(idSupermercado: number, idItemEstoque: number): Observable<void> {
+    return this.http.delete<void>(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque/${idItemEstoque}`);
   }
 
-  getItemEstoqueById(idSupermercado, idItemEstoque): Observable<any> {
-    return this.http.get(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque/${idItemEstoque}`);
+  getItemEstoqueById(idSupermercado: number, idItemEstoque: number): Observable<ItemEstoque> {
+    return this.http.get<ItemEstoque>(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque/${idItemEstoque}`);
   }
 
-  estoquePorSupermercadoId(supermercadoId): Observable<any> {
-    return this.http.get(`${this.API}/supermercados/${supermercadoId}/estoque`);
+  estoquePorSupermercadoId(supermercadoId: number): Observable<ItemEstoque[]> {
+    return this.http.get<ItemEstoque[]>(`${this.API}/supermercados/${supermercadoId}/estoque`);
   }
 
-  detalhaEstoqueDoSupermercado(supermercadoId): Observable<any> {
-    return this.http.get(`${this.API}/parceiros/supermercados/${supermercadoId}/estoque/detalha`);
+  detalhaEstoqueDoSupermercado(supermercadoId: number): Observable<ItemEstoque[]> {
+    return this.http.get<ItemEstoque[]>(`${this.API}/parceiros/supermercados/${supermercadoId}/estoque/detalha`);
   }
 
 }
