@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuItem} from 'primeng/api';
+import { MenuItem } from 'primeng/api';
+import { Autenticacao } from '../../login/autenticacao';
+import { AutenticacaoService } from '../../services/autenticacao.service';
 
 @Component({
     selector: 'app-sidebar',
@@ -8,18 +10,34 @@ import {MenuItem} from 'primeng/api';
 })
 export class SidebarComponent implements OnInit {
 
-    items: MenuItem[];
+    itensAdmin: MenuItem[];
+    itensSupermercado: MenuItem[];
 
-    constructor() { }
+    user: Autenticacao;
+
+    constructor(private autenticacaoService: AutenticacaoService) {}
 
     ngOnInit(): void {
-        this.items = [{
-            label: 'Itens',
-            items: [
-                {label: 'Novo', icon: 'pi pi-fw pi-plus', routerLink: '/itens/novo'},
-                {label: 'Pesquisa', icon: 'pi pi-fw pi-search',  routerLink: '/itens'}
-            ]
-        }];
+        this.autenticacaoService.currentUser.subscribe(user => {
+                this.user = user;
+                if (this.user) {
+                    this.itensAdmin = [{
+                        label: 'Administrador',
+                        items: [
+                            {label: 'Tipos de Pagamentos', icon: '',  routerLink: '/admin/tipos-pagamentos'},
+                            {label: 'Supermercados', icon: '',  routerLink: '/admin/supermercados'}
+                        ]
+                    }];
+                    this.itensSupermercado = [{
+                        label: 'Supermercado',
+                        items: [
+                            {label: 'Pedidos', icon: '',  routerLink: '/supermercados/' +  this.user.targetId + '/pedidos/pendentes'},
+                            {label: 'Estoque', icon: '',  routerLink: '/supermercados/' + this.user.targetId + '/estoque'}
+                        ]
+                    }];
+                }
+            });
+
     }
 
 }

@@ -12,6 +12,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { RatingModule } from 'primeng/rating';
 import { TabViewModule } from 'primeng/tabview';
 import { rxStompConfig } from 'src/app/rx-stomp.config';
+import { DirectiveModule } from '../directive/directive.module';
 import { PipesModule } from '../pipes/pipes.module';
 import { ListaSupermercadosComponent } from './lista-supermercados/lista-supermercados.component';
 import { PagamentoComponent } from './pagamento/pagamento.component';
@@ -28,7 +29,8 @@ import { SupermercadoComponent } from './supermercado/supermercado.component';
     PagamentoComponent,
     SupermercadoComponent,
     SituacaoComponent,
-    ResumoComponent],
+    ResumoComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -42,7 +44,8 @@ import { SupermercadoComponent } from './supermercado/supermercado.component';
     DialogModule,
     TextMaskModule,
     DropdownModule,
-    PipesModule
+    PipesModule,
+    DirectiveModule
   ],
   providers: [
     PedidoService,

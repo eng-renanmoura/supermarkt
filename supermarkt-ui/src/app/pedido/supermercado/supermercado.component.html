@@ -5,7 +5,7 @@
             <div *ngIf="supermercadoComAvaliacao">
                 <div>
                     <div>
-                        <h2>{{supermercadoComAvaliacao.supermercado.nome}}</h2>
+                        <h2>{{supermercadoComAvaliacao.supermercado.nome | favoriteText:supermercadoComAvaliacao.supermercado.aprovado }}</h2>
                         <p>{{ supermercadoComAvaliacao.supermercado.descricao }}</p>
                         <p-rating [ngModel]="supermercadoComAvaliacao.mediaDasAvaliacoes" readonly="true" stars="5" [cancel]="false"></p-rating>
                         <p>

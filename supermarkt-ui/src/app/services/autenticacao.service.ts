@@ -26,15 +26,14 @@ export class AutenticacaoService {
   }
 
   hasRole(roles: string[]): boolean {
-    let found = false;
     if (this.currentUserValue && this.currentUserValue.roles) {
-      roles.forEach(role => {
+      for (const role of roles) {
         if (this.currentUserValue.roles.includes(role)) {
-          found = true;
+          return true;
         }
-      });
+      }
     }
-    return found;
+    return false;
   }
 
   login(loginInfo: Usuario): Observable<Autenticacao> {

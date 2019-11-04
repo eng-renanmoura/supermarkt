@@ -62,6 +62,11 @@ public class SupermercadoAPI {
 	public ResponseEntity<Supermercado> atualiza(@RequestBody Supermercado supermercado) {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(supermercadoServico.atualiza(supermercado));
 	}
+	
+	@PutMapping("/supermercados/{id}/favoritar")
+	public ResponseEntity<Supermercado> favoritar(@RequestBody Supermercado supermercado) {
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body(supermercadoServico.atualiza(supermercado));
+	}
 
 	@GetMapping("/admin/supermercados/em-aprovacao")
 	public ResponseEntity<List<SupermercadoDTO>> emAprovacao() {

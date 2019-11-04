@@ -1,1 +1,2 @@
-<p-menu  #menu  styleClass="main-menu" [model]="items"></p-menu>
+<p-menu *appTemAcesso="['ADMIN']" #menuAdmin  styleClass="main-menu" [model]="itensAdmin"></p-menu>
+<p-menu *appTemAcesso="['SUPERMERCADO']" #menuSupermercado styleClass="main-menu" [model]="itensSupermercado"></p-menu>

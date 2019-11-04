@@ -1,7 +1,6 @@
 package com.supermarkt.admin;
 
 import com.supermarkt.admin.TipoPagamento.Forma;
-import com.supermarkt.admin.TipoPagamentoDTO.TipoPagamentoDTOBuilder;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

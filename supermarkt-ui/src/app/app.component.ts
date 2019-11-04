@@ -12,6 +12,7 @@ import { AutenticacaoService } from './services/autenticacao.service';
 export class AppComponent implements OnInit {
   title = 'supermarkt-ui';
   user: Usuario;
+  showMenu = true;
 
   constructor(private router: Router,
               private autenticacaoService: AutenticacaoService) {}

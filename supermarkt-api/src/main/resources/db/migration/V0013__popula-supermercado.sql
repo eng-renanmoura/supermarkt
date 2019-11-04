@@ -242,7 +242,7 @@ INSERT INTO item_estoque (
 
 -- Nazaré
 INSERT INTO supermercado (id, aprovado, cnpj, nome, descricao, cep, endereco, taxa_de_entrega_em_reais, tempo_de_entrega_minimo_em_minutos, tempo_de_entrega_maximo_em_minutos)
-values (3, true, '85714361000152', 'Nazaré Duque de Caxias', 'Lugar de comprar barato', '66093029', 'Av. Duque de Caxias, 1101 - Marco' , 12, 20, 60);
+values (3, true, '85714361000152', 'Nazaré da Duque', 'Lugar de comprar barato', '66093029', 'Av. Duque de Caxias, 1101 - Marco' , 12, 20, 60);
 
 INSERT INTO supermercado_tipo_pagamento (supermercado_id, tipo_pagamento_id) values (3, 1);
 INSERT INTO supermercado_tipo_pagamento (supermercado_id, tipo_pagamento_id) values (3, 2);

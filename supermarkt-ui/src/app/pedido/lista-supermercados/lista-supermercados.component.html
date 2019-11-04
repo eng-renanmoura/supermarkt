@@ -5,10 +5,17 @@
 
     <div class="p-grid">
         <div *ngFor="let supermercadoComAvaliacao of supermercadosComAvaliacao">
-            <div class="p-col">
+            <div appFade class="p-col">
+                
                 <p-card header="{{supermercadoComAvaliacao.supermercado.nome}}" 
                         subheader=""
                         [style]="{width: '260px'}" styleClass="ui-card-shadow">
+
+                    <span class='favorite_icon' *appExceto="supermercadoComAvaliacao.supermercado.aprovado"
+                    (click)="favoritar(supermercadoComAvaliacao.supermercado)">&#9825;</span>
+                    <span class='favorite_icon favorited' *appExceto="!supermercadoComAvaliacao.supermercado.aprovado"
+                    (click)="favoritar(supermercadoComAvaliacao.supermercado)">&#9829;</span>
+                    
                     <!--p-header>
                         <img src="Card" src="assets/showcase/images/usercard.png">
                     </p-header-->

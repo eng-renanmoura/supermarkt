@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Supermercado } from 'src/app/admin/supermercado/supermercado';
+import { SupermercadoService } from '../../admin/supermercado/supermercado.service';
 import { PedidoService } from '../pedido.service';
 import { SupermercadoComAvaliacao } from '../supermercado-com-avaliacao';
-
 
 @Component({
   selector: 'app-lista-supermercados',
@@ -16,7 +16,8 @@ export class ListaSupermercadosComponent implements OnInit {
 
   constructor(
     private pedidoService: PedidoService,
-    private router: Router
+    private router: Router,
+    private supermercadoService: SupermercadoService
   ) { }
 
   ngOnInit(): void {
@@ -27,6 +28,11 @@ export class ListaSupermercadosComponent implements OnInit {
 
   escolher(supermercado: Supermercado): void {
     this.router.navigateByUrl(`/pedidos/supermercado/${supermercado.id}`);
+  }
+
+  favoritar(supermercado: Supermercado): void {
+    supermercado.aprovado = supermercado.aprovado ? false : true;
+    this.supermercadoService.favoritar(supermercado).subscribe();
   }
 
 }

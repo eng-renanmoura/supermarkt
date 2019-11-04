@@ -1,9 +1,19 @@
 <header>
-    <a *ngIf="user" class="nav-link" (click)="logout()">Logout</a>
+    
 </header>
 
-<router-outlet></router-outlet>
-
+<div class="ui-g ui-fluid">
+    <app-navbar (showMenu)="showMenu = !showMenu" class="ui-g-12" style="padding: 0"></app-navbar>
+</div>
+<div style="display: inline-block; width: 100vw;">
+    <div style="margin-right: 10px; float: left;">
+        <app-sidebar [hidden]="!showMenu"></app-sidebar>
+    </div>
+    <div style="width: 100%;">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+    
 <footer>
 
 </footer>

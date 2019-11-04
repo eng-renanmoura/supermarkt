@@ -1,11 +1,13 @@
 import { registerLocaleData } from '@angular/common';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import localeFr from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 import { SupermercadoModule } from './admin/supermercado/supermercado.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,7 +31,9 @@ registerLocaleData(localeFr, 'pt');
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     TemplateModule,
-    SupermercadoModule
+    SupermercadoModule,
+    ButtonModule,
+    InputTextModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
