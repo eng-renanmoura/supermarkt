@@ -1,4 +1,4 @@
-package com.supermarkt.infra.apierror;
+package com.supermarkt.infra.erroapi;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -15,7 +15,6 @@ import org.springframework.validation.ObjectError;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
-import com.supermarkt.infra.LowerCaseClassNameResolver;
 
 import lombok.Data;
 

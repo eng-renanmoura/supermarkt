@@ -1,4 +1,4 @@
-package com.supermarkt.infra;
+package com.supermarkt.infra.erroapi;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
@@ -23,7 +23,6 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.supermarkt.infra.apierror.ApiError;
 import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
 
 import lombok.extern.slf4j.Slf4j;

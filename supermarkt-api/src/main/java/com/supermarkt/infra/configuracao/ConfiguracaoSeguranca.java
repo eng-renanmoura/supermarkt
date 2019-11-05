@@ -1,4 +1,4 @@
-package com.supermarkt;
+package com.supermarkt.infra.configuracao;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

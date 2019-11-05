@@ -1,4 +1,4 @@
-package com.supermarkt.infra;
+package com.supermarkt.infra.erroapi;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.jsontype.impl.TypeIdResolverBase;

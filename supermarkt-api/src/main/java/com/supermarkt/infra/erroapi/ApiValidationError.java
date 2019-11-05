@@ -1,4 +1,4 @@
-package com.supermarkt.infra.apierror;
+package com.supermarkt.infra.erroapi;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
