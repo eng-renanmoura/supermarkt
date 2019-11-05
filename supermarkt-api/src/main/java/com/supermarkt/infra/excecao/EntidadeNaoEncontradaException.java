@@ -10,7 +10,7 @@ public class EntidadeNaoEncontradaException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public EntidadeNaoEncontradaException(Class<?> clazz, String... searchParamsMap) {
+	public EntidadeNaoEncontradaException(Class<?> clazz, Object... searchParamsMap) {
         super(EntidadeNaoEncontradaException.generateMessage(clazz.getSimpleName(), toMap(String.class, String.class, searchParamsMap)));
     }
 
