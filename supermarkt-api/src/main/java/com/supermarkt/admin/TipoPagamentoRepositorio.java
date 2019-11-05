@@ -1,14 +1,15 @@
 package com.supermarkt.admin;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
 interface TipoPagamentoRepositorio extends JpaRepository<TipoPagamento, Long> {
 
-	List<TipoPagamento> findAllByOrderByNomeAsc();
+	Optional<List<TipoPagamento>> findAllByOrderByNomeAsc();
 	
-	List<TipoPagamento> findByNomeContainingIgnoreCase(@Param("nome") String nome);
+	Optional<List<TipoPagamento>> findByNomeContainingIgnoreCase(@Param("nome") String nome);
 
 }

@@ -3,7 +3,7 @@ package com.supermarkt.pagamento;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-import com.supermarkt.excecao.RecursoNaoEncontradoException;
+import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
 import com.supermarkt.pedido.Pedido;
 import com.supermarkt.pedido.PedidoMapper;
 import com.supermarkt.pedido.PedidoServico;
@@ -21,7 +21,7 @@ public class PagamentoServico {
 	private final PedidoMapper pedidoMapper;
 	
 	public PagamentoDTO detalha(Long id) {
-		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
+		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new EntidadeNaoEncontradaException(Pagamento.class, "id", id.toString()));
 		return pagamentoMapper.paraPagamentoDto(pagamento);
 	}
 
@@ -32,7 +32,7 @@ public class PagamentoServico {
 	}
 
 	public PagamentoDTO confirma(Long id) {
-		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
+		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new EntidadeNaoEncontradaException(Pagamento.class, "id", id.toString()));
 		pagamento.setSituacao(Pagamento.Situacao.CONFIRMADO);
 		pagamentoRepo.save(pagamento);
 		Long pedidoId = pagamento.getPedido().getId();
@@ -44,7 +44,7 @@ public class PagamentoServico {
 	}
 
 	public PagamentoDTO cancela(Long id) {
-		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
+		Pagamento pagamento = pagamentoRepo.findById(id).orElseThrow(() -> new EntidadeNaoEncontradaException(Pagamento.class, "id", id.toString()));
 		pagamento.setSituacao(Pagamento.Situacao.CANCELADO);
 		pagamentoRepo.save(pagamento);
 		return pagamentoMapper.paraPagamentoDto(pagamento);

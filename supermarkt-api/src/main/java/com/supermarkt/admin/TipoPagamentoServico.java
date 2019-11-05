@@ -6,7 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.supermarkt.excecao.RecursoNaoEncontradoException;
+import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
+import com.supermarkt.pedido.Pedido;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +19,8 @@ public class TipoPagamentoServico {
 	private final TipoPagamentoMapper tipoPagamentoMapper;
 	
 	public List<TipoPagamentoDTO> listaTodos() {
-		return tipoPagamentoMapper.paraTipoPagamentoDto(tipoPagamentoRepo.findAllByOrderByNomeAsc());
+		List<TipoPagamento> lista = tipoPagamentoRepo.findAllByOrderByNomeAsc().orElseThrow(() -> new EntidadeNaoEncontradaException(TipoPagamento.class));
+		return tipoPagamentoMapper.paraTipoPagamentoDto(lista);
 	}
 	
 	public List<FormaPagamentoDTO> formas() {
@@ -41,12 +43,13 @@ public class TipoPagamentoServico {
 	}
 	
 	public TipoPagamentoDTO tipoPorId(Long id) {
-		TipoPagamento tipoPagamento = tipoPagamentoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
+		TipoPagamento tipoPagamento = tipoPagamentoRepo.findById(id).orElseThrow(() -> new EntidadeNaoEncontradaException(Pedido.class, "id", id.toString()));
 		return tipoPagamentoMapper.paraTipoPagamentoDto(tipoPagamento);
 	}
 	
 	public List<TipoPagamentoDTO> buscarPorNome(String nome) {
-		return tipoPagamentoMapper.paraTipoPagamentoDto(tipoPagamentoRepo.findByNomeContainingIgnoreCase(nome));
+		List<TipoPagamento> lista = tipoPagamentoRepo.findByNomeContainingIgnoreCase(nome).orElseThrow(() -> new EntidadeNaoEncontradaException(TipoPagamento.class, "nome", nome));
+		return tipoPagamentoMapper.paraTipoPagamentoDto(lista);
 	}
 
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
+
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -20,12 +22,12 @@ class PedidoAPI {
 	private final PedidoServico pedidoServico;
 
 	@GetMapping("/pedidos")
-	public ResponseEntity<List<PedidoDTO>> lista() {
+	public ResponseEntity<List<PedidoDTO>> lista() throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(pedidoServico.lista());
 	}
 
 	@GetMapping("/pedidos/{id}")
-	public ResponseEntity<PedidoDTO> porId(@PathVariable("id") Long id) {
+	public ResponseEntity<PedidoDTO> porId(@PathVariable("id") Long id) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(pedidoServico.porId(id));
 	}
 
@@ -40,17 +42,17 @@ class PedidoAPI {
 	}
 
 	@GetMapping("/parceiros/supermercados/{supermercadoId}/pedidos/pendentes")
-	public ResponseEntity<List<PedidoDTO>> pendentes(@PathVariable("supermercadoId") Long supermercadoId) {
+	public ResponseEntity<List<PedidoDTO>> pendentes(@PathVariable("supermercadoId") Long supermercadoId) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(pedidoServico.pendentes(supermercadoId));
 	}
 	
 	@GetMapping("/pedidos/supermercados-avaliados")
-	public ResponseEntity<List<SupermercadoComAvaliacaoDTO>> listaSupermercadosAvaliados(){
+	public ResponseEntity<List<SupermercadoComAvaliacaoDTO>> listaSupermercadosAvaliados() throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(pedidoServico.listaSupermercadosAvaliados());
 	}
 	
 	@GetMapping("/pedidos/supermercado-avaliado/{supermercadoId}")
-	public ResponseEntity<SupermercadoComAvaliacaoDTO> supermercadosAvaliados(@PathVariable("supermercadoId") Long supermercadoId){
+	public ResponseEntity<SupermercadoComAvaliacaoDTO> supermercadosAvaliados(@PathVariable("supermercadoId") Long supermercadoId) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(pedidoServico.supermercadosAvaliados(supermercadoId));
 	}
 

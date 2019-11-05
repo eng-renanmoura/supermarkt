@@ -5,7 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.supermarkt.excecao.RecursoNaoEncontradoException;
+import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
+import com.supermarkt.pedido.Pedido;
 
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Delegate;
@@ -19,20 +20,28 @@ public class SupermercadoServico {
 	private final SupermercadoMapper supermercadoMapper;
 
 	public List<SupermercadoDTO> lista() {
-		return supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAllByOrderByNomeAsc());
+		List<Supermercado> lista = supermercadoRepo.findAllByOrderByNomeAsc().orElseThrow(() -> new EntidadeNaoEncontradaException(Supermercado.class));
+		return supermercadoMapper.paraSupermercadoDto(lista);
 	}
 	
 	public List<SupermercadoDTO> buscarPorNome(String nome) {
-		return supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findByNomeContainingIgnoreCase(nome));
+		List<Supermercado> lista = supermercadoRepo.findByNomeContainingIgnoreCase(nome).orElseThrow(() -> new EntidadeNaoEncontradaException(Supermercado.class));
+		return supermercadoMapper.paraSupermercadoDto(lista);
 	}
 	
 	public SupermercadoDTO detalha(Long id) {
-		Supermercado supermercado = supermercadoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
+		Supermercado supermercado = supermercadoRepo.findById(id).orElseThrow(() -> new EntidadeNaoEncontradaException(Supermercado.class, "id", id.toString()));
 		return supermercadoMapper.paraSupermercadoDto(supermercado);
 	}
 	
 	public List<SupermercadoDTO> detalhePorIds(List<Long> ids) {
-		return supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAllById(ids));
+		List<Supermercado> lista;
+		try {
+			lista = supermercadoRepo.findAllById(ids);
+		} catch (EntidadeNaoEncontradaException e) {
+			throw new EntidadeNaoEncontradaException(Pedido.class, "ids", ids.toString());
+		}
+		return supermercadoMapper.paraSupermercadoDto(lista);
 	}
 	
 	public void remove(Long id) {
@@ -40,7 +49,7 @@ public class SupermercadoServico {
 	}
 	
 	public SupermercadoDTO detalhaParceiro(Long id) {
-		Supermercado supermercado = supermercadoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
+		Supermercado supermercado = supermercadoRepo.findById(id).orElseThrow(() -> new EntidadeNaoEncontradaException(Supermercado.class, "id", id.toString()));
 		return supermercadoMapper.paraSupermercadoDto(supermercado);
 	}
 
@@ -57,7 +66,8 @@ public class SupermercadoServico {
 	}
 
 	public List<SupermercadoDTO> emAprovacao() {
-		return supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findAllByAprovado(false));
+		List<Supermercado> lista = supermercadoRepo.findAllByAprovado(false).orElseThrow(() -> new EntidadeNaoEncontradaException(Supermercado.class));
+		return supermercadoMapper.paraSupermercadoDto(lista);
 	}
 
 	@Transactional

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
 import com.supermarkt.supermercado.Supermercado;
 
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,8 @@ public class AvaliacaoServico {
 	public List<AvaliacaoDTO> listaDoSupermercado(Long supermercadoId) {
 		Supermercado supermercado = new Supermercado();
 		supermercado.setId(supermercadoId);
-		return avaliacaoMapper.paraAvaliacaoDto(repo.findAllBySupermercado(supermercado));
+		List<Avaliacao> lista = repo.findAllBySupermercado(supermercado).orElseThrow(() -> new EntidadeNaoEncontradaException(Avaliacao.class, "supermercadoId", supermercadoId.toString()));
+		return avaliacaoMapper.paraAvaliacaoDto(lista);
 	}
 
 	public AvaliacaoDTO adiciona(@RequestBody AvaliacaoDTO avaliacaoDto) {

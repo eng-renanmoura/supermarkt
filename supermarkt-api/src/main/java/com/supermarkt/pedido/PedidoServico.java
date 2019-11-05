@@ -8,7 +8,8 @@ import java.util.List;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-import com.supermarkt.excecao.RecursoNaoEncontradoException;
+import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
+import com.supermarkt.supermercado.Supermercado;
 import com.supermarkt.supermercado.SupermercadoDTO;
 import com.supermarkt.supermercado.SupermercadoMapper;
 import com.supermarkt.supermercado.SupermercadoRepositorio;
@@ -33,7 +34,7 @@ public class PedidoServico {
 	}
 
 	public PedidoDTO porId(Long id) {
-		Pedido pedido = pedidoRepo.findById(id).orElseThrow(() -> new RecursoNaoEncontradoException());
+		Pedido pedido = pedidoRepo.findById(id).orElseThrow(() -> new EntidadeNaoEncontradaException(Pedido.class, "id", id.toString()));
 		return pedidoMapper.paraPedidoDto(pedido);
 	}
 
@@ -70,10 +71,11 @@ public class PedidoServico {
 	}
 	
 	public SupermercadoComAvaliacaoDTO supermercadosAvaliados(Long supermercadoId){
-		SupermercadoDTO supermercado =  supermercadoMapper.paraSupermercadoDto(supermercadoRepo.findById(supermercadoId).get());
-		Double media = avaliacaoRepo.mediaDoSupermercadoPeloId(supermercado.getId());
-		SupermercadoComAvaliacaoDTO superComAvaliacao = new SupermercadoComAvaliacaoDTO(supermercado, media);
-		superComAvaliacao.setSupermercado(supermercado);
+		Supermercado supermercado = supermercadoRepo.findById(supermercadoId).orElseThrow(() -> new EntidadeNaoEncontradaException(Supermercado.class, "supermercadoId", supermercadoId.toString()));
+		SupermercadoDTO supermercadoDto =  supermercadoMapper.paraSupermercadoDto(supermercado);
+		Double media = avaliacaoRepo.mediaDoSupermercadoPeloId(supermercadoDto.getId());
+		SupermercadoComAvaliacaoDTO superComAvaliacao = new SupermercadoComAvaliacaoDTO(supermercadoDto, media);
+		superComAvaliacao.setSupermercado(supermercadoDto);
 		superComAvaliacao.setMediaDasAvaliacoes(media);
 		return superComAvaliacao;
 	}

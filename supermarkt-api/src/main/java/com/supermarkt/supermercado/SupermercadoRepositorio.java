@@ -1,6 +1,7 @@
 package com.supermarkt.supermercado;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,17 +14,17 @@ import com.supermarkt.seguranca.Usuario;
 
 public interface SupermercadoRepositorio extends JpaRepository<Supermercado, Long>{
 
-	Supermercado findByUsuario(Usuario usuario);
+	Optional<Supermercado> findByUsuario(Usuario usuario);
 	
-	List<Supermercado> findAllByAprovado(boolean aprovado);
+	Optional<List<Supermercado>> findAllByAprovado(boolean aprovado);
 
-	Page<Supermercado> findAllByAprovado(boolean aprovado, Pageable limit);
+	Optional<Page<Supermercado>> findAllByAprovado(boolean aprovado, Pageable limit);
 
 	@Modifying(clearAutomatically = true)
 	@Query("update Supermercado s set s.aprovado = true where s.id = :id")
 	void aprovaPorId(@Param("id") Long id);
 
-	List<Supermercado> findAllByOrderByNomeAsc();
+	Optional<List<Supermercado>> findAllByOrderByNomeAsc();
 	
-	List<Supermercado> findByNomeContainingIgnoreCase(@Param("nome") String nome);
+	Optional<List<Supermercado>> findByNomeContainingIgnoreCase(@Param("nome") String nome);
 }

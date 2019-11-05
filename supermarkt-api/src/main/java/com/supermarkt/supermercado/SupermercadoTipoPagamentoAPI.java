@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.supermarkt.admin.TipoPagamento;
+import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -33,7 +34,7 @@ public class SupermercadoTipoPagamentoAPI {
 	}
 
 	@GetMapping("/supermercados/{idSupermercado}/tipo-pagamento")
-	public ResponseEntity<List<TipoPagamento>> lista(@PathVariable("idSupermercado") Long idSupermercado) {
+	public ResponseEntity<List<TipoPagamento>> lista(@PathVariable("idSupermercado") Long idSupermercado) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(supermercadoTipoPagamentoServico.lista(idSupermercado));
 	}
 	

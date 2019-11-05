@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -21,12 +23,12 @@ public class TipoPagamentoAPI {
 	private final TipoPagamentoServico tipoPagamentoServico;
 
 	@GetMapping("/tipo-pagamento")
-	public ResponseEntity<List<TipoPagamentoDTO>> lista() {
+	public ResponseEntity<List<TipoPagamentoDTO>> lista() throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(tipoPagamentoServico.listaTodos());
 	}
 
 	@GetMapping("/admin/tipo-pagamento/formas")
-	public ResponseEntity<List<FormaPagamentoDTO>> formas() {
+	public ResponseEntity<List<FormaPagamentoDTO>> formas() throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(tipoPagamentoServico.formas());
 	}
 
@@ -47,12 +49,12 @@ public class TipoPagamentoAPI {
 	}
 	
 	@GetMapping("/admin/tipo-pagamento/{id}")
-	public ResponseEntity<TipoPagamentoDTO> tipoPorId(@PathVariable("id") Long id) {
+	public ResponseEntity<TipoPagamentoDTO> tipoPorId(@PathVariable("id") Long id) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(tipoPagamentoServico.tipoPorId(id));
 	}
 	
 	@GetMapping("/tipo-pagamento/{nome}")
-	public ResponseEntity<List<TipoPagamentoDTO>> buscarPorNome(@PathVariable("nome") String nome) {
+	public ResponseEntity<List<TipoPagamentoDTO>> buscarPorNome(@PathVariable("nome") String nome) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(tipoPagamentoServico.buscarPorNome(nome));
 	}
 }

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
+
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -23,22 +25,22 @@ public class SupermercadoAPI {
 	private final SupermercadoServico supermercadoServico;
 
 	@GetMapping("/admin/supermercados")
-	public ResponseEntity<List<SupermercadoDTO>> lista() {
+	public ResponseEntity<List<SupermercadoDTO>> lista() throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(supermercadoServico.lista());
 	}
 	
 	@GetMapping("/admin/supermercados/{nome}")
-	public ResponseEntity<List<SupermercadoDTO>> buscarPorNome(@PathVariable("nome") String nome) {
+	public ResponseEntity<List<SupermercadoDTO>> buscarPorNome(@PathVariable("nome") String nome) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(supermercadoServico.buscarPorNome(nome));
 	}
 	
 	@GetMapping("/supermercados/{id}")
-	public ResponseEntity<SupermercadoDTO> detalha(@PathVariable("id") Long id) {
+	public ResponseEntity<SupermercadoDTO> detalha(@PathVariable("id") Long id) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(supermercadoServico.detalha(id));
 	}
 	
 	@GetMapping("/supermercados")
-	public ResponseEntity<List<SupermercadoDTO>> detalhePorIds(@RequestParam List<Long> ids) {
+	public ResponseEntity<List<SupermercadoDTO>> detalhePorIds(@RequestParam List<Long> ids) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(supermercadoServico.detalhePorIds(ids));
 	}
 	
@@ -49,7 +51,7 @@ public class SupermercadoAPI {
 	}
 	
 	@GetMapping("/parceiros/supermercados/{id}")
-	public ResponseEntity<SupermercadoDTO> detalhaParceiro(@PathVariable("id") Long id) {
+	public ResponseEntity<SupermercadoDTO> detalhaParceiro(@PathVariable("id") Long id) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(supermercadoServico.detalhaParceiro(id));
 	}
 
@@ -69,7 +71,7 @@ public class SupermercadoAPI {
 	}
 
 	@GetMapping("/admin/supermercados/em-aprovacao")
-	public ResponseEntity<List<SupermercadoDTO>> emAprovacao() {
+	public ResponseEntity<List<SupermercadoDTO>> emAprovacao() throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(supermercadoServico.emAprovacao());
 	}
 

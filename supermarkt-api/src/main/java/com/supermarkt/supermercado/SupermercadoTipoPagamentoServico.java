@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.supermarkt.admin.TipoPagamento;
+import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
 import com.supermarkt.supermercado.SupermercadoTipoPagamento.SupermercadoTipoPagamentoId;
 
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,8 @@ public class SupermercadoTipoPagamentoServico {
 	public List<TipoPagamento> lista(Long idSupermercado) {
 		Supermercado supermercado = new Supermercado();
 		supermercado.setId(idSupermercado);
-		return supermercadoTipoPagamentoRepo.findAllBySupermercadoOrderByNomeAsc(supermercado);
+		List<TipoPagamento> lista = supermercadoTipoPagamentoRepo.findAllBySupermercadoOrderByNomeAsc(supermercado).orElseThrow(() -> new EntidadeNaoEncontradaException(ItemEstoque.class, "idSupermercado", idSupermercado.toString()));
+		return lista;
 	}
 	
 }

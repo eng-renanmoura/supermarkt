@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
+
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -24,7 +26,7 @@ public class PagamentoAPI {
 	private final PagamentoServico pagamentoServico;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<PagamentoDTO> detalha(@PathVariable Long id) {
+	public ResponseEntity<PagamentoDTO> detalha(@PathVariable Long id) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(pagamentoServico.detalha(id));
 	}
 
@@ -36,12 +38,12 @@ public class PagamentoAPI {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<PagamentoDTO> confirma(@PathVariable Long id) {
+	public ResponseEntity<PagamentoDTO> confirma(@PathVariable Long id) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(pagamentoServico.confirma(id));
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<PagamentoDTO> cancela(@PathVariable Long id) {
+	public ResponseEntity<PagamentoDTO> cancela(@PathVariable Long id) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(pagamentoServico.cancela(id));
 	}
 

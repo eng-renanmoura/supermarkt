@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
+
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -21,17 +23,17 @@ public class ItemEstoqueAPI {
 	private final ItemEstoqueServico itemEstoqueServico;
 	
 	@GetMapping("/supermercados/{idSupermercado}/estoque")
-	public ResponseEntity<List<ItemEstoqueDTO>> estoqueDoSupermercado(@PathVariable("idSupermercado") Long idSupermercado) {
+	public ResponseEntity<List<ItemEstoqueDTO>> estoqueDoSupermercado(@PathVariable("idSupermercado") Long idSupermercado) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(itemEstoqueServico.estoqueDoSupermercado(idSupermercado));
 	}
 	
 	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque/detalha")
-	public ResponseEntity<List<ItemEstoqueDTO>> detalhaEstoqueDoSupermercado(@PathVariable("idSupermercado") Long idSupermercado) {
+	public ResponseEntity<List<ItemEstoqueDTO>> detalhaEstoqueDoSupermercado(@PathVariable("idSupermercado") Long idSupermercado) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(itemEstoqueServico.estoqueDoSupermercado(idSupermercado));
 	}
 	
 	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque/{idEstoque}")
-	public ResponseEntity<ItemEstoqueDTO> porId(@PathVariable("idEstoque") Long idEstoque) {
+	public ResponseEntity<ItemEstoqueDTO> porId(@PathVariable("idEstoque") Long idEstoque) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(itemEstoqueServico.porId(idEstoque));
 	}
 	
@@ -52,12 +54,12 @@ public class ItemEstoqueAPI {
 	}
 	
 	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque//{id}")
-	public ResponseEntity<ItemEstoqueDTO> itemEstoquePorId(@PathVariable("id") Long id) {
+	public ResponseEntity<ItemEstoqueDTO> itemEstoquePorId(@PathVariable("id") Long id) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(itemEstoqueServico.itemEstoquePorId(id));
 	}
 	
 	@GetMapping("/parceiros/supermercados/{idSupermercado}/estoque/{nome}")
-	public ResponseEntity<List<ItemEstoqueDTO>> buscarPorNome(@PathVariable("nome") String nome) {
+	public ResponseEntity<List<ItemEstoqueDTO>> buscarPorNome(@PathVariable("nome") String nome) throws EntidadeNaoEncontradaException {
 		return ResponseEntity.ok(itemEstoqueServico.buscarPorNome(nome));
 	}
 
