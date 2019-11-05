@@ -31,6 +31,7 @@ export class ListaSupermercadosComponent implements OnInit {
   }
 
   favoritar(supermercado: Supermercado): void {
+    //throw new Error('My Pretty Error');
     supermercado.aprovado = supermercado.aprovado ? false : true;
     this.supermercadoService.favoritar(supermercado).subscribe();
   }

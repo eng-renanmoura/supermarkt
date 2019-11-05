@@ -72,7 +72,7 @@ export class SupermercadoBuscaComponent implements OnInit {
           this.messageService.add({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
         },
         error => {
-          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
+          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível excluir o registro'});
         }
       );
   }
