@@ -34,7 +34,12 @@ public class SupermercadoTipoPagamentoServico {
 	public List<TipoPagamento> lista(Long idSupermercado) {
 		Supermercado supermercado = new Supermercado();
 		supermercado.setId(idSupermercado);
-		List<TipoPagamento> lista = supermercadoTipoPagamentoRepo.findAllBySupermercadoOrderByNomeAsc(supermercado).orElseThrow(() -> new EntidadeNaoEncontradaException(ItemEstoque.class, "idSupermercado", idSupermercado.toString()));
+		List<TipoPagamento> lista;
+		try {
+			lista = supermercadoTipoPagamentoRepo.findAllBySupermercadoOrderByNomeAsc(supermercado);
+		}catch (Exception e) {
+			throw new EntidadeNaoEncontradaException(ItemEstoque.class, "idSupermercado", idSupermercado.toString());
+		}
 		return lista;
 	}
 	
