@@ -7,13 +7,13 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @AllArgsConstructor
-public class ApiValidationError extends ApiSubError {
+public class ApiErroValidacao extends ApiSubErro {
     private String object;
     private String field;
     private Object rejectedValue;
     private String message;
 
-    ApiValidationError(String object, String message) {
+    ApiErroValidacao(String object, String message) {
         this.object = object;
         this.message = message;
     }

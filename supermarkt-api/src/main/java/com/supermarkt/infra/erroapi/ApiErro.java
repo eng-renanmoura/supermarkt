@@ -21,39 +21,39 @@ import lombok.Data;
 @Data
 @JsonTypeInfo(include = JsonTypeInfo.As.WRAPPER_OBJECT, use = JsonTypeInfo.Id.CUSTOM, property = "error", visible = true)
 @JsonTypeIdResolver(LowerCaseClassNameResolver.class)
-public class ApiError {
+public class ApiErro {
 
     private HttpStatus status;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDateTime timestamp;
     private String message;
     private String debugMessage;
-    private List<ApiSubError> subErrors;
+    private List<ApiSubErro> subErrors;
 
-    private ApiError() {
+    private ApiErro() {
         timestamp = LocalDateTime.now();
     }
 
-    public ApiError(HttpStatus status) {
+    public ApiErro(HttpStatus status) {
         this();
         this.status = status;
     }
 
-    public ApiError(HttpStatus status, Throwable ex) {
+    public ApiErro(HttpStatus status, Throwable ex) {
         this();
         this.status = status;
         this.message = "Unexpected error";
         this.debugMessage = ex.getLocalizedMessage();
     }
 
-    public ApiError(HttpStatus status, String message, Throwable ex) {
+    public ApiErro(HttpStatus status, String message, Throwable ex) {
         this();
         this.status = status;
         this.message = message;
         this.debugMessage = ex.getLocalizedMessage();
     }
 
-    private void addSubError(ApiSubError subError) {
+    private void addSubError(ApiSubErro subError) {
         if (subErrors == null) {
             subErrors = new ArrayList<>();
         }
@@ -61,11 +61,11 @@ public class ApiError {
     }
 
     private void addValidationError(String object, String field, Object rejectedValue, String message) {
-        addSubError(new ApiValidationError(object, field, rejectedValue, message));
+        addSubError(new ApiErroValidacao(object, field, rejectedValue, message));
     }
 
     private void addValidationError(String object, String message) {
-        addSubError(new ApiValidationError(object, message));
+        addSubError(new ApiErroValidacao(object, message));
     }
 
     private void addValidationError(FieldError fieldError) {

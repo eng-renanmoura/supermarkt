@@ -1,5 +1,5 @@
 package com.supermarkt.infra.erroapi;
 
-public class ApiSubError {
+public class ApiSubErro {
 
 }
