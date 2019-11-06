@@ -12,7 +12,7 @@ export class ErrorsHandler implements ErrorHandler {
         private injector: Injector,
     ) {}
 
-    handleError(error: Error | HttpErrorResponse) {
+    handleError(error: Error | HttpErrorResponse): void {
         const notificationService = this.injector.get(NotificationService);
         const errorsService = this.injector.get(ErrorsService);
         const router = this.injector.get(Router);
