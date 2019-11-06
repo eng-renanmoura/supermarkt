@@ -67,7 +67,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             WebRequest request) {
         StringBuilder builder = new StringBuilder();
         builder.append(ex.getContentType());
-        builder.append(" media type não suportodado. Media types suportados são ");
+        builder.append(" media type não suportado. Media types suportados são ");
         ex.getSupportedMediaTypes().forEach(t -> builder.append(t).append(", "));
         return buildResponseEntity(new ApiErro(HttpStatus.UNSUPPORTED_MEDIA_TYPE, builder.substring(0, builder.length() - 2), ex));
     }
