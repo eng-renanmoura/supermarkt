@@ -6,23 +6,21 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
-import { SupermercadoModule } from './admin/supermercado/supermercado.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { JwtInterceptor } from './interceptors/jwt-interceptor';
-import { LoginComponent } from './login/login.component';
-import { SharedModule } from './shared/shared.module';
-import { TemplateModule } from './template/template.module';
+import { JwtInterceptor } from './shared/interceptors/jwt-interceptor';
+import { ServerErrorInterceptor } from './shared/interceptors/server-errors-interceptor';
+import { SupermercadoModule } from './modules/admin/supermercado/supermercado.module';
+import { ErrorsModule } from './modules/errors/errors.module';
+import { LoginModule } from './modules/login/login.module';
+import { TemplateModule } from './modules/template/template.module';
 
 registerLocaleData(localeFr, 'pt');
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -33,14 +31,14 @@ registerLocaleData(localeFr, 'pt');
     ToastrModule.forRoot(),
     TemplateModule,
     SupermercadoModule,
-    ButtonModule,
-    InputTextModule,
-    SharedModule,
+    ErrorsModule,
     ToastModule,
+    LoginModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor , multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor , multi: true},
   ],
   bootstrap: [AppComponent]
 })

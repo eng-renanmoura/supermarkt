@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Usuario } from './login/usuario';
-import { AutenticacaoService } from './services/autenticacao.service';
-import { NotificationService } from './shared/services/notification.service';
+import { NotificationService } from './modules/errors/servicos/notification.service';
+import { Usuario } from './modules/login/modelos/usuario';
+import { AutenticacaoService } from './modules/login/servicos/autenticacao.service';
 
 @Component({
   selector: 'app-root',
