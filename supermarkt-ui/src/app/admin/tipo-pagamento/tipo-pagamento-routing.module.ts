@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AutorizacaoGuard } from '../../../shared/guards/autorizacao.guard';
+import { AutorizacaoGuard } from '../../shared/guards/autorizacao.guard';
 import { TipoPagamentoBuscaComponent } from './tipo-pagamento-busca/tipo-pagamento-busca.component';
 import { TipoPagamentoFormularioComponent } from './tipo-pagamento-formulario/tipo-pagamento-formulario.component';
 

@@ -15,7 +15,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { TooltipModule } from 'primeng/tooltip';
-import { PipesModule } from '../../../shared/pipes/pipes.module';
+import { PipesModule } from '../../shared/pipes/pipes.module';
 import { TipoPagamentoService } from './servicos/tipo-pagamento.service';
 import { TipoPagamentoBuscaComponent } from './tipo-pagamento-busca/tipo-pagamento-busca.component';
 import { TipoPagamentoFormularioComponent } from './tipo-pagamento-formulario/tipo-pagamento-formulario.component';

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RxStompService } from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
 import { Subscription } from 'rxjs';
-import { Pedido } from 'src/app/modules/pedido/modelos/pedido';
+import { Pedido } from 'src/app/pedido/modelos/pedido';
 import { PedidoService } from '../../pedido/servicos/pedido.service';
 
 

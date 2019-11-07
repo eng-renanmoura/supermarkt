@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Supermercado } from 'src/app/modules/admin/supermercado/modelos/supermercado';
+import { Supermercado } from 'src/app/admin/supermercado/modelos/supermercado';
 import { SupermercadoService } from '../../admin/supermercado/servicos/supermercado.service';
 import { SupermercadoComAvaliacao } from '../modelos/supermercado-com-avaliacao';
 import { PedidoService } from '../servicos/pedido.service';

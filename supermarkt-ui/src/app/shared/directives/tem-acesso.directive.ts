@@ -1,6 +1,6 @@
 import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
-import { Autenticacao } from '../../modules/login/modelos/autenticacao';
-import { AutenticacaoService } from '../../modules/login/servicos/autenticacao.service';
+import { Autenticacao } from '../../login/modelos/autenticacao';
+import { AutenticacaoService } from '../../login/servicos/autenticacao.service';
 
 @Directive({
   selector: '[appTemAcesso]'

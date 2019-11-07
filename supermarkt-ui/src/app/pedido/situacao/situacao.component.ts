@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { RxStompService } from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
 import { Subscription } from 'rxjs';
-import { Avaliacao } from 'src/app/modules/pedido/modelos/avaliacao';
-import { AvaliacoesService } from 'src/app/modules/pedido/servicos/avaliacoes.service';
-import { PedidoService } from 'src/app/modules/pedido/servicos/pedido.service';
+import { Avaliacao } from 'src/app/pedido/modelos/avaliacao';
+import { AvaliacoesService } from 'src/app/pedido/servicos/avaliacoes.service';
+import { PedidoService } from 'src/app/pedido/servicos/pedido.service';
 import { Pedido } from '../modelos/pedido';
 
 

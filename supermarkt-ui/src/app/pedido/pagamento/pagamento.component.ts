@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SupermercadoService } from 'src/app/modules/admin/supermercado/servicos/supermercado.service';
-import { TipoPagamento } from 'src/app/modules/admin/tipo-pagamento/modelos/tipo-pagamento';
-import { PedidoService } from 'src/app/modules/pedido/servicos/pedido.service';
+import { SupermercadoService } from 'src/app/admin/supermercado/servicos/supermercado.service';
+import { TipoPagamento } from 'src/app/admin/tipo-pagamento/modelos/tipo-pagamento';
+import { PedidoService } from 'src/app/pedido/servicos/pedido.service';
 import { Pagamento } from '../modelos/pagamento';
 import { Pedido } from '../modelos/pedido';
 import { PagamentoService } from '../servicos/pagamento.service';

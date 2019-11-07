@@ -11,10 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JwtInterceptor } from './shared/interceptors/jwt-interceptor';
 import { ServerErrorInterceptor } from './shared/interceptors/server-errors-interceptor';
-import { SupermercadoModule } from './modules/admin/supermercado/supermercado.module';
-import { ErrorsModule } from './modules/errors/errors.module';
-import { LoginModule } from './modules/login/login.module';
-import { TemplateModule } from './modules/template/template.module';
+import { SupermercadoModule } from './admin/supermercado/supermercado.module';
+import { ErrorsModule } from './errors/errors.module';
+import { LoginModule } from './login/login.module';
+import { TemplateModule } from './template/template.module';
 
 registerLocaleData(localeFr, 'pt');
 

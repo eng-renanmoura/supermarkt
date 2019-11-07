@@ -1,4 +1,4 @@
-import { TipoPagamento } from 'src/app/modules/admin/tipo-pagamento/modelos/tipo-pagamento';
+import { TipoPagamento } from 'src/app/admin/tipo-pagamento/modelos/tipo-pagamento';
 import { Pedido } from './pedido';
 
 export class Pagamento {

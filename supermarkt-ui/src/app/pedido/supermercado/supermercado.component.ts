@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Avaliacao } from 'src/app/modules/pedido/modelos/avaliacao';
-import { AvaliacoesService } from 'src/app/modules/pedido/servicos/avaliacoes.service';
-import { PedidoService } from 'src/app/modules/pedido/servicos/pedido.service';
-import { ItemEstoque } from 'src/app/modules/supermercados/modelos/item-estoque';
-import { EstoqueService } from 'src/app/modules/supermercados/servicos/estoque.service';
+import { Avaliacao } from 'src/app/pedido/modelos/avaliacao';
+import { AvaliacoesService } from 'src/app/pedido/servicos/avaliacoes.service';
+import { PedidoService } from 'src/app/pedido/servicos/pedido.service';
+import { ItemEstoque } from 'src/app/supermercados/modelos/item-estoque';
+import { EstoqueService } from 'src/app/supermercados/servicos/estoque.service';
 import { Cliente } from '../modelos/cliente';
 import { Entrega } from '../modelos/entrega';
 import { ItemPedido } from '../modelos/item-pedido';

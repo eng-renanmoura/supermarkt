@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AutorizacaoGuard } from '../../../shared/guards/autorizacao.guard';
+import { AutorizacaoGuard } from '../../shared/guards/autorizacao.guard';
 import { SupermercadoBuscaComponent } from './supermercado-busca/supermercado-busca.component';
 import { SupermercadoFormularioComponent } from './supermercado-formulario/supermercado-formulario.component';
 

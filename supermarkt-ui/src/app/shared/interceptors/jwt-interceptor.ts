@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AutenticacaoService } from 'src/app/modules/login/servicos/autenticacao.service';
+import { AutenticacaoService } from 'src/app/login/servicos/autenticacao.service';
 
 
 @Injectable()

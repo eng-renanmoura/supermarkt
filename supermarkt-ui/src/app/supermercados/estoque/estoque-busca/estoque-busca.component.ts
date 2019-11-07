@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Supermercado } from 'src/app/modules/admin/supermercado/modelos/supermercado';
+import { Supermercado } from 'src/app/admin/supermercado/modelos/supermercado';
 import { SupermercadoService } from '../../../admin/supermercado/servicos/supermercado.service';
 import { ItemEstoque } from '../../modelos/item-estoque';
 import { EstoqueService } from '../../servicos/estoque.service';
