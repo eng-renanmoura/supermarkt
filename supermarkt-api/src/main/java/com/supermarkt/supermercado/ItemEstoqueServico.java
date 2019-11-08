@@ -27,8 +27,8 @@ public class ItemEstoqueServico {
 		return itemEstoqueMapper.paraItemEstoqueDto(estoque);
 	}
 	
-	public ItemEstoqueDTO adiciona(ItemEstoque itemEstoque) {
-		return itemEstoqueMapper.paraItemEstoqueDto(repo.save(itemEstoque));
+	public ItemEstoqueDTO adiciona(ItemEstoqueDTO itemEstoqueDto) {
+		return itemEstoqueMapper.paraItemEstoqueDto(repo.save(itemEstoqueMapper.paraItemEstoque(itemEstoqueDto)));
 	}
 
 	public ItemEstoqueDTO atualiza(ItemEstoqueDTO itemEstoqueDto) {

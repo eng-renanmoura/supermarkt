@@ -37,8 +37,8 @@ public class ItemEstoqueAPI {
 		return ResponseEntity.ok(itemEstoqueServico.porId(idEstoque));
 	}
 	
-	@PostMapping("/parceiros/supermercados/{idSupermercado}/estoque/")
-	public ResponseEntity<ItemEstoqueDTO> adiciona(@RequestBody ItemEstoque itemEstoque) {
+	@PostMapping("/parceiros/supermercados/{idSupermercado}/estoque")
+	public ResponseEntity<ItemEstoqueDTO> adiciona(@RequestBody ItemEstoqueDTO itemEstoque) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(itemEstoqueServico.adiciona(itemEstoque));
 	}
 
@@ -47,7 +47,7 @@ public class ItemEstoqueAPI {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(itemEstoqueServico.atualiza(itemEstoque));
 	}
 
-	@DeleteMapping("/supermercados/{idSupermercado}/estoque/{id}")
+	@DeleteMapping("/parceiros/supermercados/{idSupermercado}/estoque/{id}")
 	public ResponseEntity<?> remove(@PathVariable("id") Long id) {
 		itemEstoqueServico.remove(id);
 		return ResponseEntity.noContent().build();
