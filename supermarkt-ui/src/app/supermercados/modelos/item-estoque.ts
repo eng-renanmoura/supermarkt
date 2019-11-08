@@ -1,3 +1,5 @@
+import { Supermercado } from 'src/app/admin/supermercado/modelos/supermercado';
+
 export class ItemEstoque {
     constructor(
         public id: number,
@@ -5,6 +7,7 @@ export class ItemEstoque {
         public descricao: string,
         public quantidade: number,
         public preco: number,
-        public precoPromocional: number
+        public precoPromocional: number,
+        public supermercadoId: number
     ) {}
 }

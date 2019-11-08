@@ -18,5 +18,6 @@ public class ItemEstoqueDTO {
 	private Integer quantidade;
 	private BigDecimal preco;
 	private BigDecimal precoPromocional;
+	private Long supermercadoId;
 
 }

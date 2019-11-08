@@ -15,7 +15,7 @@ import { EstoqueService } from '../../servicos/estoque.service';
 export class EstoqueFormularioComponent implements OnInit {
 
   estoqueForm: FormGroup;
-  idSupermercado: number;
+  supermercadoId: number;
   idItemEstoque: number;
   supermercado = {};
 
@@ -27,11 +27,11 @@ export class EstoqueFormularioComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.idSupermercado = this.route.snapshot.params.idSupermercado;
+    this.supermercadoId = this.route.snapshot.params.supermercadoId;
     this.idItemEstoque = this.route.snapshot.params.idItemEstoque;
 
-    if (this.idSupermercado) {
-        this.estoqueService.getItemEstoqueById(this.idSupermercado, this.idItemEstoque)
+    if (this.supermercadoId) {
+        this.estoqueService.getItemEstoqueById(this.supermercadoId, this.idItemEstoque)
             .subscribe( supermercado => {
                 this.updateItemForm(supermercado);
             },
@@ -52,7 +52,7 @@ export class EstoqueFormularioComponent implements OnInit {
   }
 
   onSubmit(itemEstoque: ItemEstoque): void {
-    this.estoqueService.salva(this.idSupermercado, itemEstoque)
+    this.estoqueService.salva(this.supermercadoId, itemEstoque)
       .subscribe(
         () => {
           this.estoqueForm.reset();

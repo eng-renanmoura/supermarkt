@@ -55,12 +55,12 @@ public class SupermercadoAPI {
 		return ResponseEntity.ok(supermercadoServico.detalhaParceiro(id));
 	}
 
-	@PostMapping("/parceiros/supermercados")
+	@PostMapping("/admin/supermercados")
 	public ResponseEntity<Supermercado> adiciona(@RequestBody Supermercado supermercado) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(supermercadoServico.adiciona(supermercado));
 	}
 
-	@PutMapping("/parceiros/supermercados/{id}")
+	@PutMapping("/admin/supermercados/{id}")
 	public ResponseEntity<Supermercado> atualiza(@RequestBody Supermercado supermercado) {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(supermercadoServico.atualiza(supermercado));
 	}

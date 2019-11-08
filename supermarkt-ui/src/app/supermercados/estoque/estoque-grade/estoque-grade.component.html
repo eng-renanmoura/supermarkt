@@ -12,7 +12,7 @@
     <ng-template pTemplate="body" let-itemEstoque>
         <tr>
             <td class="col-content-btns">
-                <p-button class="btn-editar" icon="pi pi-pencil" pTooltip="Editar" [routerLink]="['/admin/supermercados', itemEstoque.id]" tooltipPosition="bottom"></p-button>
+                <p-button class="btn-editar" icon="pi pi-pencil" pTooltip="Editar" routerLink="/supermercados/{{supermercado.id}}/estoque/{{itemEstoque.id}}" tooltipPosition="bottom"></p-button>
                 <p-button icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="bottom" (onClick)="handleDelete(itemEstoque)"></p-button>
             </td>
             <td class="col-content-name">{{itemEstoque.nome | titlecase}}</td>

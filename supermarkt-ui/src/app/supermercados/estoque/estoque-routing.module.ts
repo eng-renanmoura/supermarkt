@@ -16,13 +16,13 @@ const routes: Routes = [
       path: 'novo',
       component: EstoqueFormularioComponent,
       canActivate: [AutorizacaoGuard],
-      data: { role: ['ADMIN']}
+      data: { role: ['ADMIN', 'SUPERMERCADO']}
   },
   {
       path: ':idItemEstoque',
       component: EstoqueFormularioComponent,
       canActivate: [AutorizacaoGuard],
-      data: { role: ['ADMIN']}
+      data: { role: ['ADMIN', 'SUPERMERCADO']}
   },
 ];
 

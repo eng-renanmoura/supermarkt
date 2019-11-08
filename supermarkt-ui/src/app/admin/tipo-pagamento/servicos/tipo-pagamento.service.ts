@@ -24,7 +24,6 @@ export class TipoPagamentoService {
   }
 
   salva(tipoPagamento: TipoPagamento): Observable<TipoPagamento> {
-    console.log(tipoPagamento);
     if (tipoPagamento.id) {
       return this.http.put<TipoPagamento>(`${this.API}/admin/tipo-pagamento/${tipoPagamento.id}`, tipoPagamento);
     }

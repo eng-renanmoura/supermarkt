@@ -42,8 +42,8 @@ public class ItemEstoqueAPI {
 		return ResponseEntity.status(HttpStatus.CREATED).body(itemEstoqueServico.adiciona(itemEstoque));
 	}
 
-	@PutMapping("/parceiros/supermercados/{idSupermercado}/estoque//{id}")
-	public ResponseEntity<ItemEstoqueDTO> atualiza(@RequestBody ItemEstoque itemEstoque) {
+	@PutMapping("/parceiros/supermercados/{idSupermercado}/estoque/{id}")
+	public ResponseEntity<ItemEstoqueDTO> atualiza(@RequestBody ItemEstoqueDTO itemEstoque) {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(itemEstoqueServico.atualiza(itemEstoque));
 	}
 

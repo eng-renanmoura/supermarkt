@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Supermercado } from 'src/app/admin/supermercado/modelos/supermercado';
 import { ItemEstoque } from '../../modelos/item-estoque';
 
 @Component({
@@ -9,6 +10,8 @@ import { ItemEstoque } from '../../modelos/item-estoque';
 export class EstoqueGradeComponent {
 
   @Input() itensEstoque: ItemEstoque[];
+
+  @Input() supermercado: Supermercado;
 
   @Output() delete = new EventEmitter();
 

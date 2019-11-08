@@ -7,7 +7,7 @@
             </div>
     
             <div class="p-col-12">
-                <button pButton type="button" label="Novo item" routerLink="/admin/supermercados/novo"></button>
+                <button pButton type="button" label="Novo item" routerLink="/supermercados/{{supermercado.id}}/estoque/novo"></button>
             </div>
     
             <div class="p-col-6">
@@ -15,7 +15,7 @@
             </div>
     
             <div class="p-col-12">
-                <app-estoque-grade (delete)="dialogDelete($event)" [itensEstoque]="itensEstoque"></app-estoque-grade>
+                <app-estoque-grade (delete)="dialogDelete($event)" [itensEstoque]="itensEstoque" [supermercado]="supermercado"></app-estoque-grade>
             </div>
         </div>
     </div>

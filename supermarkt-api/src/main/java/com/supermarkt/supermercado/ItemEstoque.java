@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -42,7 +42,7 @@ public class ItemEstoque {
 	@Positive
 	private BigDecimal precoPromocional;
 	
-	@ManyToOne(optional=false)
+	@OneToOne(optional=false)
 	private Supermercado supermercado;
 
 	public BigDecimal getPrecoEfetivo() {

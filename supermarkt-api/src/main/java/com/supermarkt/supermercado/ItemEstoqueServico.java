@@ -28,11 +28,11 @@ public class ItemEstoqueServico {
 	}
 	
 	public ItemEstoqueDTO adiciona(ItemEstoque itemEstoque) {
-		return itemEstoqueMapper.paraItemEstoqueDto(itemEstoque);
+		return itemEstoqueMapper.paraItemEstoqueDto(repo.save(itemEstoque));
 	}
 
-	public ItemEstoqueDTO atualiza(ItemEstoque itemEstoque) {
-		return itemEstoqueMapper.paraItemEstoqueDto(itemEstoque);
+	public ItemEstoqueDTO atualiza(ItemEstoqueDTO itemEstoqueDto) {
+		return itemEstoqueMapper.paraItemEstoqueDto(repo.save(itemEstoqueMapper.paraItemEstoque(itemEstoqueDto)));
 	}
 
 	public void remove(Long id) {

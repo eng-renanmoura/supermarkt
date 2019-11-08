@@ -19,7 +19,8 @@ export class EstoqueService {
   }
 
   salva(idSupermercado: number, itemEstoque: ItemEstoque): Observable<ItemEstoque> {
-    if (itemEstoque) {
+    itemEstoque.supermercadoId = idSupermercado;
+    if (itemEstoque.id) {
       return this.http.put<ItemEstoque>(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque/${itemEstoque.id}`, itemEstoque);
     }
     return this.http.post<ItemEstoque>(`${this.API}/parceiros/supermercados/${idSupermercado}/estoque`, itemEstoque);
