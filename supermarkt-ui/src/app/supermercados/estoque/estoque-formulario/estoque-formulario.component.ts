@@ -30,7 +30,7 @@ export class EstoqueFormularioComponent implements OnInit {
     this.supermercadoId = this.route.snapshot.params.supermercadoId;
     this.idItemEstoque = this.route.snapshot.params.idItemEstoque;
 
-    if (this.supermercadoId) {
+    if (this.supermercadoId && this.idItemEstoque) {
         this.estoqueService.getItemEstoqueById(this.supermercadoId, this.idItemEstoque)
             .subscribe( supermercado => {
                 this.updateItemForm(supermercado);
