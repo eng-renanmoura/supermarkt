@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ErrosComponent } from './erros-component/erros.component';
 import { ErrosHandler } from './erros-handler';
-import { ErrorsService } from './servicos/errors.service';
+import { ErrosService } from './servicos/erros.service';
 import { NotificacaoService } from './servicos/notificacao.service';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { NotificacaoService } from './servicos/notificacao.service';
   ],
   providers: [
     NotificacaoService,
-    ErrorsService,
+    ErrosService,
     {
       provide: ErrorHandler,
       useClass: ErrosHandler,

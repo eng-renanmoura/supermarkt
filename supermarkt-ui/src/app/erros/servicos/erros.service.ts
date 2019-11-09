@@ -9,7 +9,7 @@ import { AutenticacaoService } from 'src/app/login/servicos/autenticacao.service
 import { Erro } from '../modelos/erro';
 
 @Injectable()
-export class ErrorsService {
+export class ErrosService {
 
   usuario: Autenticacao;
 

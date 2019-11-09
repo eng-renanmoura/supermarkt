@@ -2,7 +2,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { ErrorsService } from './servicos/errors.service';
+import { ErrosService } from './servicos/erros.service';
 import { NotificacaoService } from './servicos/notificacao.service';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class ErrosHandler implements ErrorHandler {
 
     handleError(error: Error | HttpErrorResponse): void {
         const notificaoServico = this.injector.get(NotificacaoService);
-        const errorsService = this.injector.get(ErrorsService);
+        const errosService = this.injector.get(ErrosService);
         const router = this.injector.get(Router);
 
         if (error instanceof HttpErrorResponse) {
@@ -24,7 +24,7 @@ export class ErrosHandler implements ErrorHandler {
                 notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: 'Sem conexão.'});
                 return;
             }
-            errorsService
+            errosService
                 .log(error)
                 .subscribe(errorWithContextInfo => {
                     this.ngZone.run(() => router.navigate(['/error'], { queryParams: errorWithContextInfo })).then();
@@ -33,7 +33,7 @@ export class ErrosHandler implements ErrorHandler {
             notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: `${error.status} - ${error.message}`});
         } else {
             // Erro cliente
-            errorsService
+            errosService
                 .log(error)
                 .subscribe(errorWithContextInfo => {
                     router.navigate(['/error'], { queryParams: errorWithContextInfo });
