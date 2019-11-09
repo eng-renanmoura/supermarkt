@@ -11,9 +11,9 @@
                         subheader=""
                         [style]="{width: '260px'}" styleClass="ui-card-shadow">
 
-                    <span class='favorite_icon' *appExceto="supermercadoComAvaliacao.supermercado.aprovado"
+                    <span class='favorite_icon' *appExceto="supermercadoComAvaliacao.supermercado.favorito"
                     (click)="favoritar(supermercadoComAvaliacao.supermercado)">&#9825;</span>
-                    <span class='favorite_icon favorited' *appExceto="!supermercadoComAvaliacao.supermercado.aprovado"
+                    <span class='favorite_icon favoritado' *appExceto="!supermercadoComAvaliacao.supermercado.favorito"
                     (click)="favoritar(supermercadoComAvaliacao.supermercado)">&#9829;</span>
                     
                     <!--p-header>

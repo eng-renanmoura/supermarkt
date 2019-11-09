@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Supermercado } from 'src/app/admin/supermercado/modelos/supermercado';
-import { NotificacaoService } from 'src/app/erros/servicos/notificacao.service';
+import { NotificacaoService } from 'src/app/shared/services/notificacao.service';
 import { SupermercadoService } from '../../../admin/supermercado/servicos/supermercado.service';
 import { ItemEstoque } from '../../modelos/item-estoque';
 import { EstoqueService } from '../../servicos/estoque.service';
@@ -57,7 +57,8 @@ export class EstoqueBuscaComponent implements OnInit {
           this.itensEstoque = itensEstoque;
         },
         error => {
-          this.notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
+          this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
+          detail: 'Não foi possível carregar os itens. Tente novamente'});
         }
       );
   }

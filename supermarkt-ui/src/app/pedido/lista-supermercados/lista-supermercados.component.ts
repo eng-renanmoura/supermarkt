@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Supermercado } from 'src/app/admin/supermercado/modelos/supermercado';
-import { NotificacaoService } from 'src/app/erros/servicos/notificacao.service';
+import { NotificacaoService } from 'src/app/shared/services/notificacao.service';
 import { SupermercadoService } from '../../admin/supermercado/servicos/supermercado.service';
 import { SupermercadoComAvaliacao } from '../modelos/supermercado-com-avaliacao';
 import { PedidoService } from '../servicos/pedido.service';
@@ -42,7 +42,7 @@ export class ListaSupermercadosComponent implements OnInit {
       //supermercado = undefined;
       //throw new Error('Erro teste');
       
-      supermercado.aprovado = supermercado.aprovado ? false : true;
+      supermercado.favorito = supermercado.favorito ? false : true;
       this.supermercadoService.favoritar(supermercado).subscribe( () => {
           this.notificaoServico.notificar({severity: 'success', summary: 'Sucesso', detail: 'Supermercado favoritado.'});
         }

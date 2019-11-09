@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NotificacaoService } from 'src/app/erros/servicos/notificacao.service';
+import { NotificacaoService } from 'src/app/shared/services/notificacao.service';
 import { ItemEstoque } from '../../modelos/item-estoque';
 import { EstoqueService } from '../../servicos/estoque.service';
 

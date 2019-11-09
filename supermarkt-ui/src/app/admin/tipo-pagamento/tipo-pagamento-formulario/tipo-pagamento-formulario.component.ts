@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NotificacaoService } from 'src/app/erros/servicos/notificacao.service';
+import { NotificacaoService } from 'src/app/shared/services/notificacao.service';
 import { FormaPagamento } from '../modelos/forma-pagamento';
 import { TipoPagamento } from '../modelos/tipo-pagamento';
 import { TipoPagamentoForm } from '../modelos/tipo-pagamento-form';

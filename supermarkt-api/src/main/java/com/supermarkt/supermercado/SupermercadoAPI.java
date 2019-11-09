@@ -6,7 +6,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -68,17 +67,6 @@ public class SupermercadoAPI {
 	@PutMapping("/supermercados/{id}/favoritar")
 	public ResponseEntity<Supermercado> favoritar(@RequestBody Supermercado supermercado) {
 		return ResponseEntity.status(HttpStatus.ACCEPTED).body(supermercadoServico.atualiza(supermercado));
-	}
-
-	@GetMapping("/admin/supermercados/em-aprovacao")
-	public ResponseEntity<List<SupermercadoDTO>> emAprovacao() throws EntidadeNaoEncontradaException {
-		return ResponseEntity.ok(supermercadoServico.emAprovacao());
-	}
-
-	@PatchMapping("/admin/supermercados/{id}")
-	public ResponseEntity<?> aprova(@PathVariable("id") Long id) {
-		supermercadoServico.aprova(id);
-		return ResponseEntity.noContent().build();
 	}
 
 }

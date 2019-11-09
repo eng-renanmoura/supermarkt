@@ -30,6 +30,6 @@ public class SupermercadoDTO {
 
 	private Integer tempoDeEntregaMaximoEmMinutos;
 
-	private Boolean aprovado;
+	private Boolean favorito;
 	
 }

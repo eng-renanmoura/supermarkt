@@ -4,6 +4,7 @@ import { RxStompService } from '@stomp/ng2-stompjs';
 import { Message } from '@stomp/stompjs';
 import { Subscription } from 'rxjs';
 import { Pedido } from 'src/app/pedido/modelos/pedido';
+import { NotificacaoService } from 'src/app/shared/services/notificacao.service';
 import { PedidoService } from '../../pedido/servicos/pedido.service';
 
 
@@ -20,7 +21,9 @@ export class PedidoPendenteComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute,
               private rxStompService: RxStompService,
-              private pedidosService: PedidoService) {
+              private pedidosService: PedidoService,
+              private notificaoServico: NotificacaoService
+              ) {
   }
 
   ngOnInit(): void {
@@ -41,25 +44,49 @@ export class PedidoPendenteComponent implements OnInit, OnDestroy {
   confirma(pedido: Pedido): void {
     pedido.situacao = 'CONFIRMADO';
     this.pedidosService.atualizaSituacao(pedido)
-      .subscribe();
+    .subscribe(
+      () => {}
+      , error => {
+        this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
+        detail: 'Erro ao notificar de pedido.'});
+      }
+    );
   }
 
   avisaPronto(pedido: Pedido): void {
     pedido.situacao = 'PRONTO';
     this.pedidosService.atualizaSituacao(pedido)
-      .subscribe();
+      .subscribe(
+        () => {}
+        , error => {
+          this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
+          detail: 'Erro ao notificar de pedido.'});
+        }
+      );
   }
 
   avisaSaiu(pedido: Pedido): void {
     pedido.situacao = 'SAIU_PARA_ENTREGA';
     this.pedidosService.atualizaSituacao(pedido)
-      .subscribe();
+    .subscribe(
+      () => {}
+      , error => {
+        this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
+        detail: 'Erro ao notificar de pedido.'});
+      }
+    );
   }
 
   avisaEntregue(pedido: Pedido): void {
     pedido.situacao = 'ENTREGUE';
     this.pedidosService.atualizaSituacao(pedido)
-      .subscribe();
+    .subscribe(
+      () => {}
+      , error => {
+        this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
+        detail: 'Erro ao notificar de pedido.'});
+      }
+    );
   }
 
 }

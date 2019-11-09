@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
-import { NotificacaoService } from 'src/app/erros/servicos/notificacao.service';
+import { NotificacaoService } from 'src/app/shared/services/notificacao.service';
 import { Supermercado } from '../modelos/supermercado';
 import { SupermercadoService } from '../servicos/supermercado.service';
 
@@ -47,7 +47,8 @@ export class SupermercadoBuscaComponent implements OnInit {
           this.supermercados = supermercados;
         },
         error => {
-          this.notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
+          this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
+          detail: 'Não foi possível carregar os itens. Tente novamente'});
         }
       );
   }
@@ -73,7 +74,7 @@ export class SupermercadoBuscaComponent implements OnInit {
           this.notificaoServico.notificar({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
         },
         error => {
-          this.notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: 'Não foi possível excluir o registro'});
+          this.notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: 'Não foi possível excluir o registro.'});
         }
       );
   }

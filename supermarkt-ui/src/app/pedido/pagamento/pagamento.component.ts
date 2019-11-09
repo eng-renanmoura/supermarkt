@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SupermercadoService } from 'src/app/admin/supermercado/servicos/supermercado.service';
 import { TipoPagamento } from 'src/app/admin/tipo-pagamento/modelos/tipo-pagamento';
 import { PedidoService } from 'src/app/pedido/servicos/pedido.service';
+import { NotificacaoService } from 'src/app/shared/services/notificacao.service';
 import { Pagamento } from '../modelos/pagamento';
 import { Pedido } from '../modelos/pedido';
 import { PagamentoService } from '../servicos/pagamento.service';
@@ -24,7 +25,8 @@ export class PagamentoComponent implements OnInit {
     private router: Router,
     private pagamentoService: PagamentoService,
     private pedidoService: PedidoService,
-    private supermercadoService: SupermercadoService
+    private supermercadoService: SupermercadoService,
+    private notificaoServico: NotificacaoService
   ) { }
 
   ngOnInit(): void {
@@ -36,25 +38,39 @@ export class PagamentoComponent implements OnInit {
         this.pagamento.pedido = pedido;
         this.pagamento.valor = pedido.total;
         this.supermercadoService.tiposPagamento(pedido.supermercado)
-          .subscribe(tiposPagamento => this.tiposPagamento = tiposPagamento);
-      });
+          .subscribe(tiposPagamento => this.tiposPagamento = tiposPagamento
+            , error => this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
+            detail: 'Erro ao carregar tipos de pagamento.'}));
+      }
+      , error => {
+        this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
+        detail: 'Erro ao inicializar pedido.'});
+      }
+      );
   }
 
   criaPagamento(): void {
     this.pagamentoService.cria(this.pagamento)
       .subscribe(pagamento => {
         this.pagamento = pagamento;
-      });
+      }
+      , error => {
+        this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
+        detail: 'Erro ao criar pagamento.'});
+      }
+      );
   }
 
   confirmaPagamento(): void {
     this.pagamentoService.confirma(this.pagamento)
-      .subscribe(pagamento => this.router.navigateByUrl(`pedidos/${pagamento.pedido.id}/situacao`));
+      .subscribe(pagamento => this.router.navigateByUrl(`pedidos/${pagamento.pedido.id}/situacao`),
+       error => this.notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: 'Erro na confirmação de pagamento.'}));
   }
 
   cancelaPagamento(): void {
     this.pagamentoService.cancela(this.pagamento)
-      .subscribe(() => this.router.navigateByUrl(``));
+      .subscribe(() => this.router.navigateByUrl(``),
+      error => this.notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: 'Não foi possível cancelar o pagamento.'}));
   }
 
 }

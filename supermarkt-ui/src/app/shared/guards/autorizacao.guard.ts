@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
-import { NotificacaoService } from 'src/app/erros/servicos/notificacao.service';
 import { AutenticacaoService } from 'src/app/login/servicos/autenticacao.service';
+import { NotificacaoService } from 'src/app/shared/services/notificacao.service';
 
 
 @Injectable({

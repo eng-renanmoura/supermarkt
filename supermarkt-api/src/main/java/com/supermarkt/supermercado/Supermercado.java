@@ -52,7 +52,7 @@ public class Supermercado {
 	@Positive @Min(10) @Max(180)
 	private Integer tempoDeEntregaMaximoEmMinutos;
 	
-	private Boolean aprovado;
+	private Boolean favorito;
 	
 	@OneToOne
 	private Usuario usuario;

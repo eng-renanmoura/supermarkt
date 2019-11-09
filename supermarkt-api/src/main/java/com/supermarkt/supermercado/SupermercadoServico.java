@@ -3,7 +3,6 @@ package com.supermarkt.supermercado;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.supermarkt.infra.excecao.EntidadeNaoEncontradaException;
 import com.supermarkt.pedido.Pedido;
@@ -54,7 +53,7 @@ public class SupermercadoServico {
 	}
 
 	public Supermercado adiciona(Supermercado supermercado) {
-		supermercado.setAprovado(false);
+		supermercado.setFavorito(false);
 		Supermercado supermercadoSalvo = supermercadoRepo.save(supermercado);
 		return supermercadoSalvo;
 	}
@@ -64,16 +63,6 @@ public class SupermercadoServico {
 		Supermercado doBD = supermercadoRepo.getOne(supermercado.getId());
 		supermercado.setUsuario(doBD.getUsuario());
 		return supermercadoRepo.save(supermercado);
-	}
-
-	public List<SupermercadoDTO> emAprovacao() {
-		List<Supermercado> lista = supermercadoRepo.findAllByAprovado(false).orElseThrow(() -> new EntidadeNaoEncontradaException(Supermercado.class));
-		return supermercadoMapper.paraSupermercadoDto(lista);
-	}
-
-	@Transactional
-	public void aprova(Long id) {
-		supermercadoRepo.aprovaPorId(id);
 	}
 
 }

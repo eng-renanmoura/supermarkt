@@ -8,7 +8,7 @@ CREATE TABLE supermercado (
   taxa_de_entrega_em_reais decimal(19,2) DEFAULT NULL,
   tempo_de_entrega_maximo_em_minutos int(11) DEFAULT NULL,
   tempo_de_entrega_minimo_em_minutos int(11) DEFAULT NULL,
-  aprovado bit(1) DEFAULT false,
+  favorito bit(1) DEFAULT false,
   usuario_id  bigint(20) DEFAULT NULL,
   PRIMARY KEY (id),
   FOREIGN KEY (usuario_id) REFERENCES usuario(id)

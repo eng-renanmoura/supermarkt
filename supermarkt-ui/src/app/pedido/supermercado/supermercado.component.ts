@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NotificacaoService } from 'src/app/erros/servicos/notificacao.service';
 import { Avaliacao } from 'src/app/pedido/modelos/avaliacao';
 import { AvaliacoesService } from 'src/app/pedido/servicos/avaliacoes.service';
 import { PedidoService } from 'src/app/pedido/servicos/pedido.service';
+import { NotificacaoService } from 'src/app/shared/services/notificacao.service';
 import { ItemEstoque } from 'src/app/supermercados/modelos/item-estoque';
 import { EstoqueService } from 'src/app/supermercados/servicos/estoque.service';
 import { Cliente } from '../modelos/cliente';
@@ -50,7 +50,9 @@ export class SupermercadoComponent implements OnInit {
         this.pedido.entrega = new Entrega();
         this.pedido.entrega.cliente = new Cliente();
         this.pedido.itens = [];
-      });
+      }, error => this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
+        detail: 'Erro ao carregar dados do supermercado.'})
+      );
 
     this.avaliacoesService.porIdDoSupermercado(supermercadoId)
       .subscribe(avaliacoes => {
@@ -64,7 +66,9 @@ export class SupermercadoComponent implements OnInit {
     this.estoqueService.estoquePorSupermercadoId(supermercadoId)
       .subscribe(estoqueProdutos => {
         this.estoqueProdutos = estoqueProdutos;
-      });
+      }, error => this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
+      detail: 'Erro ao carregar lista de produtos.'})
+      );
   }
 
   escolheItem(itemEstoque: ItemEstoque): void {
@@ -77,7 +81,6 @@ export class SupermercadoComponent implements OnInit {
     }
     this.showHideDialogPedido();
   }
-
 
   editaItemDoPedido(itemPedido: ItemPedido): void {
     this.itemDoPedidoEscolhido = Object.assign({}, itemPedido);

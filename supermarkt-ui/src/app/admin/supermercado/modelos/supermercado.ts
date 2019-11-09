@@ -9,6 +9,6 @@ export class Supermercado {
         public taxaDeEntregaEmReais: number,
         public tempoDeEntregaMinimoEmMinutos: number,
         public tempoDeEntregaMaximoEmMinutos: number,
-        public aprovado: boolean
+        public favorito: boolean
     ) {}
 }
