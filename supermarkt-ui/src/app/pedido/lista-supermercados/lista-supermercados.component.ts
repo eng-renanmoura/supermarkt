@@ -26,10 +26,10 @@ export class ListaSupermercadosComponent implements OnInit {
     this.pedidoService.getSupermercadosComAvaliacao()
     .subscribe(supermercados => {
       this.supermercadosComAvaliacao = supermercados;
-    }//,
-    //error => {
-    //    this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os supermercados.'});
-    //}
+    },
+    error => {
+        this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os supermercados.'});
+      }
     );
   }
 
@@ -47,8 +47,9 @@ export class ListaSupermercadosComponent implements OnInit {
           this.notificaoServico.notify({severity: 'success', summary: 'Sucesso', detail: 'Supermercado favoritado.'});
         }
       );
-    ////} catch {
-      //this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível favoritar o supermercado.'});
+    //} catch (e) {
+    //  console.error(e);
+    //  this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível favoritar o supermercado.'});
     //}
   }
 
