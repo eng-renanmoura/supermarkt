@@ -32,6 +32,7 @@ export class SupermercadoService {
 
   favoritar(supermercado: Supermercado): Observable<Supermercado> {
     return this.http.put<Supermercado>(`${this.API}/supermercados/${supermercado.id}/favoritar`, supermercado);
+    //return this.http.put<Supermercado>(`${this.API}/supermercados/${supermercado.id}/favoritar`, {aaa: 'aa'});
   }
 
   remove(supermercado: Supermercado): Observable<void> {

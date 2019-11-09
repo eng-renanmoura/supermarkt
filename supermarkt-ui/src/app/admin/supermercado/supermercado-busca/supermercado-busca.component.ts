@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
+import { NotificationService } from 'src/app/errors/servicos/notification.service';
 import { Supermercado } from '../modelos/supermercado';
 import { SupermercadoService } from '../servicos/supermercado.service';
 
@@ -8,7 +9,6 @@ import { SupermercadoService } from '../servicos/supermercado.service';
   selector: 'app-supermercado-busca',
   templateUrl: './supermercado-busca.component.html',
   styleUrls: ['./supermercado-busca.component.scss'],
-  providers: [MessageService]
 })
 export class SupermercadoBuscaComponent implements OnInit {
 
@@ -18,7 +18,7 @@ export class SupermercadoBuscaComponent implements OnInit {
   constructor(
     private supermercadoService: SupermercadoService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private notificaoServico: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class SupermercadoBuscaComponent implements OnInit {
           this.supermercados = supermercados;
         },
         error => {
-          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
+          this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
         }
       );
   }
@@ -59,7 +59,8 @@ export class SupermercadoBuscaComponent implements OnInit {
             this.supermercados = supermercados;
           },
           error => {
-            this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
+            this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+            detail: 'Não foi possível carregar os itens. Tente novamente'});
           }
         );
   }
@@ -69,10 +70,10 @@ export class SupermercadoBuscaComponent implements OnInit {
       .subscribe(
         () => {
           this.loadSupermercados();
-          this.messageService.add({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
+          this.notificaoServico.notify({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
         },
         error => {
-          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível excluir o registro'});
+          this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível excluir o registro'});
         }
       );
   }

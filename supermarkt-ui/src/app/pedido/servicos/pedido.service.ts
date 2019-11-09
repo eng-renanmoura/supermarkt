@@ -16,6 +16,7 @@ export class PedidoService {
   constructor(private http: HttpClient) { }
 
   getSupermercadosComAvaliacao(): Observable<SupermercadoComAvaliacao[]> {
+    //return this.http.get<SupermercadoComAvaliacao[]>(`${this.API}/pedidos/supermercados-avaliadoss`);
     return this.http.get<SupermercadoComAvaliacao[]>(`${this.API}/pedidos/supermercados-avaliados`);
   }
 

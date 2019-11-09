@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { NotificationService } from 'src/app/errors/servicos/notification.service';
 import { Supermercado } from '../modelos/supermercado';
 import { SupermercadoService } from '../servicos/supermercado.service';
 
@@ -10,7 +10,6 @@ import { SupermercadoService } from '../servicos/supermercado.service';
   selector: 'app-supermercado-formulario',
   templateUrl: './supermercado-formulario.component.html',
   styleUrls: ['./supermercado-formulario.component.scss'],
-  providers: [MessageService]
 })
 export class SupermercadoFormularioComponent implements OnInit {
 
@@ -20,7 +19,7 @@ export class SupermercadoFormularioComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private messageService: MessageService,
+    private notificaoServico: NotificationService,
     private supermercadoService: SupermercadoService,
     private route: ActivatedRoute
   ) { }
@@ -33,7 +32,8 @@ export class SupermercadoFormularioComponent implements OnInit {
                 this.updateItemForm(supermercado);
             },
             erro => {
-              this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível efetuar a operação. Tente novamente'});
+              this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+              detail: 'Não foi possível efetuar a operação. Tente novamente'});
             }
         );
     }
@@ -56,10 +56,11 @@ export class SupermercadoFormularioComponent implements OnInit {
       .subscribe(
         () => {
           this.supermercadoForm.reset();
-          this.messageService.add({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
+          this.notificaoServico.notify({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
         },
         erro => {
-          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível efetuar a operação. Tente novamente'});
+          this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+          detail: 'Não foi possível efetuar a operação. Tente novamente'});
         }
       );
   }

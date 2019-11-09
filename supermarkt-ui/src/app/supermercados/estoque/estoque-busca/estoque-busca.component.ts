@@ -5,13 +5,13 @@ import { Supermercado } from 'src/app/admin/supermercado/modelos/supermercado';
 import { SupermercadoService } from '../../../admin/supermercado/servicos/supermercado.service';
 import { ItemEstoque } from '../../modelos/item-estoque';
 import { EstoqueService } from '../../servicos/estoque.service';
+import { NotificationService } from 'src/app/errors/servicos/notification.service';
 
 
 @Component({
   selector: 'app-estoque-busca',
   templateUrl: './estoque-busca.component.html',
   styleUrls: ['./estoque-busca.component.scss'],
-  providers: [MessageService]
 })
 export class EstoqueBuscaComponent implements OnInit {
 
@@ -24,7 +24,7 @@ export class EstoqueBuscaComponent implements OnInit {
     private estoqueService: EstoqueService,
     private supermercadoService: SupermercadoService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService,
+    private notificaoServico: NotificationService,
     private route: ActivatedRoute
   ) { }
 
@@ -57,7 +57,7 @@ export class EstoqueBuscaComponent implements OnInit {
           this.itensEstoque = itensEstoque;
         },
         error => {
-          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
+          this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
         }
       );
   }
@@ -69,7 +69,8 @@ export class EstoqueBuscaComponent implements OnInit {
             this.itensEstoque = itensEstoque;
           },
           error => {
-            this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
+            this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+             detail: 'Não foi possível carregar os itens. Tente novamente'});
           }
         );
   }
@@ -79,10 +80,10 @@ export class EstoqueBuscaComponent implements OnInit {
       .subscribe(
         () => {
           this.loadEstoque();
-          this.messageService.add({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
+          this.notificaoServico.notify({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
         },
         error => {
-          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível remover o item.'});
+          this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível remover o item.'});
         }
       );
   }

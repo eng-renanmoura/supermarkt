@@ -1,6 +1,6 @@
 
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandler, Injectable, Injector } from '@angular/core';
+import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { ErrorsService } from './servicos/errors.service';
 import { NotificationService } from './servicos/notification.service';
@@ -10,36 +10,36 @@ export class ErrorsHandler implements ErrorHandler {
 
     constructor(
         private injector: Injector,
+        private ngZone: NgZone
     ) {}
 
     handleError(error: Error | HttpErrorResponse): void {
-        const notificationService = this.injector.get(NotificationService);
+        const notificaoServico = this.injector.get(NotificationService);
         const errorsService = this.injector.get(ErrorsService);
         const router = this.injector.get(Router);
 
         if (error instanceof HttpErrorResponse) {
-            // Server error happened
+            // Erro servidor
             if (!navigator.onLine) {
-                // No Internet connection
-                notificationService.notify('No Internet Connection');
+                notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Sem conexão.'});
                 return;
             }
-            // Http Error
-            // Send the error to the server
-            errorsService.log(error).subscribe();
-            // Show notification to the user
-            notificationService.notify(`${error.status} - ${error.message}`);
-            return;
+            errorsService
+                .log(error)
+                .subscribe(errorWithContextInfo => {
+                    this.ngZone.run(() => router.navigate(['/error'], { queryParams: errorWithContextInfo })).then();
+                });
+
+            notificaoServico.notify({severity: 'error', summary: 'Erro', detail: `${error.status} - ${error.message}`});
         } else {
-            // Client Error Happend
-            // Send the error to the server and then
-            // redirect the user to the page with all the info
+            // Erro cliente
             errorsService
                 .log(error)
                 .subscribe(errorWithContextInfo => {
                     router.navigate(['/error'], { queryParams: errorWithContextInfo });
                 });
         }
+
     }
 }
 

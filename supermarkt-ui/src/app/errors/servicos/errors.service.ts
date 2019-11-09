@@ -1,23 +1,27 @@
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable, Injector, Type } from '@angular/core';
 import { Event, NavigationError, Router } from '@angular/router';
 import * as StackTraceParser from 'error-stack-parser';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { Autenticacao } from 'src/app/login/modelos/autenticacao';
+import { AutenticacaoService } from 'src/app/login/servicos/autenticacao.service';
+import { Erro } from '../modelos/erro';
 
 @Injectable()
 export class ErrorsService {
 
+  usuario: Autenticacao;
+
   constructor(
     private injector: Injector,
     private router: Router,
+    private autenticacaoService: AutenticacaoService,
   ) {
-    // Subscribe to the NavigationError
     this.router
           .events
           .subscribe((event: Event) => {
             if (event instanceof NavigationError) {
-                // Redirect to the ErrorComponent
                 this.log(event.error)
                         .subscribe((errorWithContext) => {
                           this.router.navigate(['/error'], { queryParams: errorWithContext });
@@ -26,33 +30,35 @@ export class ErrorsService {
           });
   }
 
-  log(error) {
-    // Log the error to the console
-    console.error(error);
-    // Send error to server
+  log(error: Error): Observable<Erro> {
     const errorToSend = this.addContextInfo(error);
-    return this.fakeHttpService(errorToSend);
+    return this.enviarParaServidor(errorToSend);
   }
 
-  addContextInfo(error) {
-    // You can include context details here (usually coming from other services: UserService...)
-    const name = error.name || null;
-    const appId = 'shthppnsApp';
-    const user = 'ShthppnsUser';
-    const time = new Date().getTime();
+  addContextInfo(error): Erro {
+    this.autenticacaoService.currentUser.subscribe(usuario => this.usuario = usuario);
+    const name = error.name || undefined;
+    const appId = 'supermarkt-ui';
+    let user = '';
+    if (this.usuario) {
+      user = this.usuario.username;
+    }
+    const date = new Date(Date.now());
+    let time = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    time += `-${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
     const id = `${appId}-${user}-${time}`;
-    const location = this.injector.get(LocationStrategy);
+    const location = this.injector.get<LocationStrategy>(LocationStrategy as Type<LocationStrategy>);
     const url = location instanceof PathLocationStrategy ? location.path() : '';
-    const status = error.status || null;
+    const status = error.status || undefined;
     const message = error.message || error.toString();
-    const stack = error instanceof HttpErrorResponse ? null : StackTraceParser.parse(error);
+    const stack = error instanceof HttpErrorResponse ? undefined : StackTraceParser.parse(error);
 
-    const errorWithContext = {name, appId, user, time, id, url, status, message, stack};
+    const errorWithContext = new Erro(name, appId, user, time, id, url, status, message, stack);
     return errorWithContext;
   }
 
-  fakeHttpService(error) {
-      console.log('Error sent to the server: ', error);
+  enviarParaServidor(error: Erro): Observable<Erro> {
+      console.log('Enviado para o servidor: ', error);
       return of(error);
   }
 

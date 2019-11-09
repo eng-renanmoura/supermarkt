@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { NotificationService } from 'src/app/errors/servicos/notification.service';
 import { ItemEstoque } from '../../modelos/item-estoque';
 import { EstoqueService } from '../../servicos/estoque.service';
 
@@ -10,7 +10,6 @@ import { EstoqueService } from '../../servicos/estoque.service';
   selector: 'app-estoque-formulario',
   templateUrl: './estoque-formulario.component.html',
   styleUrls: ['./estoque-formulario.component.scss'],
-  providers: [MessageService]
 })
 export class EstoqueFormularioComponent implements OnInit {
 
@@ -21,7 +20,7 @@ export class EstoqueFormularioComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private messageService: MessageService,
+    private notificaoServico: NotificationService,
     private estoqueService: EstoqueService,
     private route: ActivatedRoute
   ) { }
@@ -36,7 +35,8 @@ export class EstoqueFormularioComponent implements OnInit {
                 this.updateItemForm(supermercado);
             },
             erro => {
-              this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível efetuar a operação. Tente novamente'});
+              this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+               detail: 'Não foi possível efetuar a operação. Tente novamente'});
             }
         );
     }
@@ -56,10 +56,11 @@ export class EstoqueFormularioComponent implements OnInit {
       .subscribe(
         () => {
           this.estoqueForm.reset();
-          this.messageService.add({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
+          this.notificaoServico.notify({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
         },
         erro => {
-          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível efetuar a operação. Tente novamente'});
+          this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+           detail: 'Não foi possível efetuar a operação. Tente novamente'});
         }
       );
   }

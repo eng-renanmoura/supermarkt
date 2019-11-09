@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
+import { NotificationService } from 'src/app/errors/servicos/notification.service';
 import { TipoPagamento } from '../modelos/tipo-pagamento';
 import { TipoPagamentoService } from '../servicos/tipo-pagamento.service';
 
@@ -8,7 +9,6 @@ import { TipoPagamentoService } from '../servicos/tipo-pagamento.service';
   selector: 'app-tipo-pagamento-busca',
   templateUrl: './tipo-pagamento-busca.component.html',
   styleUrls: ['./tipo-pagamento-busca.component.scss'],
-  providers: [MessageService]
 })
 export class TipoPagamentoBuscaComponent implements OnInit {
 
@@ -18,7 +18,7 @@ export class TipoPagamentoBuscaComponent implements OnInit {
   constructor(
     private tipoPagamentoService: TipoPagamentoService,
     private confirmationService: ConfirmationService,
-    private messageService: MessageService
+    private notificaoServico: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class TipoPagamentoBuscaComponent implements OnInit {
           this.tipos = tipos;
         },
         error => {
-          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
+          this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
         }
       );
   }
@@ -59,7 +59,8 @@ export class TipoPagamentoBuscaComponent implements OnInit {
             this.tipos = tipos;
           },
           error => {
-            this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
+            this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+                                        detail: 'Não foi possível carregar os itens. Tente novamente'});
           }
         );
   }
@@ -69,10 +70,10 @@ export class TipoPagamentoBuscaComponent implements OnInit {
       .subscribe(
         () => {
           this.loadTiposPagamento();
-          this.messageService.add({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
+          this.notificaoServico.notify({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
         },
         error => {
-          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
+          this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
         }
       );
   }

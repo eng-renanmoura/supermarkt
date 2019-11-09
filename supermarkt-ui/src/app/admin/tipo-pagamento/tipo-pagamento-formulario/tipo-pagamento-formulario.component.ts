@@ -6,13 +6,13 @@ import { FormaPagamento } from '../modelos/forma-pagamento';
 import { TipoPagamento } from '../modelos/tipo-pagamento';
 import { TipoPagamentoForm } from '../modelos/tipo-pagamento-form';
 import { TipoPagamentoService } from '../servicos/tipo-pagamento.service';
+import { NotificationService } from 'src/app/errors/servicos/notification.service';
 
 
 @Component({
   selector: 'app-tipo-pagamento-formulario',
   templateUrl: './tipo-pagamento-formulario.component.html',
   styleUrls: ['./tipo-pagamento-formulario.component.scss'],
-  providers: [MessageService]
 })
 export class TipoPagamentoFormularioComponent implements OnInit {
 
@@ -24,9 +24,9 @@ export class TipoPagamentoFormularioComponent implements OnInit {
 
   constructor(
       private fb: FormBuilder,
-      private messageService: MessageService,
       private tipoPagamentoService: TipoPagamentoService,
-      private route: ActivatedRoute
+      private route: ActivatedRoute,
+      private notificaoServico: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -41,7 +41,8 @@ export class TipoPagamentoFormularioComponent implements OnInit {
             this.formas = formas;
           },
           erro => {
-            this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível efetuar a operação. Tente novamente'});
+            this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+            detail: 'Não foi possível efetuar a operação. Tente novamente'});
           }
         );
 
@@ -52,7 +53,8 @@ export class TipoPagamentoFormularioComponent implements OnInit {
                 this.updateItemForm(tipo);
             },
             erro => {
-              this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível efetuar a operação. Tente novamente'});
+              this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+              detail: 'Não foi possível efetuar a operação. Tente novamente'});
             }
         );
     }
@@ -65,10 +67,11 @@ export class TipoPagamentoFormularioComponent implements OnInit {
       .subscribe(
         () => {
           this.tipoForm.reset();
-          this.messageService.add({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
+          this.notificaoServico.notify({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
         },
         erro => {
-          this.messageService.add({severity: 'error', summary: 'Erro', detail: 'Não foi possível efetuar a operação. Tente novamente'});
+          this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+          detail: 'Não foi possível efetuar a operação. Tente novamente'});
         }
       );
   }

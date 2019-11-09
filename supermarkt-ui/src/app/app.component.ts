@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
+import { Message, MessageService } from 'primeng/api';
 import { NotificationService } from './errors/servicos/notification.service';
-import { Usuario } from './login/modelos/usuario';
+import { Autenticacao } from './login/modelos/autenticacao';
 import { AutenticacaoService } from './login/servicos/autenticacao.service';
 
 @Component({
@@ -13,10 +13,10 @@ import { AutenticacaoService } from './login/servicos/autenticacao.service';
 })
 export class AppComponent implements OnInit {
   title = 'supermarkt-ui';
-  user: Usuario;
+  user: Autenticacao;
   showMenu = true;
 
-  notification: string;
+  notification: Message;
   showNotification: boolean;
 
   constructor(private router: Router,
@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     this.notificationService
             .notification$
             .subscribe(message => {
-              this.messageService.add({severity: 'error', summary: 'Erro', detail: message});
+              this.messageService.add(message);
               this.notification = message;
               this.showNotification = true;
             });

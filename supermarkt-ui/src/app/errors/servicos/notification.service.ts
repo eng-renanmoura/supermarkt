@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
+import { Message } from 'primeng/api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { publish, refCount } from 'rxjs/operators';
 
 @Injectable()
 export class NotificationService {
 
-  private _notification: BehaviorSubject<string> = new BehaviorSubject(undefined);
-  readonly notification$: Observable<string> = this._notification.asObservable().pipe(
+  private _notification: BehaviorSubject<Message> = new BehaviorSubject(undefined);
+  readonly notification$: Observable<Message> = this._notification.asObservable().pipe(
     publish(),
     refCount()
   );
 
   constructor() {}
 
-  notify(message: string): void {
+  notify(message: Message): void {
     this._notification.next(message);
-    setTimeout(() => this._notification.next(undefined), 3000);
   }
 
 }

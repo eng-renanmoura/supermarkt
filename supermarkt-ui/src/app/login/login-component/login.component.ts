@@ -10,7 +10,7 @@ import { AutenticacaoService } from '../servicos/autenticacao.service';
 })
 export class LoginComponent {
 
-  loginInfo: Usuario = {};
+  loginInfo: Usuario = new Usuario('', '');
 
   constructor(private router: Router,
               private autenticacaoService: AutenticacaoService) { }

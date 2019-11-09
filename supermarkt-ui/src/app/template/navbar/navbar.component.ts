@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from '../../login/modelos/usuario';
+import { Autenticacao } from 'src/app/login/modelos/autenticacao';
 import { AutenticacaoService } from '../../login/servicos/autenticacao.service';
 
 @Component({
@@ -12,7 +12,7 @@ export class NavbarComponent implements OnInit {
 
     @Output() showMenu: EventEmitter<any> = new EventEmitter();
 
-    @Input() user: Usuario;
+    @Input() user: Autenticacao;
 
     constructor(private router: Router,
                 private autenticacaoService: AutenticacaoService) {}

@@ -60,6 +60,7 @@ public class SupermercadoServico {
 	}
 
 	public Supermercado atualiza(Supermercado supermercado) {
+		System.out.println(supermercado);
 		Supermercado doBD = supermercadoRepo.getOne(supermercado.getId());
 		supermercado.setUsuario(doBD.getUsuario());
 		return supermercadoRepo.save(supermercado);
