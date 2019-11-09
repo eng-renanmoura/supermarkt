@@ -3,10 +3,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandler, Injectable, Injector, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { ErrorsService } from './servicos/errors.service';
-import { NotificationService } from './servicos/notification.service';
+import { NotificacaoService } from './servicos/notificacao.service';
 
 @Injectable()
-export class ErrorsHandler implements ErrorHandler {
+export class ErrosHandler implements ErrorHandler {
 
     constructor(
         private injector: Injector,
@@ -14,14 +14,14 @@ export class ErrorsHandler implements ErrorHandler {
     ) {}
 
     handleError(error: Error | HttpErrorResponse): void {
-        const notificaoServico = this.injector.get(NotificationService);
+        const notificaoServico = this.injector.get(NotificacaoService);
         const errorsService = this.injector.get(ErrorsService);
         const router = this.injector.get(Router);
 
         if (error instanceof HttpErrorResponse) {
             // Erro servidor
             if (!navigator.onLine) {
-                notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Sem conexão.'});
+                notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: 'Sem conexão.'});
                 return;
             }
             errorsService
@@ -30,7 +30,7 @@ export class ErrorsHandler implements ErrorHandler {
                     this.ngZone.run(() => router.navigate(['/error'], { queryParams: errorWithContextInfo })).then();
                 });
 
-            notificaoServico.notify({severity: 'error', summary: 'Erro', detail: `${error.status} - ${error.message}`});
+            notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: `${error.status} - ${error.message}`});
         } else {
             // Erro cliente
             errorsService

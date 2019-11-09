@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ErrorsModule } from '../errors/errors.module';
-import { NotificationService } from '../errors/servicos/notification.service';
+import { ErrosModule } from '../erros/erros.module';
+import { NotificacaoService } from '../erros/servicos/notificacao.service';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    ErrorsModule
+    ErrosModule
   ],
   providers: [
-    NotificationService,
+    NotificacaoService,
   ],
 })
 export class SharedModule { }

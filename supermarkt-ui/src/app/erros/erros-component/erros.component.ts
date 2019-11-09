@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-errors',
-  templateUrl: './errors.component.html',
-  styleUrls: ['./errors.component.scss']
+  selector: 'app-erros',
+  templateUrl: './erros.component.html',
+  styleUrls: ['./erros.component.scss']
 })
-export class ErrorsComponent implements OnInit {
+export class ErrosComponent implements OnInit {
   routeParams;
   data;
 

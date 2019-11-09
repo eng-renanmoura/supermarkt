@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NotificationService } from 'src/app/errors/servicos/notification.service';
+import { NotificacaoService } from 'src/app/erros/servicos/notificacao.service';
 import { ItemEstoque } from '../../modelos/item-estoque';
 import { EstoqueService } from '../../servicos/estoque.service';
 
@@ -20,7 +20,7 @@ export class EstoqueFormularioComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private notificaoServico: NotificationService,
+    private notificaoServico: NotificacaoService,
     private estoqueService: EstoqueService,
     private route: ActivatedRoute
   ) { }
@@ -35,7 +35,7 @@ export class EstoqueFormularioComponent implements OnInit {
                 this.updateItemForm(supermercado);
             },
             erro => {
-              this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+              this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
                detail: 'Não foi possível efetuar a operação. Tente novamente'});
             }
         );
@@ -56,10 +56,10 @@ export class EstoqueFormularioComponent implements OnInit {
       .subscribe(
         () => {
           this.estoqueForm.reset();
-          this.notificaoServico.notify({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
+          this.notificaoServico.notificar({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
         },
         erro => {
-          this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+          this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
            detail: 'Não foi possível efetuar a operação. Tente novamente'});
         }
       );

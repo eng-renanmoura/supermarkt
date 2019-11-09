@@ -7,13 +7,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ToastModule } from 'primeng/toast';
+import { SupermercadoModule } from './admin/supermercado/supermercado.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ErrosModule } from './erros/erros.module';
+import { LoginModule } from './login/login.module';
 import { JwtInterceptor } from './shared/interceptors/jwt-interceptor';
 import { ServerErrorInterceptor } from './shared/interceptors/server-errors-interceptor';
-import { SupermercadoModule } from './admin/supermercado/supermercado.module';
-import { ErrorsModule } from './errors/errors.module';
-import { LoginModule } from './login/login.module';
 import { TemplateModule } from './template/template.module';
 
 registerLocaleData(localeFr, 'pt');
@@ -31,7 +31,7 @@ registerLocaleData(localeFr, 'pt');
     ToastrModule.forRoot(),
     TemplateModule,
     SupermercadoModule,
-    ErrorsModule,
+    ErrosModule,
     ToastModule,
     LoginModule
   ],

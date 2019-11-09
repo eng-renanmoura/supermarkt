@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Supermercado } from 'src/app/admin/supermercado/modelos/supermercado';
-import { NotificationService } from 'src/app/errors/servicos/notification.service';
+import { NotificacaoService } from 'src/app/erros/servicos/notificacao.service';
 import { SupermercadoService } from '../../../admin/supermercado/servicos/supermercado.service';
 import { ItemEstoque } from '../../modelos/item-estoque';
 import { EstoqueService } from '../../servicos/estoque.service';
@@ -24,7 +24,7 @@ export class EstoqueBuscaComponent implements OnInit {
     private estoqueService: EstoqueService,
     private supermercadoService: SupermercadoService,
     private confirmationService: ConfirmationService,
-    private notificaoServico: NotificationService,
+    private notificaoServico: NotificacaoService,
     private route: ActivatedRoute
   ) { }
 
@@ -57,7 +57,7 @@ export class EstoqueBuscaComponent implements OnInit {
           this.itensEstoque = itensEstoque;
         },
         error => {
-          this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
+          this.notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
         }
       );
   }
@@ -69,7 +69,7 @@ export class EstoqueBuscaComponent implements OnInit {
             this.itensEstoque = itensEstoque;
           },
           error => {
-            this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+            this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
              detail: 'Não foi possível carregar os itens. Tente novamente'});
           }
         );
@@ -80,10 +80,10 @@ export class EstoqueBuscaComponent implements OnInit {
       .subscribe(
         () => {
           this.loadEstoque();
-          this.notificaoServico.notify({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
+          this.notificaoServico.notificar({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
         },
         error => {
-          this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível remover o item.'});
+          this.notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: 'Não foi possível remover o item.'});
         }
       );
   }

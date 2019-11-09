@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
-import { NotificationService } from 'src/app/errors/servicos/notification.service';
+import { NotificacaoService } from 'src/app/erros/servicos/notificacao.service';
 import { Supermercado } from '../modelos/supermercado';
 import { SupermercadoService } from '../servicos/supermercado.service';
 
@@ -18,7 +18,7 @@ export class SupermercadoBuscaComponent implements OnInit {
   constructor(
     private supermercadoService: SupermercadoService,
     private confirmationService: ConfirmationService,
-    private notificaoServico: NotificationService
+    private notificaoServico: NotificacaoService
   ) { }
 
   ngOnInit(): void {
@@ -47,7 +47,7 @@ export class SupermercadoBuscaComponent implements OnInit {
           this.supermercados = supermercados;
         },
         error => {
-          this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
+          this.notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: 'Não foi possível carregar os itens. Tente novamente'});
         }
       );
   }
@@ -59,7 +59,7 @@ export class SupermercadoBuscaComponent implements OnInit {
             this.supermercados = supermercados;
           },
           error => {
-            this.notificaoServico.notify({severity: 'error', summary: 'Erro',
+            this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
             detail: 'Não foi possível carregar os itens. Tente novamente'});
           }
         );
@@ -70,10 +70,10 @@ export class SupermercadoBuscaComponent implements OnInit {
       .subscribe(
         () => {
           this.loadSupermercados();
-          this.notificaoServico.notify({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
+          this.notificaoServico.notificar({severity: 'info', summary: 'Sucesso', detail: 'Operação efetuada com sucesso!'});
         },
         error => {
-          this.notificaoServico.notify({severity: 'error', summary: 'Erro', detail: 'Não foi possível excluir o registro'});
+          this.notificaoServico.notificar({severity: 'error', summary: 'Erro', detail: 'Não foi possível excluir o registro'});
         }
       );
   }

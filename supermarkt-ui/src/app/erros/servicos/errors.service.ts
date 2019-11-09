@@ -58,7 +58,7 @@ export class ErrorsService {
   }
 
   enviarParaServidor(error: Erro): Observable<Erro> {
-      console.log('Enviado para o servidor: ', error);
+      //console.log('Enviado para o servidor: ', error);
       return of(error);
   }
 

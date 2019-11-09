@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificacaoService } from 'src/app/erros/servicos/notificacao.service';
 import { Avaliacao } from 'src/app/pedido/modelos/avaliacao';
 import { AvaliacoesService } from 'src/app/pedido/servicos/avaliacoes.service';
 import { PedidoService } from 'src/app/pedido/servicos/pedido.service';
@@ -35,7 +36,8 @@ export class SupermercadoComponent implements OnInit {
     private route: ActivatedRoute,
     private avaliacoesService: AvaliacoesService,
     private pedidoService: PedidoService,
-    private estoqueService: EstoqueService
+    private estoqueService: EstoqueService,
+    private notificaoServico: NotificacaoService
   ) { }
 
   ngOnInit(): void {
@@ -53,7 +55,11 @@ export class SupermercadoComponent implements OnInit {
     this.avaliacoesService.porIdDoSupermercado(supermercadoId)
       .subscribe(avaliacoes => {
         this.avaliacoes = avaliacoes;
-    });
+    },
+    error => {
+        this.notificaoServico.notificar({severity: 'warn', summary: 'Aviso', detail: 'Este supermercado ainda não foi avaliado.'});
+      }
+    );
 
     this.estoqueService.estoquePorSupermercadoId(supermercadoId)
       .subscribe(estoqueProdutos => {

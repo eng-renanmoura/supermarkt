@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ErrorsComponent } from './errors-component/errors.component';
-import { ErrorsHandler } from './errors-handler';
+import { ErrosComponent } from './erros-component/erros.component';
+import { ErrosHandler } from './erros-handler';
 import { ErrorsService } from './servicos/errors.service';
-import { NotificationService } from './servicos/notification.service';
+import { NotificacaoService } from './servicos/notificacao.service';
 
 @NgModule({
   imports: [
@@ -12,15 +12,15 @@ import { NotificationService } from './servicos/notification.service';
     RouterModule,
   ],
   declarations: [
-    ErrorsComponent
+    ErrosComponent
   ],
   providers: [
-    NotificationService,
+    NotificacaoService,
     ErrorsService,
     {
       provide: ErrorHandler,
-      useClass: ErrorsHandler,
+      useClass: ErrosHandler,
     },
   ]
 })
-export class ErrorsModule { }
+export class ErrosModule { }

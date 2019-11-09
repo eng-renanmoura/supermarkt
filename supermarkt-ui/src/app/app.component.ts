@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Message, MessageService } from 'primeng/api';
-import { NotificationService } from './errors/servicos/notification.service';
+import { NotificacaoService } from './erros/servicos/notificacao.service';
 import { Autenticacao } from './login/modelos/autenticacao';
 import { AutenticacaoService } from './login/servicos/autenticacao.service';
 
@@ -22,13 +22,13 @@ export class AppComponent implements OnInit {
   constructor(private router: Router,
               private messageService: MessageService,
               private autenticacaoService: AutenticacaoService,
-              private notificationService: NotificationService,
+              private notificacaoService: NotificacaoService,
               ) {}
 
   ngOnInit(): void {
     this.autenticacaoService.currentUser.subscribe(user => this.user = user);
-    this.notificationService
-            .notification$
+    this.notificacaoService
+            .notificacoe$
             .subscribe(message => {
               this.messageService.add(message);
               this.notification = message;
