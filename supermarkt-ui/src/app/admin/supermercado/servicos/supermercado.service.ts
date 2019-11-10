@@ -47,7 +47,7 @@ export class SupermercadoService {
     return this.http.get<Supermercado>(`${this.API}/parceiros/supermercados/${id}`);
   }
 
-  tiposPagamento(supermercado: Supermercado): Observable<TipoPagamento>  {
-    return this.http.get<TipoPagamento>(`${this.API}/supermercados/${supermercado.id}/tipo-pagamento`);
+  tiposPagamento(supermercado: Supermercado): Observable<TipoPagamento[]>  {
+    return this.http.get<TipoPagamento[]>(`${this.API}/supermercados/${supermercado.id}/tipo-pagamento`);
   }
 }

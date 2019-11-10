@@ -7,6 +7,7 @@ import { NotificacaoService } from 'src/app/shared/services/notificacao.service'
 import { Pagamento } from '../modelos/pagamento';
 import { Pedido } from '../modelos/pedido';
 import { PagamentoService } from '../servicos/pagamento.service';
+import { SelectItem } from 'primeng/api';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { PagamentoService } from '../servicos/pagamento.service';
 export class PagamentoComponent implements OnInit {
 
   pedido: Pedido;
-  tiposPagamento: TipoPagamento;
+  tiposPagamento: SelectItem[] = [];
   pagamento: Pagamento;
 
   constructor(
@@ -38,7 +39,11 @@ export class PagamentoComponent implements OnInit {
         this.pagamento.pedido = pedido;
         this.pagamento.valor = pedido.total;
         this.supermercadoService.tiposPagamento(pedido.supermercado)
-          .subscribe(tiposPagamento => this.tiposPagamento = tiposPagamento
+          .subscribe(tiposPagamento => {
+            tiposPagamento.forEach(tipo => {
+              this.tiposPagamento.push({label: tipo.nome, value: tipo});
+            });
+          }
             , error => this.notificaoServico.notificar({severity: 'error', summary: 'Erro',
             detail: 'Erro ao carregar tipos de pagamento.'}));
       }
