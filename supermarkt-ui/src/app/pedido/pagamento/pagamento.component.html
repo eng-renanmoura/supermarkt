@@ -1,11 +1,11 @@
 <div class="container">
 
   <div class="p-grid">
-      <div class="p-col-2">
+      <div class="p-col-12 p-lg-2">
           <app-resumo [pedido]="pedido"></app-resumo>
       </div>
 
-      <div *ngIf="pagamento" class="p-col-10">
+      <div *ngIf="pagamento" class="p-col-12 p-lg-10">
         <form *ngIf="pagamento.situacao !== 'CRIADO'" #pagamentoForm="ngForm" (ngSubmit)="criaPagamento()">
           <h3>Dados do pagamento</h3>
           <div class="p-grid">
