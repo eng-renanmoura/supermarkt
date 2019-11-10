@@ -1,8 +1,10 @@
-<div class="container" *ngIf="pendentes?.length">
-    <h2>Pedidos Pendentes</h2>
-    <div  *ngFor="let pedido of pendentes">
-        <div>
-        <h1>{{ pedido.situacao | situacaoPedido }}</h1>
+<div class="container p-grid p-col-12 p-lg-9 p-md-9" *ngIf="pendentes?.length">
+    <div class="p-col-12 p-lg-9 p-md-9">
+        <h2>Pedidos Pendentes</h2>
+    </div>
+    <div *ngFor="let pedido of pendentes">
+        <div class="p-col-12 p-lg-9 p-md-9">
+            <h1>{{ pedido.situacao | situacaoPedido }}</h1>
 
             <p><strong>Cliente:</strong> {{ pedido.entrega.cliente.nome }}</p>
             <p><strong>Tel:</strong> <a href="tel:{{ pedido.entrega.cliente.telefone }}">{{ pedido.entrega.cliente.telefone }}</a></p>
