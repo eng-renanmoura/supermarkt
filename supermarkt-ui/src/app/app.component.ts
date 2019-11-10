@@ -14,7 +14,7 @@ import { NotificacaoService } from './shared/services/notificacao.service';
 export class AppComponent implements OnInit {
   title = 'supermarkt-ui';
   user: Autenticacao;
-  showMenu = true;
+  showMenu = false;
 
   notification: Message;
   showNotification: boolean;

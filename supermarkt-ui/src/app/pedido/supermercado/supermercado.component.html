@@ -1,7 +1,7 @@
 <div class="container">
     <div class="p-grid">
 
-        <div class="p-col-12 p-lg-2 p-md-2">
+        <div class="p-col-12 p-lg-3 p-md-3">
             <div *ngIf="supermercadoComAvaliacao">
                 <h3>Pedido</h3>
                 <div *ngFor="let itemPedido of pedido.itens">
@@ -29,7 +29,7 @@
             </div>
         </div>
 
-        <div class="p-col-12 p-lg-10 p-md-10">
+        <div class="p-col-12 p-lg-9 p-md-9">
             <div *ngIf="supermercadoComAvaliacao">
                 <div>
                     <div>
@@ -52,9 +52,6 @@
                                     <p-card header="{{produto.nome | uppercase }}" 
                                             subheader="{{produto.descricao }}"
                                             [style]="{width: '260px'}" styleClass="ui-card-shadow">
-                                        <!--p-header>
-                                            <img src="Card" src="assets/showcase/images/usercard.png">
-                                        </p-header-->
                                         <p *ngIf="!produto.precoPromocional"> {{produto.preco | currency:'BRL'  }}</p>
                                         <p *ngIf="produto.precoPromocional"> De: <del> {{produto.preco | currency:'BRL'  }} </del></p>
                                         <p *ngIf="produto.precoPromocional"> Por: {{produto.precoPromocional | currency:'BRL'  }}</p>

@@ -16,9 +16,6 @@
                     <span class='favorite_icon favoritado' *appExceto="!supermercadoComAvaliacao.supermercado.favorito"
                     (click)="favoritar(supermercadoComAvaliacao.supermercado)">&#9829;</span>
                     
-                    <!--p-header>
-                        <img src="Card" src="assets/showcase/images/usercard.png">
-                    </p-header-->
                     <p-rating [ngModel]="supermercadoComAvaliacao.mediaDasAvaliacoes" readonly="true" stars="5" [cancel]="false"></p-rating>
                     <span *ngIf="supermercadoComAvaliacao.supermercado.tempoDeEntregaMinimoEmMinutos"> Entrega: {{supermercadoComAvaliacao.supermercado.tempoDeEntregaMinimoEmMinutos}} min</span>
                     <span *ngIf="supermercadoComAvaliacao.supermercado.tempoDeEntregaMaximoEmMinutos"> - {{supermercadoComAvaliacao.supermercado.tempoDeEntregaMaximoEmMinutos}} min</span>
