@@ -1,7 +1,7 @@
 <div class="container" *ngIf="pendentes?.length">
+    <h2>Pedidos Pendentes</h2>
     <div  *ngFor="let pedido of pendentes">
         <div>
-        <h2>Pedidos Pendentes</h2>
         <h1>{{ pedido.situacao | situacaoPedido }}</h1>
 
             <p><strong>Cliente:</strong> {{ pedido.entrega.cliente.nome }}</p>

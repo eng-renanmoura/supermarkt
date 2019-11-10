@@ -1,7 +1,35 @@
 <div class="container">
     <div class="p-grid">
 
-        <div class="p-col-10">
+        <div class="p-col-12 p-lg-2 p-md-2">
+            <div *ngIf="supermercadoComAvaliacao">
+                <h3>Pedido</h3>
+                <div *ngFor="let itemPedido of pedido.itens">
+                    <hr>
+                    <p>{{ itemPedido.quantidade }}x {{ itemPedido.itemEstoque.nome }}
+                        {{ calculaSubTotal(itemPedido) | currency:'BRL' }}<br>
+                        <span class="text-muted"><small>{{ itemPedido.observacao }}</small></span>
+                    </p>
+                    <div class="p-grid">
+                        <div class="p-col">
+                            <button pButton style="margin-right: 10px"
+                            (click)="editaItemDoPedido(itemPedido)"
+                            label="Editar" class="ui-button-secondary"></button>
+                            
+                            <button pButton (click)="removeItemDoPedido(itemPedido)"
+                            label="Remover" class="ui-button-secondary"></button>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <p>Taxa de entrega:
+                {{ supermercadoComAvaliacao.supermercado.taxaDeEntregaEmReais ? (supermercadoComAvaliacao.supermercado.taxaDeEntregaEmReais | currency:'BRL') : 'Grátis' }}</p>
+                <p class="font-weight-bolder">Total: {{ totalDoPedido() | currency:'BRL' }}</p>
+                <button pButton (click)="fazPedido()" label="Fazer Pedido"></button>
+            </div>
+        </div>
+
+        <div class="p-col-12 p-lg-10 p-md-10">
             <div *ngIf="supermercadoComAvaliacao">
                 <div>
                     <div>
@@ -53,34 +81,6 @@
                 </p-tabView>
             </div>
         </div>
-
-        <div class="p-col-2">
-            <div *ngIf="supermercadoComAvaliacao">
-                <h3>Pedido</h3>
-                <div *ngFor="let itemPedido of pedido.itens">
-                    <hr>
-                    <p>{{ itemPedido.quantidade }}x {{ itemPedido.itemEstoque.nome }}
-                        {{ calculaSubTotal(itemPedido) | currency:'BRL' }}<br>
-                        <span class="text-muted"><small>{{ itemPedido.observacao }}</small></span>
-                    </p>
-                    <div class="p-grid">
-                        <div class="p-col">
-                            <button pButton style="margin-right: 10px"
-                            (click)="editaItemDoPedido(itemPedido)"
-                            label="Editar" class="ui-button-secondary"></button>
-                            
-                            <button pButton (click)="removeItemDoPedido(itemPedido)"
-                            label="Remover" class="ui-button-secondary"></button>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <p>Taxa de entrega:
-                {{ supermercadoComAvaliacao.supermercado.taxaDeEntregaEmReais ? (supermercadoComAvaliacao.supermercado.taxaDeEntregaEmReais | currency:'BRL') : 'Grátis' }}</p>
-                <p class="font-weight-bolder">Total: {{ totalDoPedido() | currency:'BRL' }}</p>
-                <button pButton (click)="fazPedido()" label="Fazer Pedido"></button>
-            </div>
-        </div> 
 
     </div>
 </div>
