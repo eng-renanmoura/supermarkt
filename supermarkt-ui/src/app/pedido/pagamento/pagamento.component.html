@@ -18,26 +18,26 @@
               </div>
             </div>
 
-            <div class="p-col-12">
+            <div class="p-col-12 p-lg-12 p-md-12">
               <label for="nome">Nome no cartão</label>
               <input pInputText type="text" required id="nome" name="nome" 
                 [(ngModel)]="pagamento.nome" placeholder="Nome como impresso no cartão" size="10">
             </div>
 
-            <div class="p-col-5">
+            <div class="p-col-12 p-lg-5 p-md-5">
               <label for="numero">Número do cartão</label>
               <input pInputText type="text" required id="numero" name="numero" 
                 [(ngModel)]="pagamento.numero"
                 placeholder="0000 0000 0000 0000" size="50">
             </div>
 
-            <div class="p-col-4">
+            <div class="p-col-12 p-lg-4 p-md-4">
               <label for="expiracao">Data de expiração</label>
               <input pInputText type="month" required id="expiracao" name="expiracao" 
                 [(ngModel)]="pagamento.expiracao" size="50">
             </div>
 
-            <div class="p-col-3">
+            <div class="p-col-12 p-lg-3 p-md-3">
               <label for="codigo">Código de Segurança</label>
               <input pInputText type="text" required id="codigo" name="codigo" 
                 [(ngModel)]="pagamento.codigo"
