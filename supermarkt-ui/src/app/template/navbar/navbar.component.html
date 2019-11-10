@@ -4,14 +4,14 @@
             <div class="ui-g-12" style="padding: 0; padding-right: 10px">
                     
                 <div class="p-grid ">
-                    <div class="p-col-11">
+                    <div class="p-col-9">
                         <a *ngIf="user" style="float: left" href="javascript:;" class="navbar-toogle" (click)="toggle()">
                             <i class="pi pi-bars" ></i>
                         </a>
                     </div>
                     <div class="p-col-1">
-                        <button pButton *ngIf="!user" type="button" label="Login" class="ui-button-primary" routerLink="/login"></button>
-                        <button pButton *ngIf="user" type="button" class="ui-button-danger" label="Logout" (click)="logout()"></button>
+                        <p-button *ngIf="!user" type="button" label="Login" styleClass="ui-button-primary" routerLink="/login"></p-button>
+                        <p-button *ngIf="user" type="button" styleClass="ui-button-danger" label="Logout" (click)="logout()"></p-button>
                     </div>
                 </div>
             </div>
