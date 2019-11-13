@@ -45,9 +45,9 @@ export class EstoqueFormularioComponent implements OnInit {
       id: undefined,
       nome: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
       descricao: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      quantidade: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      preco: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      precoPromocional: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      quantidade: new FormControl(undefined, Validators.compose([Validators.required])),
+      preco: new FormControl(undefined, Validators.compose([Validators.required])),
+      precoPromocional: new FormControl(undefined, Validators.compose([Validators.required])),
     });
   }
 

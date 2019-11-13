@@ -41,13 +41,13 @@ export class SupermercadoFormularioComponent implements OnInit {
     this.supermercadoForm = this.fb.group({
       id: undefined,
       nome: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      cnpj: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      cnpj: new FormControl(undefined, Validators.compose([Validators.required])),
       descricao: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      cep: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      cep: new FormControl(undefined, Validators.compose([Validators.required])),
       endereco: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      taxaDeEntregaEmReais: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      tempoDeEntregaMinimoEmMinutos: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      tempoDeEntregaMaximoEmMinutos: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      taxaDeEntregaEmReais: new FormControl(undefined, Validators.compose([Validators.required])),
+      tempoDeEntregaMinimoEmMinutos: new FormControl(undefined, Validators.compose([Validators.required])),
+      tempoDeEntregaMaximoEmMinutos: new FormControl(undefined, Validators.compose([Validators.required])),
     });
   }
 

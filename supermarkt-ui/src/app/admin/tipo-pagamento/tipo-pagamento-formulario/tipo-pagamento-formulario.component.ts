@@ -32,7 +32,7 @@ export class TipoPagamentoFormularioComponent implements OnInit {
     this.tipoForm = this.fb.group({
       id: undefined,
       nome: new FormControl(undefined, Validators.compose([Validators.required, Validators.maxLength(50)])),
-      forma: new FormControl(FormaPagamento, Validators.compose([Validators.required, Validators.maxLength(50)])),
+      forma: new FormControl(FormaPagamento, Validators.compose([Validators.required])),
     });
 
     this.tipoPagamentoService.getFormas()
