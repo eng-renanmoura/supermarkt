@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.autenticacaoService.currentUser.subscribe(user => this.user = user);
     this.notificacaoService
-            .notificacoe$
+            .notificacoes
             .subscribe(message => {
               this.messageService.add(message);
               this.notification = message;

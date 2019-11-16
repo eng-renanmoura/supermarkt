@@ -6,8 +6,8 @@ import { publish, refCount } from 'rxjs/operators';
 @Injectable()
 export class NotificacaoService {
 
-  private _notificacao: BehaviorSubject<Message> = new BehaviorSubject(undefined);
-  readonly notificacoe$: Observable<Message> = this._notificacao.asObservable().pipe(
+  private notificacao: BehaviorSubject<Message> = new BehaviorSubject(undefined);
+  readonly notificacoes: Observable<Message> = this.notificacao.asObservable().pipe(
     publish(),
     refCount()
   );
@@ -15,7 +15,7 @@ export class NotificacaoService {
   constructor() {}
 
   notificar(message: Message): void {
-    this._notificacao.next(message);
+    this.notificacao.next(message);
   }
 
 }
