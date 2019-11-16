@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { AutenticacaoService } from 'src/app/login/servicos/autenticacao.service';
 import { NotificacaoService } from 'src/app/shared/services/notificacao.service';
@@ -13,7 +12,6 @@ export class AutorizacaoGuard implements CanActivate {
 
   constructor(private router: Router,
               private autenticacaoService: AutenticacaoService,
-              private toaster: ToastrService,
               private notificaoServico: NotificacaoService) { }
 
   canActivate(

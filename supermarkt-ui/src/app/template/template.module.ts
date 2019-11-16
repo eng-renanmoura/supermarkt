@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { MenuModule } from 'primeng/menu';
-import { DirectivesModule } from '../shared/directives/directives.module';
+import { SharedModule } from '../shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
@@ -16,7 +16,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     CommonModule,
     MenuModule,
     ButtonModule,
-    DirectivesModule
+    SharedModule
   ],
   exports: [
     NavbarComponent,

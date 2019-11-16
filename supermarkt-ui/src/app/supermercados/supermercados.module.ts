@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
 import { ButtonModule } from 'primeng/button';
 import { rxStompConfig } from 'src/app/rx-stomp.config';
-import { PipesModule } from '../shared/pipes/pipes.module';
+import { SharedModule } from '../shared/shared.module';
 import { PedidoPendenteComponent } from './pedido-pendente/pedido-pendente.component';
 import { SupermercadosRoutingModule } from './supermercados-routing.module';
 
@@ -16,7 +16,7 @@ import { SupermercadosRoutingModule } from './supermercados-routing.module';
     CommonModule,
     SupermercadosRoutingModule,
     ButtonModule,
-    PipesModule
+    SharedModule
   ],
   providers: [
     {

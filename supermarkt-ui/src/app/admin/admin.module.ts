@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { PipesModule } from '../shared/pipes/pipes.module';
+import { SharedModule } from '../shared/shared.module';
 import { AdminRoutingModule } from './admin-routing.module';
 
 
@@ -12,7 +12,7 @@ import { AdminRoutingModule } from './admin-routing.module';
     CommonModule,
     FormsModule,
     AdminRoutingModule,
-    PipesModule
+    SharedModule
    ]
 })
 export class AdminModule { }
