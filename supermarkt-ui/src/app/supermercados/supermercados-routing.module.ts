@@ -9,7 +9,7 @@ const routes: Routes = [
     path: ':supermercadoId/pedidos/pendentes',
     component: PedidoPendenteComponent,
     canActivate: [AutorizacaoGuard],
-    data: { role: ['SUPERMERCADO']}
+    data: { role: ['SUPERMERCADO', 'ADMIN']}
   },
   { path: ':supermercadoId/estoque', loadChildren: () => import(`./estoque/estoque.module`).then(m => m.EstoqueModule) },
 ];
