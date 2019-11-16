@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FavoriteTextPipe } from './favorite-text.pipe';
 import { FormaPagamentoPipe } from './forma-pagamento.pipe';
 import { SituacaoPedidoPipe } from './situacao-pedido.pipe';
+import { TextoFavoritoPipe } from './texto-favorito.pipe';
 
 @NgModule({
   declarations: [
     FormaPagamentoPipe,
     SituacaoPedidoPipe,
-    FavoriteTextPipe
+    TextoFavoritoPipe
   ],
   imports: [
     CommonModule
@@ -16,7 +16,7 @@ import { SituacaoPedidoPipe } from './situacao-pedido.pipe';
   exports: [
     FormaPagamentoPipe,
     SituacaoPedidoPipe,
-    FavoriteTextPipe
+    TextoFavoritoPipe
   ]
 })
 export class PipesModule { }
