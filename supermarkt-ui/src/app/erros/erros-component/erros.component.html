@@ -3,7 +3,7 @@
   <div *ngIf="data?.error">
     <h1>ERRO {{ data?.error}}</h1>
     <h5 *ngIf="data?.error === 404">Página não encontrada :(</h5>
-    <a mat-raised-button [routerLink]="'/'">
+    <a [routerLink]="'/'">
       <h5>Ir para página inicial</h5>
     </a>
   </div>
@@ -12,13 +12,12 @@
     <h1 *ngIf="routeParams?.status"> ERRO {{ routeParams?.status }}</h1><br/>
     <h1 *ngIf="routeParams?.url && routeParams?.url !== '/'">Erro em {{ routeParams?.url | uppercase }}, desculpe {{ routeParams?.user }} :(</h1>
     <h4 *ngIf="routeParams?.id">Envie o erro abaixo ao Administrador com o ID:<br> {{ routeParams?.id}}</h4>
-    <a mat-raised-button
+    <a
       [routerLink]="routeParams?.url"
       *ngIf="routeParams?.url && routeParams.status !== '404'">
         <h5>Voltar para {{routeParams?.url}}</h5>
     </a>
-    <a mat-raised-button
-        routerLink="/"
+    <a routerLink="/"
         *ngIf="!routeParams.url || routeParams.status === '404'">
         <h5>Voltar para página inicial</h5>
     </a>
@@ -26,7 +25,7 @@
 
   <div *ngIf="!routeParams && !data">
       <h1>Erro desconhecido, desculpe :(</h1>
-      <a mat-raised-button [routerLink]="'/login'">
+      <a [routerLink]="'/login'">
         <h5>Vá para página inicial</h5>
       </a>
   </div>
