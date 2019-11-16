@@ -4,8 +4,8 @@ import { Injectable, Injector, Type } from '@angular/core';
 import { Event, NavigationError, Router } from '@angular/router';
 import * as StackTraceParser from 'error-stack-parser';
 import { Observable, of } from 'rxjs';
-import { Autenticacao } from 'src/app/login/modelos/autenticacao';
-import { AutenticacaoService } from 'src/app/login/servicos/autenticacao.service';
+import { Autenticacao } from 'src/app/shared/modelos/autenticacao';
+import { AutenticacaoService } from 'src/app/shared/services/autenticacao.service';
 import { Erro } from '../modelos/erro';
 
 @Injectable()

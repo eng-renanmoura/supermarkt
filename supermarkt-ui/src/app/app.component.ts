@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Message, MessageService } from 'primeng/api';
-import { Autenticacao } from './login/modelos/autenticacao';
-import { AutenticacaoService } from './login/servicos/autenticacao.service';
+import { Autenticacao } from './shared/modelos/autenticacao';
+import { AutenticacaoService } from './shared/services/autenticacao.service';
 import { NotificacaoService } from './shared/services/notificacao.service';
 
 @Component({

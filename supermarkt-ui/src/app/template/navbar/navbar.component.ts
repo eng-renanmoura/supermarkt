@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Autenticacao } from 'src/app/login/modelos/autenticacao';
-import { AutenticacaoService } from '../../login/servicos/autenticacao.service';
+import { Autenticacao } from 'src/app/shared/modelos/autenticacao';
+import { AutenticacaoService } from '../../shared/services/autenticacao.service';
 
 @Component({
     selector: 'app-navbar',

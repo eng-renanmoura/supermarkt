@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { Autenticacao } from '../../login/modelos/autenticacao';
-import { AutenticacaoService } from '../../login/servicos/autenticacao.service';
+import { Autenticacao } from '../../shared/modelos/autenticacao';
+import { AutenticacaoService } from '../../shared/services/autenticacao.service';
 
 @Component({
     selector: 'app-sidebar',
