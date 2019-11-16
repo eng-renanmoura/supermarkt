@@ -14,7 +14,6 @@ import { PipesModule } from './pipes/pipes.module';
     DirectivesModule
   ],
   exports: [
-    CommonModule,
     PipesModule,
     DirectivesModule
   ],
