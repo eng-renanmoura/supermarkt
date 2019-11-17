@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SelectItem } from 'primeng/api';
 import { SupermercadoService } from 'src/app/admin/supermercado/servicos/supermercado.service';
-import { TipoPagamento } from 'src/app/admin/tipo-pagamento/modelos/tipo-pagamento';
 import { PedidoService } from 'src/app/pedido/servicos/pedido.service';
 import { NotificacaoService } from 'src/app/shared/services/notificacao.service';
 import { Pagamento } from '../modelos/pagamento';
 import { Pedido } from '../modelos/pedido';
 import { PagamentoService } from '../servicos/pagamento.service';
-import { SelectItem } from 'primeng/api';
 
 
 @Component({
