@@ -1,5 +1,3 @@
-import { Supermercado } from 'src/app/admin/supermercado/modelos/supermercado';
-
 export class ItemEstoque {
     constructor(
         public id: number,
