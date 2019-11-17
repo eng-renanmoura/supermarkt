@@ -7,7 +7,6 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
-import { MessagesModule } from 'primeng/messages';
 import { TableModule } from 'primeng/table';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SupermercadoService } from './servicos/supermercado.service';
@@ -26,7 +25,6 @@ import { SupermercadoRoutingModule } from './supermercado-routing.module';
   imports: [
     CommonModule,
     SupermercadoRoutingModule,
-    MessagesModule,
     MessageModule,
     RouterModule,
     TableModule,

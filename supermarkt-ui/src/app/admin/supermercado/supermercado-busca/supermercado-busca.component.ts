@@ -13,7 +13,7 @@ import { SupermercadoService } from '../servicos/supermercado.service';
 export class SupermercadoBuscaComponent implements OnInit {
 
   supermercados: Supermercado[];
-  inputSearch;
+  inputSearch: string;
 
   constructor(
     private supermercadoService: SupermercadoService,
