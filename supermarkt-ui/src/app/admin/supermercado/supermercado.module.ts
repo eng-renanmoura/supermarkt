@@ -4,17 +4,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
-import { CalendarModule } from 'primeng/calendar';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { DropdownModule } from 'primeng/dropdown';
-import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { MessagesModule } from 'primeng/messages';
-import { RadioButtonModule } from 'primeng/radiobutton';
 import { TableModule } from 'primeng/table';
-import { ToastModule } from 'primeng/toast';
-import { TooltipModule } from 'primeng/tooltip';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { SupermercadoService } from './servicos/supermercado.service';
 import { SupermercadoBuscaComponent } from './supermercado-busca/supermercado-busca.component';
 import { SupermercadoFormularioComponent } from './supermercado-formulario/supermercado-formulario.component';
@@ -29,23 +24,18 @@ import { SupermercadoRoutingModule } from './supermercado-routing.module';
     SupermercadoBuscaComponent
   ],
   imports: [
-    MessagesModule,
+    CommonModule,
     SupermercadoRoutingModule,
+    MessagesModule,
     MessageModule,
-    RadioButtonModule,
     RouterModule,
     TableModule,
-    TooltipModule,
     ButtonModule,
-    CalendarModule,
-    DropdownModule,
-    InputMaskModule,
     InputTextModule,
-    CommonModule,
     ConfirmDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastModule,
+    SharedModule
   ],
   providers: [SupermercadoService, ConfirmationService]
 })
