@@ -5,7 +5,6 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
 import { ToastModule } from 'primeng/toast';
 import { SupermercadoModule } from './admin/supermercado/supermercado.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,7 +26,6 @@ registerLocaleData(localeFr, 'pt');
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
     TemplateModule,
     SupermercadoModule,
     ErrosModule,
