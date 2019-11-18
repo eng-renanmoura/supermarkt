@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InjectableRxStompConfig, RxStompService, rxStompServiceFactory } from '@stomp/ng2-stompjs';
-import { TextMaskModule } from 'angular2-text-mask';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
@@ -41,7 +40,6 @@ import { SupermercadoComponent } from './supermercado/supermercado.component';
     RatingModule,
     TabViewModule,
     DialogModule,
-    TextMaskModule,
     DropdownModule,
     SharedModule,
   ],
