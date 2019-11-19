@@ -1,6 +1,6 @@
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import localeFr from '@angular/common/locales/pt';
+import localePt from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,7 +14,7 @@ import { LoginModule } from './login/login.module';
 import { SharedModule } from './shared/shared.module';
 import { TemplateModule } from './template/template.module';
 
-registerLocaleData(localeFr, 'pt');
+registerLocaleData(localePt, 'pt');
 
 @NgModule({
   declarations: [
