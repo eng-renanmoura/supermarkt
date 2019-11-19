@@ -5,7 +5,7 @@ import { catchError, retry } from 'rxjs/operators';
 
 
 @Injectable()
-export class ServerErrorInterceptor implements HttpInterceptor {
+export class ErroServidorInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
